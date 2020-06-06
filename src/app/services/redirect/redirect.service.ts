@@ -5,23 +5,27 @@ import { LoginService } from '../login/login.service';
 import { Profile } from '../../models/profile/profile';
 import { locale } from 'moment';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class RedirectService {
 
-  constructor(private router: Router, private loginSevice: LoginService) { }
+  constructor(private router: Router,
+    private loginSevice: LoginService) {
+
+  }
 
   login() {
-    
-    if(localStorage.length > 0){
+
+    if (localStorage.length > 0) {
       let userName = JSON.parse(localStorage.getItem('userName'));
       localStorage.clear();
       this.loginSevice.logOut(userName).subscribe((response: any) => {
       },
         error => {
           console.log(JSON.stringify(error));
-      });
+        });
     }
 
     this.router.navigate(['login']).then(() => {
@@ -57,12 +61,12 @@ export class RedirectService {
     },
       error => {
         console.log(JSON.stringify(error));
-    });
+      });
 
   }
 
-  welcomeToSystem(){
-    this.router.navigate(['dashboard']).then(() => {
+  welcomeToSystem() {
+    this.router.navigate(['portada']).then(() => {
       window.location.reload();
     });
   }
