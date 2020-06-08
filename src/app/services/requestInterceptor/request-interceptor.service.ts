@@ -43,8 +43,14 @@ export class RequestInterceptorService implements HttpInterceptor  {
         }
       }, (err: any) => {
         if (err instanceof HttpErrorResponse) {
-          if(err.status === 401 || err.ok === false || err.status === 0){
+          if(err.status === 401){
             this.redirectService.login();
+          }
+          if(err.status === 500){
+            this.redirectService.error500();
+          }
+          if(err.status === 0){
+            this.redirectService.NoAuthorizedRequest();
           }
         }
       })

@@ -16,6 +16,7 @@ import { RoleComponent } from './jsViews/role/role/role.component';
 import { ConfigurationParameterComponent } from './jsViews/configurationParameter/configuration-parameter/configuration-parameter.component';
 import { PersonTypeComponent } from './jsViews/personType/person-type/person-type.component';
 import { AccompanimentInstrumentComponent } from './jsViews/domain/accompanimentInstrument/accompaniment-instrument/accompaniment-instrument.component';
+import { RegionalComponent } from './jsViews/domain/regional/regional/regional.component';
 
 
 export const routes: Routes = [
@@ -150,12 +151,22 @@ export const routes: Routes = [
           title: 'Mantenimiento de tipos de personas'
         }
       },
+
+      //domain
       {
         path: 'accompaniment-instrument',
         canActivate: [AuthGuard],
         component: AccompanimentInstrumentComponent,
         data: {
           title: 'Instrumento de Acompañamiento'
+        }
+      },
+      {
+        path: 'regional',
+        canActivate: [AuthGuard],
+        component: RegionalComponent,
+        data: {
+          title: 'Regional'
         }
       }
 

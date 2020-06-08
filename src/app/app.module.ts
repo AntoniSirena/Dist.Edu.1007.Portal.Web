@@ -58,6 +58,7 @@ import { RoleComponent } from './jsViews/role/role/role.component';
 import { ConfigurationParameterComponent } from './jsViews/configurationParameter/configuration-parameter/configuration-parameter.component';
 import { PersonTypeComponent } from './jsViews/personType/person-type/person-type.component';
 import { AccompanimentInstrumentComponent } from './jsViews/domain/accompanimentInstrument/accompaniment-instrument/accompaniment-instrument.component';
+import { RegionalComponent } from './jsViews/domain/regional/regional/regional.component';
 
 @NgModule({
   imports: [
@@ -94,7 +95,8 @@ import { AccompanimentInstrumentComponent } from './jsViews/domain/accompaniment
     RoleComponent,
     ConfigurationParameterComponent,
     PersonTypeComponent,
-    AccompanimentInstrumentComponent
+    AccompanimentInstrumentComponent,
+    RegionalComponent
   ],
   providers: [
     {

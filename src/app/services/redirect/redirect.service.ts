@@ -41,7 +41,6 @@ export class RedirectService {
 
   }
 
-
   logout() {
 
     this.router.navigate(['login']).then(() => {
@@ -63,6 +62,30 @@ export class RedirectService {
         console.log(JSON.stringify(error));
       });
 
+  }
+
+  error500() {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Estimado usuario ha ocurrido un error interno',
+      showConfirmButton: false,
+      timer: 4000
+    }).then(() => {
+      window.location.reload();
+    });
+  }
+
+  NoAuthorizedRequest() {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Estimado usuario la solicitud no fué autorizada',
+      showConfirmButton: false,
+      timer: 4000
+    }).then(() => {
+      localStorage.clear();
+      this.router.navigate(['login']);
+      window.location.reload();
+    });
   }
 
   welcomeToSystem() {
