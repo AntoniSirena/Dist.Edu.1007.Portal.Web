@@ -46,6 +46,9 @@ export class RequestInterceptorService implements HttpInterceptor  {
           if(err.status === 401){
             this.redirectService.login();
           }
+          if(err.status === 404){
+            this.redirectService.error404();
+          }
           if(err.status === 500){
             this.redirectService.error500();
           }

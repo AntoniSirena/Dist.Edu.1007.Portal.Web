@@ -17,6 +17,7 @@ import { ConfigurationParameterComponent } from './jsViews/configurationParamete
 import { PersonTypeComponent } from './jsViews/personType/person-type/person-type.component';
 import { AccompanimentInstrumentComponent } from './jsViews/domain/accompanimentInstrument/accompaniment-instrument/accompaniment-instrument.component';
 import { RegionalComponent } from './jsViews/domain/regional/regional/regional.component';
+import { DistrictComponent } from './jsViews/domain/district/district.component';
 
 
 export const routes: Routes = [
@@ -167,6 +168,14 @@ export const routes: Routes = [
         component: RegionalComponent,
         data: {
           title: 'Regional'
+        }
+      },
+      {
+        path: 'district',
+        canActivate: [AuthGuard],
+        component: DistrictComponent,
+        data: {
+          title: 'Distrito'
         }
       }
 

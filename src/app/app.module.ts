@@ -59,6 +59,7 @@ import { ConfigurationParameterComponent } from './jsViews/configurationParamete
 import { PersonTypeComponent } from './jsViews/personType/person-type/person-type.component';
 import { AccompanimentInstrumentComponent } from './jsViews/domain/accompanimentInstrument/accompaniment-instrument/accompaniment-instrument.component';
 import { RegionalComponent } from './jsViews/domain/regional/regional/regional.component';
+import { DistrictComponent } from './jsViews/domain/district/district.component';
 
 @NgModule({
   imports: [
@@ -96,7 +97,8 @@ import { RegionalComponent } from './jsViews/domain/regional/regional/regional.c
     ConfigurationParameterComponent,
     PersonTypeComponent,
     AccompanimentInstrumentComponent,
-    RegionalComponent
+    RegionalComponent,
+    DistrictComponent
   ],
   providers: [
     {

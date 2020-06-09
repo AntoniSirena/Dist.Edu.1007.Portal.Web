@@ -75,6 +75,17 @@ export class RedirectService {
     });
   }
 
+  error404() {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Estimado usuario el registro no fué encontrado',
+      showConfirmButton: false,
+      timer: 4000
+    }).then(() => {
+      
+    });
+  }
+
   NoAuthorizedRequest() {
     Swal.fire({
       icon: 'warning',

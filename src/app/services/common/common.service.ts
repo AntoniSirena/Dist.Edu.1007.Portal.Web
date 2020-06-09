@@ -22,4 +22,8 @@ export class CommonService {
     return this.httpClient.get(this.apiURL +'api/common/GetDocumentTypes');
   }
 
+  getRegionals():Observable<object>{    
+    return this.httpClient.get(this.apiURL +'api/common/GetRegionals');
+  }
+
 }
