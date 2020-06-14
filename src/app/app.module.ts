@@ -60,6 +60,7 @@ import { PersonTypeComponent } from './jsViews/personType/person-type/person-typ
 import { AccompanimentInstrumentComponent } from './jsViews/domain/accompanimentInstrument/accompaniment-instrument/accompaniment-instrument.component';
 import { RegionalComponent } from './jsViews/domain/regional/regional/regional.component';
 import { DistrictComponent } from './jsViews/domain/district/district.component';
+import { EducativeCenterComponent } from './jsViews/domain/educativeCenter/educative-center/educative-center.component';
 
 @NgModule({
   imports: [
@@ -98,7 +99,8 @@ import { DistrictComponent } from './jsViews/domain/district/district.component'
     PersonTypeComponent,
     AccompanimentInstrumentComponent,
     RegionalComponent,
-    DistrictComponent
+    DistrictComponent,
+    EducativeCenterComponent
   ],
   providers: [
     {

@@ -18,6 +18,7 @@ import { PersonTypeComponent } from './jsViews/personType/person-type/person-typ
 import { AccompanimentInstrumentComponent } from './jsViews/domain/accompanimentInstrument/accompaniment-instrument/accompaniment-instrument.component';
 import { RegionalComponent } from './jsViews/domain/regional/regional/regional.component';
 import { DistrictComponent } from './jsViews/domain/district/district.component';
+import { EducativeCenterComponent } from './jsViews/domain/educativeCenter/educative-center/educative-center.component';
 
 
 export const routes: Routes = [
@@ -167,7 +168,7 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         component: RegionalComponent,
         data: {
-          title: 'Regional'
+          title: 'Regionales'
         }
       },
       {
@@ -175,7 +176,15 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         component: DistrictComponent,
         data: {
-          title: 'Distrito'
+          title: 'Distritos'
+        }
+      },
+      {
+        path: 'educative-center',
+        canActivate: [AuthGuard],
+        component: EducativeCenterComponent,
+        data: {
+          title: 'Centros Educativos'
         }
       }
 

@@ -78,22 +78,32 @@ export class RedirectService {
   error404() {
     Swal.fire({
       icon: 'warning',
-      title: 'Estimado usuario el registro no fué encontrado',
+      title: 'Estimado usuario los registros no fuerón encontrados',
       showConfirmButton: false,
       timer: 4000
     }).then(() => {
-      
+
     });
   }
 
   NoAuthorizedRequest() {
+
+    if (localStorage.length > 0) {
+      let userName = JSON.parse(localStorage.getItem('userName'));
+      localStorage.clear();
+      this.loginSevice.logOut(userName).subscribe((response: any) => {
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
+    }
+
     Swal.fire({
       icon: 'warning',
       title: 'Estimado usuario la solicitud no fué autorizada',
       showConfirmButton: false,
       timer: 4000
     }).then(() => {
-      localStorage.clear();
       this.router.navigate(['login']);
       window.location.reload();
     });
