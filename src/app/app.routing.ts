@@ -19,6 +19,7 @@ import { AccompanimentInstrumentComponent } from './jsViews/domain/accompaniment
 import { RegionalComponent } from './jsViews/domain/regional/regional/regional.component';
 import { DistrictComponent } from './jsViews/domain/district/district.component';
 import { EducativeCenterComponent } from './jsViews/domain/educativeCenter/educative-center/educative-center.component';
+import { TandaComponent } from './jsViews/domain/tanda/tanda/tanda.component';
 
 
 export const routes: Routes = [
@@ -185,6 +186,14 @@ export const routes: Routes = [
         component: EducativeCenterComponent,
         data: {
           title: 'Centros Educativos'
+        }
+      },
+      {
+        path: 'tanda',
+        canActivate: [AuthGuard],
+        component: TandaComponent,
+        data: {
+          title: 'Tandas'
         }
       }
 
