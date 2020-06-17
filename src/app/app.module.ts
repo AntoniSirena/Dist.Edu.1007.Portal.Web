@@ -62,6 +62,7 @@ import { RegionalComponent } from './jsViews/domain/regional/regional/regional.c
 import { DistrictComponent } from './jsViews/domain/district/district.component';
 import { EducativeCenterComponent } from './jsViews/domain/educativeCenter/educative-center/educative-center.component';
 import { TandaComponent } from './jsViews/domain/tanda/tanda/tanda.component';
+import { GradeComponent } from './jsViews/domain/grade/grade/grade.component';
 
 @NgModule({
   imports: [
@@ -102,7 +103,8 @@ import { TandaComponent } from './jsViews/domain/tanda/tanda/tanda.component';
     RegionalComponent,
     DistrictComponent,
     EducativeCenterComponent,
-    TandaComponent
+    TandaComponent,
+    GradeComponent
   ],
   providers: [
     {
