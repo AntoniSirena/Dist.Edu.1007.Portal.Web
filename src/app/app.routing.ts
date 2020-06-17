@@ -21,6 +21,7 @@ import { DistrictComponent } from './jsViews/domain/district/district.component'
 import { EducativeCenterComponent } from './jsViews/domain/educativeCenter/educative-center/educative-center.component';
 import { TandaComponent } from './jsViews/domain/tanda/tanda/tanda.component';
 import { GradeComponent } from './jsViews/domain/grade/grade/grade.component';
+import { AreaComponent } from './jsViews/domain/area/area/area.component';
 
 
 export const routes: Routes = [
@@ -203,6 +204,14 @@ export const routes: Routes = [
         component: GradeComponent,
         data: {
           title: 'Grados'
+        }
+      },
+      {
+        path: 'area',
+        canActivate: [AuthGuard],
+        component: AreaComponent,
+        data: {
+          title: 'Areas'
         }
       }
 

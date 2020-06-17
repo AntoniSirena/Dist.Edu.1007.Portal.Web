@@ -16,7 +16,7 @@ export class GradeService {
     this.apiURL = environment.apiURL;
   }
 
-  getGradess(): Observable<object> {
+  getGrades(): Observable<object> {
     return this.httpClient.get(this.apiURL + 'api/grade');
   }
 

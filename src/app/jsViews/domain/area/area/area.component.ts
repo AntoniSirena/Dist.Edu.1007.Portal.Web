@@ -3,15 +3,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
-import { Grade } from '../../../../models/domain/grade/grade';
-import { GradeService } from '../../../../services/domain/grade/grade.service';
-import { Igrade } from '../../../../interfaces/domain/Igrade/igrade';
+import { Area } from '../../../../models/domain/area/area';
+import { AreaService } from '../../../../services/domain/area/area.service';
+import { Iarea } from '../../../../interfaces/domain/Iarea/iarea';
 
 
 @Component({
-  selector: 'app-grade',
-  templateUrl: './grade.component.html',
-  styleUrls: ['./grade.component.css'],
+  selector: 'app-area',
+  templateUrl: './area.component.html',
+  styleUrls: ['./area.component.css'],
   encapsulation: ViewEncapsulation.None,
   styles: [`
     .dark-modal .modal-content {
@@ -26,31 +26,32 @@ import { Igrade } from '../../../../interfaces/domain/Igrade/igrade';
     }
   `]
 })
-export class GradeComponent implements OnInit {
+export class AreaComponent implements OnInit {
 
-  createGradeForm: FormGroup;
-  editGradeForm: FormGroup;
+  createAreaForm: FormGroup;
+  editAreaForm: FormGroup;
 
   _currentPage: number = 1;
 
-  grade = new Grade();
-  grades = new Array<Grade>();
+  area = new Area();
+  areas = new Array<Area>();
 
   //constructor
   constructor(
-    private gradeService: GradeService,
+    private areaService: AreaService,
     private modalService: NgbModal,
     private form: FormBuilder) {
   }
 
+
   ngOnInit(): void {
-    this.getGrades();
+    this.getAreas();
   }
 
 
-  getGrades() {
-    this.gradeService.getGrades().subscribe((response: Array<Grade>) => {
-      this.grades = response;
+  getAreas() {
+    this.areaService.getAreas().subscribe((response: Array<Area>) => {
+      this.areas = response;
     },
       error => {
         console.log(JSON.stringify(error));
@@ -58,16 +59,16 @@ export class GradeComponent implements OnInit {
   }
 
 
-  getGradeById(id: number) {
-    this.gradeService.getGradeId(id).subscribe((response: Grade) => {
-      this.grade = response;
+  getAreaById(id: number) {
+    this.areaService.getAreaById(id).subscribe((response: Area) => {
+      this.area = response;
 
       //llenando el modal
-      this.editGradeForm = this.form.group({
-        id: [`${this.grade.Id}`, Validators.required],
-        shortName: [`${this.grade.ShortName}`, Validators.required],
-        name: [`${this.grade.Name}`, Validators.required],
-        description: [`${this.grade.Description}`],
+      this.editAreaForm = this.form.group({
+        id: [`${this.area.Id}`, Validators.required],
+        shortName: [`${this.area.ShortName}`, Validators.required],
+        name: [`${this.area.Name}`, Validators.required],
+        description: [`${this.area.Description}`],
       });
     },
       error => {
@@ -84,7 +85,7 @@ export class GradeComponent implements OnInit {
 
   //open edit modal
   openEditModal(editModal, id: number) {
-    this.getGradeById(id);
+    this.getAreaById(id);
     this.setValueEditFrom();
     this.modalService.open(editModal, { size: 'lg' });
   }
@@ -92,7 +93,7 @@ export class GradeComponent implements OnInit {
 
   //create
   create(formValue: any) {
-    const grade: Igrade = {
+    const area: Iarea = {
       Id: 0,
       ShortName: formValue.shortName,
       Name: formValue.name,
@@ -107,7 +108,7 @@ export class GradeComponent implements OnInit {
       IsDeleted: false
     };
 
-    this.gradeService.createGrade(grade).subscribe((response: Iresponse) => {
+    this.areaService.createArea(area).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
         Swal.fire({
           position: 'top-end',
@@ -116,7 +117,7 @@ export class GradeComponent implements OnInit {
           showConfirmButton: true,
           timer: 2000
         }).then(() => {
-          this.getGrades();
+          this.getAreas();
           this.modalService.dismissAll();
         });
       } else {
@@ -138,22 +139,22 @@ export class GradeComponent implements OnInit {
   //edit
   edit(formValue: any) {
 
-    const grade: Igrade = {
-      Id: this.grade.Id,
+    const area: Iarea = {
+      Id: this.area.Id,
       ShortName: formValue.shortName,
       Name: formValue.name,
       Description: formValue.description,
-      CreationTime: this.grade.CreationTime,
-      CreatorUserId: this.grade.CreatorUserId,
-      LastModificationTime: this.grade.LastModificationTime,
-      LastModifierUserId: this.grade.LastModifierUserId,
-      DeleterUserId: this.grade.DeleterUserId,
-      DeletionTime: this.grade.DeletionTime,
-      IsActive: this.grade.IsActive,
-      IsDeleted: this.grade.IsDeleted
+      CreationTime: this.area.CreationTime,
+      CreatorUserId: this.area.CreatorUserId,
+      LastModificationTime: this.area.LastModificationTime,
+      LastModifierUserId: this.area.LastModifierUserId,
+      DeleterUserId: this.area.DeleterUserId,
+      DeletionTime: this.area.DeletionTime,
+      IsActive: this.area.IsActive,
+      IsDeleted: this.area.IsDeleted
     };
 
-    this.gradeService.editGrade(grade).subscribe((response: Iresponse) => {
+    this.areaService.editArea(area).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
         Swal.fire({
           position: 'top-end',
@@ -162,7 +163,7 @@ export class GradeComponent implements OnInit {
           showConfirmButton: true,
           timer: 2000
         }).then(() => {
-          this.getGrades();
+          this.getAreas();
           this.modalService.dismissAll();
         });
       } else {
@@ -180,7 +181,6 @@ export class GradeComponent implements OnInit {
 
   }
 
-
   //delete
   delete(id: number) {
 
@@ -195,7 +195,7 @@ export class GradeComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         //delete service
-        this.gradeService.delete(id).subscribe((response: Iresponse) => {
+        this.areaService.delete(id).subscribe((response: Iresponse) => {
           if (response.Code === '000') {
             Swal.fire({
               position: 'top-end',
@@ -204,7 +204,7 @@ export class GradeComponent implements OnInit {
               showConfirmButton: true,
               timer: 2000
             }).then(() => {
-              this.getGrades();
+              this.getAreas();
               this.modalService.dismissAll();
             });
           } else {
@@ -224,9 +224,10 @@ export class GradeComponent implements OnInit {
     })
   }
 
+
   //create from set value ''
   setValueCreateFrom() {
-    this.createGradeForm = this.form.group({
+    this.createAreaForm = this.form.group({
       id: [0, Validators.required],
       shortName: ['', Validators.required],
       name: ['', Validators.required],
@@ -236,12 +237,11 @@ export class GradeComponent implements OnInit {
 
   //edit from set value ''
   setValueEditFrom() {
-    this.editGradeForm = this.form.group({
+    this.editAreaForm = this.form.group({
       id: [0, Validators.required],
       shortName: ['', Validators.required],
       name: ['', Validators.required],
       description: ['']
     });
   }
-
 }
