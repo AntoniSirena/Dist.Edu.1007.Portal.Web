@@ -252,7 +252,7 @@ export class DistrictComponent implements OnInit {
       shortName: ['', Validators.required],
       name: ['', Validators.required],
       description: [''],
-      regionalId: [0, Validators.required]
+      regionalId: ['', Validators.required]
     });
   }
 
@@ -263,7 +263,7 @@ export class DistrictComponent implements OnInit {
       shortName: ['', Validators.required],
       name: ['', Validators.required],
       description: [''],
-      regionalId: [0, Validators.required]
+      regionalId: ['', Validators.required]
     });
   }
 

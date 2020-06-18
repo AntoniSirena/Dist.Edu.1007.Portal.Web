@@ -250,7 +250,7 @@ export class EducativeCenterComponent implements OnInit {
       shortName: ['', Validators.required],
       name: ['', Validators.required],
       description: [''],
-      districtId: [0, Validators.required]
+      districtId: ['', Validators.required]
     });
   }
 
@@ -261,7 +261,7 @@ export class EducativeCenterComponent implements OnInit {
       shortName: ['', Validators.required],
       name: ['', Validators.required],
       description: [''],
-      districtId: [0, Validators.required]
+      districtId: ['', Validators.required]
     });
   }
 

@@ -30,4 +30,8 @@ export class CommonService {
     return this.httpClient.get(this.apiURL +'api/common/GetDistricts');
   }
 
+  getAreas():Observable<object>{    
+    return this.httpClient.get(this.apiURL +'api/common/GetAreas');
+  }
+
 }
