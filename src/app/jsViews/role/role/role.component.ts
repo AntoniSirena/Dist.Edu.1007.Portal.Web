@@ -76,7 +76,8 @@ export class RoleComponent implements OnInit {
         menuTemplate: [`${this.role.MenuTemplate}`],
         parent: [`${this.role.Parent}`, Validators.required],
         enabled: [this.role.Enabled],
-        personTypeId: [`${this.role.PersonTypeId}`, Validators.required]
+        personTypeId: [`${this.role.PersonTypeId}`, Validators.required],
+        code: [this.role.Code],
       });
     },
       error => {
@@ -225,7 +226,8 @@ export class RoleComponent implements OnInit {
       menuTemplate: [''],
       parent: ['', Validators.required],
       enabled: [false],
-      personTypeId: [0, Validators.required]
+      personTypeId: [0, Validators.required],
+      code:['']
     });
   }
 

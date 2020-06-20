@@ -72,6 +72,14 @@
                             </div>
                             <div class="card-body">
 
+                                <label for="shortName">Código de seguridad</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <input type="text" formControlName="code" class="form-control" [readonly]="true">
+                                </div>
+
                                 <label for="shortName">Nombre corto</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -153,7 +161,6 @@
         <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
     </div>
 </ng-template>
-
 
 
 <!--Create modal-->
