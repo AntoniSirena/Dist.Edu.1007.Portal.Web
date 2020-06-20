@@ -38,4 +38,6 @@ export class AccompanimentInstrumentComponent implements OnInit {
     this.modalService.open(createModal, { size: 'xl', scrollable: true });
   }
 
+  
+
 }
