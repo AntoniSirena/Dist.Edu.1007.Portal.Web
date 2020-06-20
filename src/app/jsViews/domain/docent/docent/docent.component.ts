@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
+import { DatePipe } from "@angular/common";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Docent } from '../../../../models/domain/docent/docent';
+import { Docent, DocentDetails, DocentPersonInfo } from '../../../../models/domain/docent/docent';
 import { DocumentType } from '../../../../models/common/documentType/document-type';
 import { Area } from '../../../../models/common/area/area';
 import { DocentService } from '../../../../services/domain/docent/docent.service';
@@ -38,11 +39,19 @@ export class DocentComponent implements OnInit {
   docents = new Array<Docent>();
   docent = new Docent();
 
+  //docent details
+  docentDetails = new DocentDetails();
+  docentPersonInfo = new DocentPersonInfo();
+
   documenTypes = new Array<DocumentType>();
   areas = new Array<Area>();
 
+  @ViewChild('details') detailsModal: ElementRef;
+
+
   //constructor
   constructor(
+    private datePipe: DatePipe,
     private docentService: DocentService,
     private commonService: CommonService,
     private modalService: NgbModal,
@@ -87,11 +96,12 @@ export class DocentComponent implements OnInit {
   }
 
   getDocentById(id: number) {
-    this.docentService.getDocentBytId(id).subscribe((response: Docent) => {
+    this.docentService.getDocentById(id).subscribe((response: Docent) => {
       this.docent = response;
+      this.docent.BirthDate =  this.datePipe.transform(this.docent.BirthDate,"yyyy-MM-dd");
 
       //llenando el modal
-      this.editDocentForm = this.form.group({
+      this.editDocentForm = this.form.group({      
         id: [`${this.docent.Id}`, Validators.required],
         firstName: [`${this.docent.FirstName}`, Validators.required],
         secondName: [`${this.docent.SecondName}`],
@@ -112,6 +122,16 @@ export class DocentComponent implements OnInit {
   }
 
 
+  //docent details
+  getDocentDetailsById(id: number) {
+    this.docentService.getDocentDetailsById(id).subscribe((response: DocentDetails) => {
+      this.docentPersonInfo = response.DocentPersonInfo;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
   //open create modal
   openCreateModal(createModal) {
     this.setValueCreateFrom();
@@ -123,6 +143,12 @@ export class DocentComponent implements OnInit {
     this.getDocentById(id);
     this.setValueEditFrom();
     this.modalService.open(editModal, { size: 'lg' });
+  }
+
+  //open details modal
+  openDetailModal(userId: number) {
+    this.getDocentDetailsById(userId);
+    this.modalService.open(this.detailsModal, { size: 'lg', scrollable: true });
   }
 
 

@@ -34,7 +34,7 @@
             <td>{{item.Id}}</td>
             <td>{{item.FullName}}</td>
             <td>{{item.DocumentNumber}}</td>
-            <td class="right"> <button (click)="openDetailModal()"> <i class="fa fa-eye"></i> </button> </td>
+            <td class="right"> <button (click)="openDetailModal(item.Id)"> <i class="fa fa-eye"></i> </button> </td>
             <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
             <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
                   class="fa fa-pencil"></i>&nbsp;Editar</button></td>
@@ -107,7 +107,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-info"></i></span>
                     </div>
-                    <input type="date" formControlName="birthDate" class="form-control" placeholder="Fecha de nacimiento">
+                    <input type="date" formControlName="birthDate" class="form-control">
                     <div *ngIf="!createDocentForm.value.birthDate" class="required">*</div>
                   </div>
 
@@ -254,7 +254,7 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-info"></i></span>
                                   </div>
-                                  <input type="date" formControlName="birthDate" class="form-control" placeholder="Fecha de nacimiento">
+                                  <input type="date" formControlName="birthDate" class="form-control">
                                   <div *ngIf="!editDocentForm.value.birthDate" class="required">*</div>
                                 </div>
               
@@ -331,4 +331,173 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
     </div>
+</ng-template>
+
+
+<!--Details Modal -->
+<ng-template #details let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Información del docente &nbsp;</h4>
+    <h4 class="modal-title"><i>{{docentPersonInfo.FullName}}</i></h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <ngb-tabset [destroyOnHide]="false">
+
+      <!--Tab gerenal-->
+      <ngb-tab title="General">
+        <ng-template ngbTabContent>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                  </div>
+                  <div class="card-body">
+    
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Primer nombre</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{docentPersonInfo.FirstName}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Segundo nombre</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{docentPersonInfo.SecondName}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Primer apellido</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{docentPersonInfo.Surname}}</span>
+                      </div>
+                    </div>
+                    
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Segundo apellido</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{docentPersonInfo.SecondSurname}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Nombre completo</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{docentPersonInfo.FullName}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Fecha de cumpleaño</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{docentPersonInfo.BirthDate}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">{{docentPersonInfo.DocumentType}}</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{docentPersonInfo.DocumentNumber}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Teléfono</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{docentPersonInfo.Phone}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Dirección</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <textarea class="form-control textarea">
+                           {{docentPersonInfo.Address}}
+                        </textarea>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Area que imparte</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{docentPersonInfo.Area}}</span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <!--/.col-->
+            </div>
+
+          </div>
+
+        </ng-template>
+      </ngb-tab>
+
+      <!--Tab acompañamientos-->
+      <ngb-tab title="Acompañamientos">
+        <ng-template ngbTabContent>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                  </div>
+                  <div class="card-body">
+
+                  </div>
+                </div>
+              </div>
+              <!--/.col-->
+            </div>
+
+          </div>
+
+        </ng-template>
+      </ngb-tab>
+
+    </ngb-tabset>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
 </ng-template>

@@ -66,6 +66,8 @@ import { GradeComponent } from './jsViews/domain/grade/grade/grade.component';
 import { AreaComponent } from './jsViews/domain/area/area/area.component';
 import { DocentComponent } from './jsViews/domain/docent/docent/docent.component';
 
+import {DatePipe} from "@angular/common";
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -119,7 +121,9 @@ import { DocentComponent } from './jsViews/domain/docent/docent/docent.component
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptorService,
       multi: true
-    }
+    },
+    DatePipe
+    
   ],
 
   bootstrap: [ AppComponent ]

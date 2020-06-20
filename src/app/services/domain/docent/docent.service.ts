@@ -19,8 +19,12 @@ export class DocentService {
     return this.httpClient.get(this.apiURL + 'api/docent');
   }
 
-  getDocentBytId(id: number): Observable<object> {
+  getDocentById(id: number): Observable<object> {
     return this.httpClient.get(this.apiURL + 'api/docent/' + id);
+  }
+
+  getDocentDetailsById(id: number): Observable<object> {
+    return this.httpClient.get(this.apiURL + 'api/docent/GetDocentDetails/' + id);
   }
 
   createDocent(docent: Idocent) {
