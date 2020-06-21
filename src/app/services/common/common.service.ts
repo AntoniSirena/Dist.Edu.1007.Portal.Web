@@ -30,12 +30,40 @@ export class CommonService {
     return this.httpClient.get(this.apiURL +'api/common/GetDistricts');
   }
 
+  getDistrictByRegionalId(regionalId: number): Observable<object> {
+    return this.httpClient.get(this.apiURL + 'api/common/GetDistrictByRegionalId/' + regionalId);
+  }
+
+  getEducativeCenterByDistrictId(districtId: number): Observable<object> {
+    return this.httpClient.get(this.apiURL + 'api/common/GetEducativeCenterByDistrictId/' + districtId);
+  }
+
   getAreas():Observable<object>{    
     return this.httpClient.get(this.apiURL +'api/common/GetAreas');
   }
 
   getCurrentUserInfo():Observable<object>{    
     return this.httpClient.get(this.apiURL +'api/common/GetCurrentUserInfo');
+  }
+
+  getIndicators():Observable<object>{    
+    return this.httpClient.get(this.apiURL +'api/common/GetIndicators');
+  }
+
+  getTandas():Observable<object>{    
+    return this.httpClient.get(this.apiURL +'api/common/GetTandas');
+  }
+
+  getGrades():Observable<object>{    
+    return this.httpClient.get(this.apiURL +'api/common/GetGrades');
+  }
+
+  getDocents():Observable<object>{    
+    return this.httpClient.get(this.apiURL +'api/common/GetDocents');
+  }
+
+  getVisits():Observable<object>{    
+    return this.httpClient.get(this.apiURL +'api/common/GetVisits');
   }
 
 }
