@@ -68,6 +68,8 @@ import { DocentComponent } from './jsViews/domain/docent/docent/docent.component
 
 import {DatePipe} from "@angular/common";
 import { VisitComponent } from './jsViews/domain/visit/visit/visit.component';
+import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicator.component';
+
 
 @NgModule({
   imports: [
@@ -112,8 +114,9 @@ import { VisitComponent } from './jsViews/domain/visit/visit/visit.component';
     GradeComponent,
     AreaComponent,
     DocentComponent,
-    VisitComponent
-  ],
+    VisitComponent,
+    IndicatorComponent
+   ],
   providers: [
     {
       provide: LocationStrategy,

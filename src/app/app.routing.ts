@@ -24,6 +24,7 @@ import { GradeComponent } from './jsViews/domain/grade/grade/grade.component';
 import { AreaComponent } from './jsViews/domain/area/area/area.component';
 import { DocentComponent } from './jsViews/domain/docent/docent/docent.component';
 import { VisitComponent } from './jsViews/domain/visit/visit/visit.component';
+import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicator.component';
 
 
 export const routes: Routes = [
@@ -230,6 +231,14 @@ export const routes: Routes = [
         component: VisitComponent,
         data: {
           title: 'Visitas'
+        }
+      },
+      {
+        path: 'indicator',
+        canActivate: [AuthGuard],
+        component: IndicatorComponent,
+        data: {
+          title: 'Indicadores'
         }
       }
 
