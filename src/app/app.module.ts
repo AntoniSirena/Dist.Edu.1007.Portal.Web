@@ -67,6 +67,7 @@ import { AreaComponent } from './jsViews/domain/area/area/area.component';
 import { DocentComponent } from './jsViews/domain/docent/docent/docent.component';
 
 import {DatePipe} from "@angular/common";
+import { VisitComponent } from './jsViews/domain/visit/visit/visit.component';
 
 @NgModule({
   imports: [
@@ -110,7 +111,8 @@ import {DatePipe} from "@angular/common";
     TandaComponent,
     GradeComponent,
     AreaComponent,
-    DocentComponent
+    DocentComponent,
+    VisitComponent
   ],
   providers: [
     {

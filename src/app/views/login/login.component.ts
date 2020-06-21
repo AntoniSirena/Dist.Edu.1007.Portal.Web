@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("profile", `${JSON.stringify(this.profile.Profile)}`);
           localStorage.setItem("token", `${JSON.stringify(this.profile.Profile.User.Token)}`);
           localStorage.setItem("userName", `${JSON.stringify(this.profile.Profile.User.UserName)}`);
+          localStorage.setItem("userId", `${JSON.stringify(this.profile.Profile.User.Id)}`);
 
           localStorage.setItem('roleShortName', `${JSON.stringify(this.profile.Profile.User.RoleShortName)}`);
           localStorage.setItem('roleParent', `${JSON.stringify(this.profile.Profile.User.RoleParent)}`);

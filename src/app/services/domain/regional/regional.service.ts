@@ -40,4 +40,5 @@ export class RegionalService {
   delete(id: number): Observable<object> {
     return this.httpClient.delete(this.apiURL + 'api/regional/' + id);
   }
+  
 }

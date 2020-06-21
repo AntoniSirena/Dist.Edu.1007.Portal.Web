@@ -54,9 +54,9 @@ export class RedirectService {
       });
     });
 
-    let userName = JSON.parse(localStorage.getItem('userName'));
+    let userId = JSON.parse(localStorage.getItem('userId'));
     localStorage.clear();
-    this.loginSevice.logOut(userName).subscribe((response: any) => {
+    this.loginSevice.logOut(userId).subscribe((response: any) => {
     },
       error => {
         console.log(JSON.stringify(error));
