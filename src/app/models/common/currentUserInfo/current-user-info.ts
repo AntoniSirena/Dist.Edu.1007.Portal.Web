@@ -1,4 +1,5 @@
 export class CurrentUserInfo {
+    Id: number;
     FirstName: string;
     SecondName: string;
     Surname: string;

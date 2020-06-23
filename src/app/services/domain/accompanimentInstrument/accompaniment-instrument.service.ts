@@ -15,6 +15,11 @@ export class AccompanimentInstrumentService {
     this.apiURL = environment.apiURL;
   }
 
+
+  getAccompInstRequest():Observable<object>{    
+    return this.httpClient.get(this.apiURL +'api/identificationData/GetAccompInstRequest');
+  }
+
   getIdentificationDataById(id: number): Observable<object> {
     return this.httpClient.get(this.apiURL + 'api/identificationData/' + id);
   }

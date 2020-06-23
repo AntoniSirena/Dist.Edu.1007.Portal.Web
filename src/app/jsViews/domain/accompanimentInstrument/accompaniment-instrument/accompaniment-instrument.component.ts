@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { DatePipe } from "@angular/common";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
-import { IdentificationData } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
+import { IdentificationData, AccompInstRequest } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
 import { AccompanimentInstrumentService } from '../../../../services/domain/accompanimentInstrument/accompaniment-instrument.service';
 import { CommonService } from '../../../../services/common/common.service';
 import { Regional } from '../../../../models/common/regional/regional';
@@ -53,11 +54,13 @@ export class AccompanimentInstrumentComponent implements OnInit {
   docent = new Docent();
   currentUser = new CurrentUserInfo();
   visits = new Array<Visit>();
+  accompInstRequests = new Array<AccompInstRequest>();
 
   docentDocumentNumber: string;
 
   userName: string;
   userDocumentNumber: string;
+
 
   //constructor
   constructor(
@@ -68,12 +71,23 @@ export class AccompanimentInstrumentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAccompInstRequests();
     this.getRegionals();
     this.getTandas();
     this.getGrades();
     this.getDocents();
     this.getCurentUser();
     this.getVisits();
+  }
+
+
+  getAccompInstRequests() {
+    this.acompInstService.getAccompInstRequest().subscribe((response: Array<AccompInstRequest>) => {
+      this.accompInstRequests = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
 
@@ -87,21 +101,25 @@ export class AccompanimentInstrumentComponent implements OnInit {
   }
 
   getDistritByRegionId(id: string) {
-    this.commonService.getDistrictByRegionalId(id).subscribe((response: Array<District>) => {
-      this.distrits = response;
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
+    if (id != "") {
+      this.commonService.getDistrictByRegionalId(id).subscribe((response: Array<District>) => {
+        this.distrits = response;
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
+    }
   }
 
   getCenterByDistritId(id: string) {
-    this.commonService.getEducativeCenterByDistrictId(id).subscribe((response: Array<EducativeCenter>) => {
-      this.centers = response;
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
+    if (id != "") {
+      this.commonService.getEducativeCenterByDistrictId(id).subscribe((response: Array<EducativeCenter>) => {
+        this.centers = response;
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
+    }
   }
 
   getTandas() {
@@ -165,18 +183,93 @@ export class AccompanimentInstrumentComponent implements OnInit {
   }
 
 
+
   //open create modal
   openCreateAccompanimentInstrument(createModal) {
+    this.docentDocumentNumber = "";
     this.setValueCreateIdentificationDataFrom();
     this.modalService.open(createModal, { size: 'xl', scrollable: true });
   }
 
 
+  //create Identification Data
+  createIdentificationData(formValue: any) {
+    const identificationData: IdentificationData = {
+      Id: 0,
+      RequestId: 0,
+      RegionalId: formValue.regionalId,
+      DistritId: formValue.distritId,
+      CenterId: formValue.centerId,
+      TandaId: formValue.tandaId,
+      GradeId: formValue.gradeId,
+      DocentId: formValue.docentId,
+      CompanionId: this.currentUser.Id,
+
+      VisitIdA: formValue.visitIdA || this.docents[0].Id,
+      VisitDateA: formValue.visitDateA || null,
+      QuantityChildrenA: formValue.quantityChildrenA || 0,
+      QuantityGirlsA: formValue.quantityGirlsA || 0,
+      ExpectedTimeA: formValue.expectedTimeA || 0,
+      RealTimeA: formValue.realTimeA || 0,
+
+      VisitIdB: formValue.visitIdB || null,
+      VisitDateB: formValue.visitDateB || null,
+      QuantityChildrenB: formValue.quantityChildrenB || 0,
+      QuantityGirlsB: formValue.quantityGirlsB || 0,
+      ExpectedTimeB: formValue.expectedTimeB || 0,
+      RealTimeB: formValue.realTimeB || 0,
+
+      VisitIdC: formValue.visitIdA || 0,
+      VisitDateC: formValue.visitDateA || null,
+      QuantityChildrenC: formValue.quantityChildrenA || 0,
+      QuantityGirlsC: formValue.quantityGirlsA || 0,
+      ExpectedTimeC: formValue.expectedTimeA || 0,
+      RealTimeC: formValue.realTimeA || 0,
+
+      CreatorUserId: null,
+      CreationTime: null,
+      LastModifierUserId: null,
+      LastModificationTime: null,
+      DeleterUserId: null,
+      DeletionTime: null,
+      IsActive: true,
+      IsDeleted: false
+    };
+
+    this.acompInstService.createIdentificationData(identificationData).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 2000
+        }).then(() => {
+          this.getAccompInstRequests();
+          this.modalService.dismissAll();
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+
+  }
+
+
+
   //create Identification Data from set value ''
   setValueCreateIdentificationDataFrom() {
     this.createIdentificationDataForm = this.form.group({
-      id: ['', Validators.required],
-      requestId: ['', Validators.required],
+      id: [`${this.docents[0].Id}`],
+      requestId: [''],
       regionalId: ['', Validators.required],
       distritId: ['', Validators.required],
       centerId: ['', Validators.required],
@@ -185,34 +278,34 @@ export class AccompanimentInstrumentComponent implements OnInit {
       docentId: ['', Validators.required],
       dompanionId: [''],
 
-      visitIdA: ['',],
-      visitDateA: ['',],
-      quantityChildrenA: ['',],
-      quantityGirlsA: ['',],
-      expectedTimeA: ['',],
-      realTimeA: ['',],
+      visitIdA: {value: `${this.visits[0].Id}`, disabled: true},
+      visitDateA: [''],
+      quantityChildrenA: [''],
+      quantityGirlsA: [''],
+      expectedTimeA: [''],
+      realTimeA: [''],
 
-      visitIdB: ['',],
-      visitDateB: ['',],
-      quantityChildrenB: ['',],
-      quantityGirlsB: ['',],
-      expectedTimeB: ['',],
-      realTimeB: ['',],
+      visitIdB: {value: '', disabled: true},
+      visitDateB: [''],
+      quantityChildrenB: [''],
+      quantityGirlsB: [''],
+      expectedTimeB: [''],
+      realTimeB: [''],
 
-      visitIdC: ['',],
-      visitDateC: ['',],
-      quantityChildrenC: ['',],
-      quantityGirlsC: ['',],
-      expectedTimeC: ['',],
-      realTimeC: ['',]
+      visitIdC: {value: '', disabled: true},
+      visitDateC: [''],
+      quantityChildrenC: [''],
+      quantityGirlsC: [''],
+      expectedTimeC: [''],
+      realTimeC: ['']
     });
   }
 
   //edit Identification Data from set value ''
   setValueEditIdentificationDataFrom() {
     this.editIdentificationDataForm = this.form.group({
-      id: ['', Validators.required],
-      requestId: ['', Validators.required],
+      id: [''],
+      requestId: [''],
       regionalId: ['', Validators.required],
       distritId: ['', Validators.required],
       centerId: ['', Validators.required],
@@ -221,27 +314,28 @@ export class AccompanimentInstrumentComponent implements OnInit {
       docentId: ['', Validators.required],
       dompanionId: [''],
 
-      visitIdA: ['',],
-      visitDateA: ['',],
-      quantityChildrenA: ['',],
-      quantityGirlsA: ['',],
-      expectedTimeA: ['',],
-      realTimeA: ['',],
+      visitIdA: [''],
+      visitDateA: [''],
+      quantityChildrenA: [''],
+      quantityGirlsA: [''],
+      expectedTimeA: [''],
+      realTimeA: [''],
 
-      visitIdB: ['',],
-      visitDateB: ['',],
-      quantityChildrenB: ['',],
-      quantityGirlsB: ['',],
-      expectedTimeB: ['',],
-      realTimeB: ['',],
+      visitIdB: [''],
+      visitDateB: [''],
+      quantityChildrenB: [''],
+      quantityGirlsB: [''],
+      expectedTimeB: [''],
+      realTimeB: [''],
 
-      visitIdC: ['',],
-      visitDateC: ['',],
-      quantityChildrenC: ['',],
-      quantityGirlsC: ['',],
-      expectedTimeC: ['',],
-      realTimeC: ['',]
+      visitIdC: [''],
+      visitDateC: [''],
+      quantityChildrenC: [''],
+      quantityGirlsC: [''],
+      expectedTimeC: [''],
+      realTimeC: ['']
     });
   }
+
 
 }

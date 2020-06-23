@@ -4,7 +4,7 @@ export class AccompanimentInstrument {
 }
 
 
-export class IdentificationData extends Audit{
+export class IdentificationData extends Audit {
     Id: number;
     RequestId: number;
     RegionalId: number;
@@ -35,4 +35,14 @@ export class IdentificationData extends Audit{
     QuantityGirlsC?: number;
     ExpectedTimeC?: number;
     RealTimeC?: number;
+}
+
+export class AccompInstRequest {
+    Id: number;
+    DocentFullName: string;
+    Status: string;
+    StatusColour: string;
+    OpeningDate: string;
+    ClosingDate: string;
+    AllowEdit: string;
 }
