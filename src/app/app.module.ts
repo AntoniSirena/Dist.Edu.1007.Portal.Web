@@ -116,6 +116,7 @@ import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicat
     DocentComponent,
     VisitComponent,
     IndicatorComponent
+    
    ],
   providers: [
     {

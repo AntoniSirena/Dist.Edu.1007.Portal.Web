@@ -60,7 +60,7 @@
     </div>
     <div class="modal-body">
 
-        <form>
+        <form [formGroup]="createIdentificationDataForm" (submit)="createIdentificationDa(createIdentificationDataForm.value)">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -126,11 +126,21 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label class="bold center">Regional:</label>
-                                            <input type="text" class="form-control" placeholder="Regional">
+                                            <div class="input-group mb-3">
+                                                <select formControlName="regionalId" class="form-control" (ngModelChange)="getDistritByRegionId($event)">
+                                                  <option *ngFor="let item of regionals" [value]="item.Id">{{item.Name}}</option>
+                                                </select>
+                                                <div *ngIf="!createIdentificationDataForm.value.regionalId" class="required">*</div>
+                                            </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <label class="bold center">Distrito:</label>
-                                            <input type="text" class="form-control" placeholder="Distrito">
+                                            <div class="input-group mb-3">
+                                                <select formControlName="distritId" class="form-control" (ngModelChange)="getCenterByDistritId($event)">
+                                                  <option *ngFor="let item of distrits" [value]="item.Id">{{item.Name}}</option>
+                                                </select>
+                                                <div *ngIf="!createIdentificationDataForm.value.distritId" class="required">*</div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -138,8 +148,12 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <label class="bold center">Nombre Completo del Centro:</label>
-                                            <input type="text" class="form-control"
-                                                placeholder="Nombre Completo del Centro">
+                                            <div class="input-group mb-3">
+                                                <select formControlName="centerId" class="form-control">
+                                                  <option *ngFor="let item of centers" [value]="item.Id">{{item.Name}}</option>
+                                                </select>
+                                                <div *ngIf="!createIdentificationDataForm.value.centerId" class="required">*</div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -147,11 +161,21 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label class="bold center">Tanda:</label>
-                                            <input type="text" class="form-control" placeholder="Tanda">
+                                            <div class="input-group mb-3">
+                                                <select formControlName="tandaId" class="form-control">
+                                                  <option *ngFor="let item of tandas" [value]="item.Id">{{item.Name}}</option>
+                                                </select>
+                                                <div *ngIf="!createIdentificationDataForm.value.tandaId" class="required">*</div>
+                                            </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <label class="bold center">Grado:</label>
-                                            <input type="text" class="form-control" placeholder="Grado">
+                                            <div class="input-group mb-3">
+                                                <select formControlName="gradeId" class="form-control">
+                                                  <option *ngFor="let item of grades" [value]="item.Id">{{item.Name}}</option>
+                                                </select>
+                                                <div *ngIf="!createIdentificationDataForm.value.gradeId" class="required">*</div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -159,12 +183,23 @@
                                     <div class="row">
                                         <div class="col-sm-5">
                                             <label class="bold">Nombre y Apellido del Docente:</label>
-                                            <input type="text" class="form-control"
-                                                placeholder="Nombre y Apellido del Docente">
+                                            <div class="input-group mb-3">
+                                                <select formControlName="docentId" class="form-control" (ngModelChange)="getDocentById($event)">
+                                                  <option *ngFor="let item of docents" [value]="item.Id">{{item.FullName}}</option>
+                                                </select>
+                                                <div *ngIf="!createIdentificationDataForm.value.docentId" class="required">*</div>
+                                            </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <label class="bold">Cédula:</label>
-                                            <input type="text" class="form-control" placeholder="Cédula">
+                                            <div class="input-group mb-3">
+                                                <input type="text"  
+                                                [ngModelOptions]="{standalone: true}" 
+                                                [ngModel]="docentDocumentNumber"
+                                                [readonly]="true"
+                                                class="form-control" 
+                                                placeholder="Cédula">
+                                            </div>
                                         </div>
                                     </div>
 
@@ -172,12 +207,20 @@
                                     <div class="row">
                                         <div class="col-sm-5">
                                             <label class="bold">Nombre y Apellido del Acompañante:</label>
-                                            <input type="text" class="form-control"
-                                                placeholder="Nombre y Apellido del Acompañante">
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control"
+                                                [ngModelOptions]="{standalone: true}"
+                                                [ngModel]="userName" 
+                                                [readonly]="true"
+                                                >
+                                            </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <label class="bold">Cédula:</label>
-                                            <input type="text" class="form-control" placeholder="Cédula">
+                                            <input type="text" class="form-control"
+                                            [ngModelOptions]="{standalone: true}"
+                                            [ngModel]="userDocumentNumber" 
+                                             [readonly]="true">
                                         </div>
                                     </div>
 
@@ -217,66 +260,78 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control">
+                                            <div class="input-group mb-3">
+                                                <select formControlName="visitIdA" class="form-control">
+                                                  <option *ngFor="let item of visits" [value]="item.Id">{{item.Name}}</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control">
+                                            <input type="date" class="form-control" formControlName="visitDateA">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control" placeholder="Niños">
+                                            <input type="number" class="form-control" formControlName="quantityChildrenA" placeholder="Niños">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control" placeholder="Niñas">
+                                            <input type="number" class="form-control" formControlName="quantityGirlsA" placeholder="Niñas">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control">
+                                            <input type="number" class="form-control" formControlName="expectedTimeA">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control" placeholder="Niños">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control" placeholder="Niñas">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
+                                            <input type="number" class="form-control" formControlName="realTimeA">
                                         </div>
                                     </div>
 
                                     <br>
                                     <div class="row">
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control">
+                                            <div class="input-group mb-3">
+                                                <select formControlName="visitIdB" class="form-control">
+                                                  <option *ngFor="let item of visits" [value]="item.Id">{{item.Name}}</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control">
+                                            <input type="date" class="form-control" formControlName="visitDateB">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control" placeholder="Niños">
+                                            <input type="number" class="form-control" formControlName="quantityChildrenB" placeholder="Niños">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control" placeholder="Niñas">
+                                            <input type="number" class="form-control" formControlName="quantityGirlsB" placeholder="Niñas">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control">
+                                            <input type="number" class="form-control" formControlName="expectedTimeB">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control">
+                                            <input type="number" class="form-control" formControlName="realTimeB">
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <div class="input-group mb-3">
+                                                <select formControlName="visitIdC" class="form-control">
+                                                  <option *ngFor="let item of visits" [value]="item.Id">{{item.Name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="date" class="form-control" formControlName="visitDateC">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" formControlName="quantityChildrenC" placeholder="Niños">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" formControlName="quantityGirlsC" placeholder="Niñas">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" formControlName="expectedTimeC">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" formControlName="realTimeC">
                                         </div>
                                     </div>
                                 </div>
@@ -289,7 +344,7 @@
                 <!--/.row-->
                 <div class="row">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-primary">Crear</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="createIdentificationDataForm.invalid">Crear</button>
                     </div>
                     <!--/.row-->
                 </div>

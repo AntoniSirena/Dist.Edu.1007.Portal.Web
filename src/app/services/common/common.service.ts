@@ -30,11 +30,11 @@ export class CommonService {
     return this.httpClient.get(this.apiURL +'api/common/GetDistricts');
   }
 
-  getDistrictByRegionalId(regionalId: number): Observable<object> {
+  getDistrictByRegionalId(regionalId: string): Observable<object> {
     return this.httpClient.get(this.apiURL + 'api/common/GetDistrictByRegionalId/' + regionalId);
   }
 
-  getEducativeCenterByDistrictId(districtId: number): Observable<object> {
+  getEducativeCenterByDistrictId(districtId: string): Observable<object> {
     return this.httpClient.get(this.apiURL + 'api/common/GetEducativeCenterByDistrictId/' + districtId);
   }
 
@@ -60,6 +60,10 @@ export class CommonService {
 
   getDocents():Observable<object>{    
     return this.httpClient.get(this.apiURL +'api/common/GetDocents');
+  }
+
+  getDocentById(id: string):Observable<object>{    
+    return this.httpClient.get(this.apiURL +'api/common/GetDocentById/' + id);
   }
 
   getVisits():Observable<object>{    
