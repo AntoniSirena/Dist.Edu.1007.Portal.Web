@@ -24,7 +24,7 @@
             <th>Estado</th>
             <th>Fecha de apertura</th>
             <th>Fecha de cierre</th>
-            <th class="right"><button type="button" class="btn btn-success" (click)="openCreateAccompanimentInstrument(createAccompanimentInstrument)"><i
+            <th class="right"><button type="button" class="btn btn-success" (click)="openCreateAccompanimentInstrumentModal(createAccompanimentInstrument)"><i
                   class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
           </tr>
         </thead>
@@ -36,8 +36,9 @@
             <td class="td_min"> <span class="colorBorder" [style.background-color]= "item.StatusColour">{{item.Status}}</span> </td>
             <td class="td_min">{{item.OpeningDate}}</td>
             <td class="td_min">{{item.ClosingDate}}</td>
-            <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
-                  class="fa fa-pencil"></i>&nbsp;Editar</button></td>
+            <td class="right"><button type="button" class="btn btn-primary" 
+                (click)="openEditAccompanimentInstrumentModal(editModal, item.Id)"
+                [disabled]="!item.AllowEdit"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
           </tr>
         </tbody>
       </table>
@@ -358,3 +359,378 @@
         <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
     </div>
 </ng-template>
+
+
+
+<!--Edit modal-->
+<ng-template #editModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Editando Instrumento de Acompañamiento de &nbsp;</h4>
+      <h4 class="modal-title"><u> <i>{{docentFullName}}</i> </u> &nbsp;</h4>
+      <h4 class="modal-title">Número: <u>{{identificationData.Id}}</u> </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  
+        <ngb-tabset [destroyOnHide]="false">
+
+            <ngb-tab title="Datos de Identificación">
+                <ng-template ngbTabContent>
+
+                    <form [formGroup]="editIdentificationDataForm" (submit)="createIdentificationData(editIdentificationDataForm.value)">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <div class="card">
+                                <div class="card-header">
+                
+                                    <div class="card-body">
+                
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h4 class="textCenter bold">INSTRUMENTO DE ACOMPAÑAMIENTO</h4>
+                                            </div>
+                                        </div>
+                
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h5 class="textCenter bold">INSTRUCCIONES</h5>
+                                            </div>
+                                        </div>
+                
+                                        <ul class="li-zise">
+                                            <li>Este instrumento de acompañamiento ha sido diseñado para utilizarse en un máximo
+                                                de tres visitas.</li>
+                                            <li>Llene todos los campos con letras de molde y con letra clara.</li>
+                                            <li>Lea y familiarícese con el instrumento completo antes de empezar el
+                                                acompañamiento.</li>
+                                            <li>Lea cada indicador y coloque el nivel que corresponde de acuerdo a su
+                                                observación, según la siguiente escala :</li>
+                                            <ul class="bold">
+                                                <li>4= Excede las Expectativas</li>
+                                                <li>3 = Cumple con las Expectativas</li>
+                                                <li>2 = Se Acerca a las Expectativas</li>
+                                                <li>1 = Por Debajo de las Expectativas</li>
+                                                <li>N/A = No Aplica en esta Visita</li>
+                                            </ul>
+                                            <li>Utilice la rúbrica para revisar la descripción de cada nivel para cada
+                                                indicador, de manera que pueda otorgar la
+                                                valoración más objetiva posible.</li>
+                                            <li>Observe el período completo de la clase. Asegúrese de conversar con el docente
+                                                luego del acompañamiento y
+                                                de destacar las(s) evidencia(s) que no haya podido recoger durante la
+                                                observación.</li>
+                                            <li>Especifique el área en que observó la clase utilizando las siguientes
+                                                abreviaturas :</li>
+                                            <ul class="bold">
+                                                <li>LENGUA ESPAÑOL: LEN </li>
+                                                <li>MATEMÁTICA: MAT</li>
+                                                <li>CIENCIAS DE LA NATURALEZA: NAT</li>
+                                                <li>CIENCIAS SOCIALES: SOC</li>
+                                            </ul>
+                                        </ul>
+                
+                                        <div class="border">
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <h4 class="textCenter bold">DATOS DE IDENTIFICACIÓN :</h4>
+                                                </div>
+                                            </div>
+                
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label class="bold center">Regional:</label>
+                                                    <div class="input-group mb-3">
+                                                        <select formControlName="regionalId" class="form-control" (ngModelChange)="getDistritByRegionId($event)">
+                                                          <option *ngFor="let item of regionals" [value]="item.Id">{{item.Name}}</option>
+                                                        </select>
+                                                        <div *ngIf="!editIdentificationDataForm.value.regionalId" class="required">*</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="bold center">Distrito:</label>
+                                                    <div class="input-group mb-3">
+                                                        <select formControlName="distritId" class="form-control" (ngModelChange)="getCenterByDistritId($event)">
+                                                          <option value=""></option>
+                                                          <option *ngFor="let item of distrits" [value]="item.Id">{{item.Name}}</option>
+                                                        </select>
+                                                        <div *ngIf="!editIdentificationDataForm.value.distritId" class="required">*</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <label class="bold center">Nombre Completo del Centro:</label>
+                                                    <div class="input-group mb-3">
+                                                        <select formControlName="centerId" class="form-control">
+                                                            <option value=""></option>
+                                                          <option *ngFor="let item of centers" [value]="item.Id">{{item.Name}}</option>
+                                                        </select>
+                                                        <div *ngIf="!editIdentificationDataForm.value.centerId" class="required">*</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label class="bold center">Tanda:</label>
+                                                    <div class="input-group mb-3">
+                                                        <select formControlName="tandaId" class="form-control">
+                                                          <option *ngFor="let item of tandas" [value]="item.Id">{{item.Name}}</option>
+                                                        </select>
+                                                        <div *ngIf="!editIdentificationDataForm.value.tandaId" class="required">*</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="bold center">Grado:</label>
+                                                    <div class="input-group mb-3">
+                                                        <select formControlName="gradeId" class="form-control">
+                                                          <option *ngFor="let item of grades" [value]="item.Id">{{item.Name}}</option>
+                                                        </select>
+                                                        <div *ngIf="!editIdentificationDataForm.value.gradeId" class="required">*</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label class="bold">Nombre y Apellido del Docente:</label>
+                                                    <div class="input-group mb-3">
+                                                        <select formControlName="docentId" class="form-control" (ngModelChange)="getDocentById($event)">
+                                                          <option *ngFor="let item of docents" [value]="item.Id">{{item.FullName}}</option>
+                                                        </select>
+                                                        <div *ngIf="!editIdentificationDataForm.value.docentId" class="required">*</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="bold">Cédula:</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="text"  
+                                                        [ngModelOptions]="{standalone: true}" 
+                                                        [ngModel]="docentDocumentNumber"
+                                                        [readonly]="true"
+                                                        class="form-control" 
+                                                        placeholder="Cédula">
+                                                    </div>
+                                                </div>
+                                            </div>
+                
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <label class="bold">Nombre y Apellido del Acompañante:</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control"
+                                                        [ngModelOptions]="{standalone: true}"
+                                                        [ngModel]="userName" 
+                                                        [readonly]="true"
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="bold">Cédula:</label>
+                                                    <input type="text" class="form-control"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [ngModel]="userDocumentNumber" 
+                                                     [readonly]="true">
+                                                </div>
+                                            </div>
+                
+                                            <br>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <label class="bold">Visita #</label>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <label class="bold">Fecha:</label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="bold">Cantidad de alumnos(as) asistentes el día de la
+                                                        visita:</label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="bold">Escriba el total de minutos dedicados a la
+                                                        clase:</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                </div>
+                                                <div class="col-sm-4">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <label class="bold">Tiempo Esperado</label>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <label class="bold">Tiempo Real</label>
+                                                </div>
+                                            </div>
+                
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="input-group mb-3">
+                                                        <select formControlName="visitIdA" class="form-control">
+                                                          <option *ngFor="let item of visits" [value]="item.Id">{{item.Name}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="date" class="form-control" formControlName="visitDateA">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="quantityChildrenA" placeholder="Niños">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="quantityGirlsA" placeholder="Niñas">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="expectedTimeA">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="realTimeA">
+                                                </div>
+                                            </div>
+                
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="input-group mb-3">
+                                                        <select formControlName="visitIdB" class="form-control">
+                                                          <option *ngFor="let item of visits" [value]="item.Id">{{item.Name}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="date" class="form-control" formControlName="visitDateB" [readonly]="true">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="quantityChildrenB" [readonly]="true" placeholder="Niños">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="quantityGirlsB" [readonly]="true" placeholder="Niñas">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="expectedTimeB" [readonly]="true">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="realTimeB" [readonly]="true">
+                                                </div>
+                                            </div>
+                
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="input-group mb-3">
+                                                        <select formControlName="visitIdC" class="form-control">
+                                                          <option *ngFor="let item of visits" [value]="item.Id">{{item.Name}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="date" class="form-control" formControlName="visitDateC" [readonly]="true">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="quantityChildrenC" [readonly]="true" placeholder="Niños">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="quantityGirlsC" [readonly]="true" placeholder="Niñas">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="expectedTimeC" [readonly]="true">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="realTimeC" [readonly]="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                
+                                    </div>
+                
+                                </div>
+                              </div>
+                            </div>
+                            <!--/.col-->
+                          </div>
+                          <!--/.row-->
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <button type="submit" class="btn btn-primary" [disabled]="editIdentificationDataForm.invalid">Guardar</button>
+                            </div>
+                            <!--/.row-->
+                          </div>
+                        </div>
+                    </form>
+
+                </ng-template>
+            </ngb-tab>
+
+
+            <ngb-tab title="V.A">
+                <ng-template ngbTabContent>
+
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab title="V.B">
+                <ng-template ngbTabContent>
+
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab title="V.C">
+                <ng-template ngbTabContent>
+
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab title="V.D">
+                <ng-template ngbTabContent>
+
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab title="V.E">
+                <ng-template ngbTabContent>
+
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab title="V.F">
+                <ng-template ngbTabContent>
+
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab title="V.G">
+                <ng-template ngbTabContent>
+
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab title="V.H">
+                <ng-template ngbTabContent>
+
+                </ng-template>
+            </ngb-tab>
+
+        </ngb-tabset>
+        
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+  </ng-template>

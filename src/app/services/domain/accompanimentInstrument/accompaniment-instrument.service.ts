@@ -20,7 +20,7 @@ export class AccompanimentInstrumentService {
     return this.httpClient.get(this.apiURL +'api/identificationData/GetAccompInstRequest');
   }
 
-  getIdentificationDataById(id: number): Observable<object> {
+  getIdentificationDataById(id: string): Observable<object> {
     return this.httpClient.get(this.apiURL + 'api/identificationData/' + id);
   }
 

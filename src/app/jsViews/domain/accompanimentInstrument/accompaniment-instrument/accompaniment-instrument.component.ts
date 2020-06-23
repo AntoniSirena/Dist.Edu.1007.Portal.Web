@@ -42,20 +42,21 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
   _currentPage: number = 1;
 
-  identificationData = new IdentificationData();
   identificationDatas = new Array<IdentificationData>();
-
   regionals = new Array<Regional>();
   distrits = new Array<District>();
   centers = new Array<EducativeCenter>();
   tandas = new Array<Tanda>();
   grades = new Array<Grade>();
   docents = new Array<Docent>();
-  docent = new Docent();
   currentUser = new CurrentUserInfo();
   visits = new Array<Visit>();
   accompInstRequests = new Array<AccompInstRequest>();
+  
+  identificationData = new IdentificationData();
+  docent = new Docent();
 
+  docentFullName: string;
   docentDocumentNumber: string;
 
   userName: string;
@@ -78,6 +79,56 @@ export class AccompanimentInstrumentComponent implements OnInit {
     this.getDocents();
     this.getCurentUser();
     this.getVisits();
+  }
+
+
+  getIdentificationDataById(id: string) {
+    this.acompInstService.getIdentificationDataById(id).subscribe((response: IdentificationData) => {
+      this.identificationData = response;
+      console.log(this.identificationData);
+
+      this.getDistritByRegionId(this.identificationData.RegionalId.toString());
+      this.getCenterByDistritId(this.identificationData.DistritId.toString());
+      this.getDocentById(this.identificationData.DocentId.toString());
+
+      //llenando el modal
+      this.editIdentificationDataForm = this.form.group({
+        id: [`${this.identificationData.Id}`],
+        requestId: [`${this.identificationData.RequestId}`],
+        regionalId: [`${this.identificationData.RegionalId}`, Validators.required],
+        distritId: [`${this.identificationData.DistritId}`, Validators.required],
+        centerId: [`${this.identificationData.CenterId}`, Validators.required],
+        tandaId: [`${this.identificationData.TandaId}`, Validators.required],
+        gradeId: [`${this.identificationData.GradeId}`, Validators.required],
+        docentId: [`${this.identificationData.DocentId}`, Validators.required],
+        dompanionId: [`${this.identificationData.CompanionId}`],
+  
+        visitIdA: [''],
+        visitDateA: [''],
+        quantityChildrenA: [''],
+        quantityGirlsA: [''],
+        expectedTimeA: [''],
+        realTimeA: [''],
+  
+        visitIdB: [''],
+        visitDateB: [''],
+        quantityChildrenB: [''],
+        quantityGirlsB: [''],
+        expectedTimeB: [''],
+        realTimeB: [''],
+  
+        visitIdC: [''],
+        visitDateC: [''],
+        quantityChildrenC: [''],
+        quantityGirlsC: [''],
+        expectedTimeC: [''],
+        realTimeC: ['']
+      });
+
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
 
@@ -153,6 +204,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
     if (id != "") {
       this.commonService.getDocentById(id).subscribe((response: Docent) => {
         this.docent = response;
+        this.docentFullName = this.docent.FullName;
         this.docentDocumentNumber = this.docent.DocumentNumber;
       },
         error => {
@@ -185,10 +237,17 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
 
   //open create modal
-  openCreateAccompanimentInstrument(createModal) {
+  openCreateAccompanimentInstrumentModal(createModal) {
     this.docentDocumentNumber = "";
     this.setValueCreateIdentificationDataFrom();
     this.modalService.open(createModal, { size: 'xl', scrollable: true });
+  }
+
+  //open edit modal
+  openEditAccompanimentInstrumentModal(editModal, id: string) {
+    this.getIdentificationDataById(id);
+    this.setValueEditIdentificationDataFrom();
+    this.modalService.open(editModal, { size: 'xl', scrollable: true });
   }
 
 
@@ -275,24 +334,24 @@ export class AccompanimentInstrumentComponent implements OnInit {
       centerId: ['', Validators.required],
       tandaId: ['', Validators.required],
       gradeId: ['', Validators.required],
-      docentId: ['', Validators.required],
+      docentId: ['', Validators.required,],
       dompanionId: [''],
 
-      visitIdA: {value: `${this.visits[0].Id}`, disabled: true},
+      visitIdA: { value: `${this.visits[0].Id}`, disabled: true },
       visitDateA: [''],
       quantityChildrenA: [''],
       quantityGirlsA: [''],
       expectedTimeA: [''],
       realTimeA: [''],
 
-      visitIdB: {value: '', disabled: true},
+      visitIdB: { value: '', disabled: true },
       visitDateB: [''],
       quantityChildrenB: [''],
       quantityGirlsB: [''],
       expectedTimeB: [''],
       realTimeB: [''],
 
-      visitIdC: {value: '', disabled: true},
+      visitIdC: { value: '', disabled: true },
       visitDateC: [''],
       quantityChildrenC: [''],
       quantityGirlsC: [''],
