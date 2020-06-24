@@ -3,7 +3,7 @@
 <!--Contenedor principal-->
 <div class="container">
 
-    <h5>INSTRUMENTO DE ACOMPAÑAMIENTO</h5>
+    <h5>INSTRUMENTOS DE ACOMPAÑAMIENTOS</h5>
     <br>
   
     <div class="row">
@@ -21,6 +21,7 @@
           <tr class="tabl_eHeader_Color">
             <th>Número</th>
             <th>Docente</th>
+            <th>No.Documento</th>
             <th>Estado</th>
             <th>Fecha de apertura</th>
             <th>Fecha de cierre</th>
@@ -31,8 +32,9 @@
         <tbody>
           <tr
             *ngFor="let item of accompInstRequests | filter : searchText | paginate: { itemsPerPage: 8, currentPage: _currentPage}">
-            <td class="td_min">{{item.Id}}</td>
+            <td class="td_min">{{item.RequestId}}</td>
             <td class="td_min">{{item.DocentFullName}}</td>
+            <td class="td_min">{{item.DocumentNumber}}</td>
             <td class="td_min"> <span class="colorBorder" [style.background-color]= "item.StatusColour">{{item.Status}}</span> </td>
             <td class="td_min">{{item.OpeningDate}}</td>
             <td class="td_min">{{item.ClosingDate}}</td>
@@ -367,7 +369,7 @@
     <div class="modal-header">
       <h4 class="modal-title">Editando Instrumento de Acompañamiento de &nbsp;</h4>
       <h4 class="modal-title"><u> <i>{{docentFullName}}</i> </u> &nbsp;</h4>
-      <h4 class="modal-title">Número: <u>{{identificationData.Id}}</u> </h4>
+      <h4 class="modal-title">Número: <u>{{identificationData.RequestId}}</u> </h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -379,7 +381,7 @@
             <ngb-tab title="Datos de Identificación">
                 <ng-template ngbTabContent>
 
-                    <form [formGroup]="editIdentificationDataForm" (submit)="createIdentificationData(editIdentificationDataForm.value)">
+                    <form [formGroup]="editIdentificationDataForm" (submit)="editIdentificationData(editIdentificationDataForm.value)">
                         <div class="container">
                           <div class="row">
                             <div class="col-sm-12">
@@ -588,45 +590,19 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <input type="date" class="form-control" formControlName="visitDateA">
+                                                    <input type="date" class="form-control" formControlName="visitDateA" [readonly]="true">
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <input type="number" class="form-control" formControlName="quantityChildrenA" placeholder="Niños">
+                                                    <input type="number" class="form-control" formControlName="quantityChildrenA" placeholder="Niños" [readonly]="true">
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <input type="number" class="form-control" formControlName="quantityGirlsA" placeholder="Niñas">
+                                                    <input type="number" class="form-control" formControlName="quantityGirlsA" placeholder="Niñas" [readonly]="true">
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <input type="number" class="form-control" formControlName="expectedTimeA">
+                                                    <input type="number" class="form-control" formControlName="expectedTimeA" [readonly]="true">
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <input type="number" class="form-control" formControlName="realTimeA">
-                                                </div>
-                                            </div>
-                
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-sm-2">
-                                                    <div class="input-group mb-3">
-                                                        <select formControlName="visitIdB" class="form-control">
-                                                          <option *ngFor="let item of visits" [value]="item.Id">{{item.Name}}</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <input type="date" class="form-control" formControlName="visitDateB" [readonly]="true">
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <input type="number" class="form-control" formControlName="quantityChildrenB" [readonly]="true" placeholder="Niños">
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <input type="number" class="form-control" formControlName="quantityGirlsB" [readonly]="true" placeholder="Niñas">
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <input type="number" class="form-control" formControlName="expectedTimeB" [readonly]="true">
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <input type="number" class="form-control" formControlName="realTimeB" [readonly]="true">
+                                                    <input type="number" class="form-control" formControlName="realTimeA" [readonly]="true">
                                                 </div>
                                             </div>
                 
@@ -634,25 +610,73 @@
                                             <div class="row">
                                                 <div class="col-sm-2">
                                                     <div class="input-group mb-3">
-                                                        <select formControlName="visitIdC" class="form-control">
+                                                        <select formControlName="visitIdB" class="form-control"
+                                                        [attr.disabled]="identificationData.VisitB?.ShortName !== 'Pendiente'? true : null" >
                                                           <option *ngFor="let item of visits" [value]="item.Id">{{item.Name}}</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <input type="date" class="form-control" formControlName="visitDateC" [readonly]="true">
+                                                    <input type="date" class="form-control" formControlName="visitDateB"
+                                                    [readonly]="identificationData.VisitB?.ShortName !== 'Pendiente'">
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <input type="number" class="form-control" formControlName="quantityChildrenC" [readonly]="true" placeholder="Niños">
+                                                    <input type="number" class="form-control" formControlName="quantityChildrenB"
+                                                    [readonly]="identificationData.VisitB?.ShortName !== 'Pendiente'"
+                                                    placeholder="Niños">
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <input type="number" class="form-control" formControlName="quantityGirlsC" [readonly]="true" placeholder="Niñas">
+                                                    <input type="number" class="form-control" formControlName="quantityGirlsB"
+                                                    [readonly]="identificationData.VisitB?.ShortName !== 'Pendiente'" 
+                                                    placeholder="Niñas">
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <input type="number" class="form-control" formControlName="expectedTimeC" [readonly]="true">
+                                                    <input type="number" class="form-control" formControlName="expectedTimeB"
+                                                    [readonly]="identificationData.VisitB?.ShortName !== 'Pendiente'">
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <input type="number" class="form-control" formControlName="realTimeC" [readonly]="true">
+                                                    <input type="number" class="form-control" formControlName="realTimeB"
+                                                    [readonly]="identificationData.VisitB?.ShortName !== 'Pendiente'">
+                                                </div>
+                                            </div>
+                
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="input-group mb-3">
+                                                        <select formControlName="visitIdC" class="form-control" 
+                                                        [attr.disabled]="identificationData.VisitB?.ShortName == 'Pendiente'? true : null ||
+                                                        identificationData.VisitC?.ShortName !== 'Pendiente'? true : null " >
+                                                          <option *ngFor="let item of visits" [value]="item.Id">{{item.Name}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="date" class="form-control" formControlName="visitDateC" 
+                                                    [readonly]="identificationData.VisitB?.ShortName == 'Pendiente' ||
+                                                    identificationData.VisitC?.ShortName !== 'Pendiente' ">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="quantityChildrenC"
+                                                    [readonly]="identificationData.VisitB?.ShortName == 'Pendiente'||
+                                                    identificationData.VisitC?.ShortName !== 'Pendiente' "
+                                                    placeholder="Niños">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="quantityGirlsC"
+                                                    [readonly]="identificationData.VisitB?.ShortName == 'Pendiente' ||
+                                                    identificationData.VisitC?.ShortName !== 'Pendiente' "
+                                                    placeholder="Niñas">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="expectedTimeC"
+                                                    [readonly]="identificationData.VisitB?.ShortName == 'Pendiente' ||
+                                                    identificationData.VisitC?.ShortName !== 'Pendiente' ">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" formControlName="realTimeC"
+                                                    [readonly]="identificationData.VisitB?.ShortName == 'Pendiente' ||
+                                                    identificationData.VisitC?.ShortName !== 'Pendiente' ">
                                                 </div>
                                             </div>
                                         </div>

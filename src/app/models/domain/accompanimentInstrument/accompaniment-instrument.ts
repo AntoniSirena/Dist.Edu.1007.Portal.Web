@@ -16,21 +16,21 @@ export class IdentificationData extends Audit {
     CompanionId: number;
 
     VisitIdA?: number;
-    VisitDateA?: Date;
+    VisitDateA?: string;
     QuantityChildrenA?: number;
     QuantityGirlsA?: number;
     ExpectedTimeA?: number;
     RealTimeA?: number;
 
     VisitIdB?: number;
-    VisitDateB?: Date;
+    VisitDateB?: string;
     QuantityChildrenB?: number;
     QuantityGirlsB?: number;
     ExpectedTimeB?: number;
     RealTimeB?: number;
 
     VisitIdC?: number;
-    VisitDateC?: Date;
+    VisitDateC?: string;
     QuantityChildrenC?: number;
     QuantityGirlsC?: number;
     ExpectedTimeC?: number;
@@ -39,7 +39,9 @@ export class IdentificationData extends Audit {
 
 export class AccompInstRequest {
     Id: number;
+    RequestId: number;
     DocentFullName: string;
+    DocumentNumber: string;
     Status: string;
     StatusColour: string;
     OpeningDate: string;

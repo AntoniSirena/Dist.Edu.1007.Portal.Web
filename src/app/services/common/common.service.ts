@@ -42,8 +42,8 @@ export class CommonService {
     return this.httpClient.get(this.apiURL +'api/common/GetAreas');
   }
 
-  getCurrentUserInfo():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/common/GetCurrentUserInfo');
+  getCurrentUserInfo(id: number):Observable<object>{    
+    return this.httpClient.get(this.apiURL +'api/common/GetCurrentUserInfo/' + id);
   }
 
   getIndicators():Observable<object>{    

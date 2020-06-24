@@ -15,6 +15,7 @@ import { Grade } from '../../../../models/common/grade/grade';
 import { Docent } from '../../../../models/common/docent/docent';
 import { CurrentUserInfo } from '../../../../models/common/currentUserInfo/current-user-info';
 import { Visit } from '../../../../models/common/visit/visit';
+import { IidentificationData } from '../../../../interfaces/domain/IccompanimentInstrument/iaccompaniment-instrument';
 
 
 @Component({
@@ -52,7 +53,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
   currentUser = new CurrentUserInfo();
   visits = new Array<Visit>();
   accompInstRequests = new Array<AccompInstRequest>();
-  
+
   identificationData = new IdentificationData();
   docent = new Docent();
 
@@ -68,6 +69,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
     private acompInstService: AccompanimentInstrumentService,
     private commonService: CommonService,
     private modalService: NgbModal,
+    private datePipe: DatePipe,
     private form: FormBuilder) {
   }
 
@@ -90,6 +92,8 @@ export class AccompanimentInstrumentComponent implements OnInit {
       this.getDistritByRegionId(this.identificationData.RegionalId.toString());
       this.getCenterByDistritId(this.identificationData.DistritId.toString());
       this.getDocentById(this.identificationData.DocentId.toString());
+      this.getCurentUser(Number(this.identificationData.CreatorUserId));
+
 
       //llenando el modal
       this.editIdentificationDataForm = this.form.group({
@@ -102,27 +106,27 @@ export class AccompanimentInstrumentComponent implements OnInit {
         gradeId: [`${this.identificationData.GradeId}`, Validators.required],
         docentId: [`${this.identificationData.DocentId}`, Validators.required],
         dompanionId: [`${this.identificationData.CompanionId}`],
-  
-        visitIdA: [''],
-        visitDateA: [''],
-        quantityChildrenA: [''],
-        quantityGirlsA: [''],
-        expectedTimeA: [''],
-        realTimeA: [''],
-  
-        visitIdB: [''],
-        visitDateB: [''],
-        quantityChildrenB: [''],
-        quantityGirlsB: [''],
-        expectedTimeB: [''],
-        realTimeB: [''],
-  
-        visitIdC: [''],
-        visitDateC: [''],
-        quantityChildrenC: [''],
-        quantityGirlsC: [''],
-        expectedTimeC: [''],
-        realTimeC: ['']
+
+        visitIdA: [`${this.identificationData.VisitIdA}`],
+        visitDateA: [`${this.identificationData.VisitDateA}`],
+        quantityChildrenA: [`${this.identificationData.QuantityChildrenA}`],
+        quantityGirlsA: [`${this.identificationData.QuantityGirlsA}`],
+        expectedTimeA: [`${this.identificationData.ExpectedTimeA}`],
+        realTimeA: [`${this.identificationData.RealTimeA}`],
+
+        visitIdB: [`${this.identificationData.VisitIdB}`],
+        visitDateB: [`${this.identificationData.VisitDateB}`],
+        quantityChildrenB: [`${this.identificationData.QuantityChildrenB}`],
+        quantityGirlsB: [`${this.identificationData.QuantityGirlsB}`],
+        expectedTimeB: [`${this.identificationData.ExpectedTimeB}`],
+        realTimeB: [`${this.identificationData.RealTimeB}`],
+
+        visitIdC: [`${this.identificationData.VisitIdC}`],
+        visitDateC: [`${this.identificationData.VisitDateC}`],
+        quantityChildrenC: [`${this.identificationData.QuantityChildrenC}`],
+        quantityGirlsC: [`${this.identificationData.QuantityGirlsC}`],
+        expectedTimeC: [`${this.identificationData.ExpectedTimeC}`],
+        realTimeC: [`${this.identificationData.RealTimeC}`]
       });
 
     },
@@ -133,8 +137,18 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
 
   getAccompInstRequests() {
-    this.acompInstService.getAccompInstRequest().subscribe((response: Array<AccompInstRequest>) => {
-      this.accompInstRequests = response;
+    this.acompInstService.getAccompInstRequest().subscribe((response: Iresponse) => {
+
+      if(response.Code == '000'){
+        this.accompInstRequests = response.Data;
+      }else{
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 5000
+        });
+      }
     },
       error => {
         console.log(JSON.stringify(error));
@@ -214,8 +228,8 @@ export class AccompanimentInstrumentComponent implements OnInit {
     this.docentDocumentNumber = "";
   }
 
-  getCurentUser() {
-    this.commonService.getCurrentUserInfo().subscribe((response: CurrentUserInfo) => {
+  getCurentUser(id: number = 0) {
+    this.commonService.getCurrentUserInfo(id).subscribe((response: CurrentUserInfo) => {
       this.currentUser = response;
       this.userName = this.currentUser.FullName;
       this.userDocumentNumber = this.currentUser.DocumentNumber;
@@ -253,7 +267,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
   //create Identification Data
   createIdentificationData(formValue: any) {
-    const identificationData: IdentificationData = {
+    const identificationData: IidentificationData = {
       Id: 0,
       RequestId: 0,
       RegionalId: formValue.regionalId,
@@ -271,19 +285,19 @@ export class AccompanimentInstrumentComponent implements OnInit {
       ExpectedTimeA: formValue.expectedTimeA || 0,
       RealTimeA: formValue.realTimeA || 0,
 
-      VisitIdB: formValue.visitIdB || null,
+      VisitIdB: this.visits[3].Id,
       VisitDateB: formValue.visitDateB || null,
       QuantityChildrenB: formValue.quantityChildrenB || 0,
       QuantityGirlsB: formValue.quantityGirlsB || 0,
       ExpectedTimeB: formValue.expectedTimeB || 0,
       RealTimeB: formValue.realTimeB || 0,
 
-      VisitIdC: formValue.visitIdA || 0,
-      VisitDateC: formValue.visitDateA || null,
-      QuantityChildrenC: formValue.quantityChildrenA || 0,
-      QuantityGirlsC: formValue.quantityGirlsA || 0,
-      ExpectedTimeC: formValue.expectedTimeA || 0,
-      RealTimeC: formValue.realTimeA || 0,
+      VisitIdC: this.visits[3].Id,
+      VisitDateC: formValue.visitDateC || null,
+      QuantityChildrenC: formValue.quantityChildrenC || 0,
+      QuantityGirlsC: formValue.quantityGirlsC || 0,
+      ExpectedTimeC: formValue.expectedTimeC || 0,
+      RealTimeC: formValue.realTimeC || 0,
 
       CreatorUserId: null,
       CreationTime: null,
@@ -295,6 +309,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
       IsDeleted: false
     };
 
+    console.log(identificationData);
     this.acompInstService.createIdentificationData(identificationData).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
         Swal.fire({
@@ -324,6 +339,80 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
 
 
+  //edit Identification Data
+  editIdentificationData(formValue: any) {
+
+    const identificationData: IidentificationData = {
+      Id: this.identificationData.Id,
+      RequestId: this.identificationData.RequestId,
+      RegionalId: formValue.regionalId,
+      DistritId: formValue.distritId,
+      CenterId: formValue.centerId,
+      TandaId: formValue.tandaId,
+      GradeId: formValue.gradeId,
+      DocentId: formValue.docentId,
+      CompanionId: this.currentUser.Id,
+
+      VisitIdA: formValue.visitIdA,
+      VisitDateA: formValue.visitDateA,
+      QuantityChildrenA: formValue.quantityChildrenA,
+      QuantityGirlsA: formValue.quantityGirlsA,
+      ExpectedTimeA: formValue.expectedTimeA,
+      RealTimeA: formValue.realTimeA,
+
+      VisitIdB: formValue.visitIdB,
+      VisitDateB: formValue.visitDateB,
+      QuantityChildrenB: formValue.quantityChildrenB,
+      QuantityGirlsB: formValue.quantityGirlsB,
+      ExpectedTimeB: formValue.expectedTimeB,
+      RealTimeB: formValue.realTimeB,
+
+      VisitIdC: formValue.visitIdC,
+      VisitDateC: formValue.visitDateC,
+      QuantityChildrenC: formValue.quantityChildrenC,
+      QuantityGirlsC: formValue.quantityGirlsC,
+      ExpectedTimeC: formValue.expectedTimeC,
+      RealTimeC: formValue.realTimeC,
+
+      CreatorUserId: this.identificationData.CreatorUserId,
+      CreationTime: this.identificationData.CreationTime,
+      LastModifierUserId: this.identificationData.LastModifierUserId,
+      LastModificationTime: this.identificationData.LastModificationTime,
+      DeleterUserId: this.identificationData.DeleterUserId,
+      DeletionTime: this.identificationData.DeletionTime,
+      IsActive: this.identificationData.IsActive,
+      IsDeleted: this.identificationData.IsDeleted
+    };
+
+    console.log(identificationData);
+    this.acompInstService.editIdentificationData(identificationData).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 2000
+        }).then(() => {
+          this.getAccompInstRequests();
+          this.modalService.dismissAll();
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+
+  }
+
+
   //create Identification Data from set value ''
   setValueCreateIdentificationDataFrom() {
     this.createIdentificationDataForm = this.form.group({
@@ -344,14 +433,14 @@ export class AccompanimentInstrumentComponent implements OnInit {
       expectedTimeA: [''],
       realTimeA: [''],
 
-      visitIdB: { value: '', disabled: true },
+      visitIdB: [{ value: `${this.visits[3].Id}`, disabled: true }],
       visitDateB: [''],
       quantityChildrenB: [''],
       quantityGirlsB: [''],
       expectedTimeB: [''],
       realTimeB: [''],
 
-      visitIdC: { value: '', disabled: true },
+      visitIdC: [{ value: `${this.visits[3].Id}`, disabled: true }],
       visitDateC: [''],
       quantityChildrenC: [''],
       quantityGirlsC: [''],
@@ -370,10 +459,10 @@ export class AccompanimentInstrumentComponent implements OnInit {
       centerId: ['', Validators.required],
       tandaId: ['', Validators.required],
       gradeId: ['', Validators.required],
-      docentId: ['', Validators.required],
+      docentId: [{ value: '', disabled: true }, Validators.required],
       dompanionId: [''],
 
-      visitIdA: [''],
+      visitIdA: { value: '', disabled: true },
       visitDateA: [''],
       quantityChildrenA: [''],
       quantityGirlsA: [''],

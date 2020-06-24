@@ -166,7 +166,7 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         component: AccompanimentInstrumentComponent,
         data: {
-          title: 'Instrumento de Acompañamiento'
+          title: 'Instrumentos de Acompañamientos'
         }
       },
       {
