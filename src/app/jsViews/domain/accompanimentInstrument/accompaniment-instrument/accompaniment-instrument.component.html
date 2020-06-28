@@ -702,8 +702,98 @@
             </ngb-tab>
 
 
+            <!--Variable A-->
             <ngb-tab title="V.A">
                 <ng-template ngbTabContent>
+
+                    <form [formGroup]="editVariableAForm" (submit)="createIdentificationData(editVariableAForm.value)">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                               <u> <i> <h4> Variable {{variable.VariableDescription}}: {{variable.VariableTitle}} </h4> </i> </u>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover table-bordered table-condensed">
+                                                      <thead>
+                                                        <tr class="tabl_eHeader_Color">
+                                                          <th>#</th>
+                                                          <th>Indicadores</th>
+                                                          <th>
+                                                            Área
+                                                            <div class="input-group mb-3">
+                                                                <select formControlName="areaIdA" class="form-control">
+                                                                  <option *ngFor="let item of areas" [value]="item.Id">{{item.ShortName}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </th>
+                                                          <th>
+                                                            Área
+                                                            <div class="input-group mb-3">
+                                                                <select formControlName="areaIdB" class="form-control">
+                                                                  <option *ngFor="let item of areas" [value]="item.Id">{{item.ShortName}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </th>
+                                                          <th>
+                                                            Área
+                                                            <div class="input-group mb-3">
+                                                                <select formControlName="areaIdC" class="form-control">
+                                                                  <option *ngFor="let item of areas" [value]="item.Id">{{item.ShortName}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr
+                                                          *ngFor="let item of variable.VariableDetails">
+                                                          <td>{{item.Number}}</td>
+                                                          <td>{{item.Description}}</td>
+                                                          <td>
+                                                            <div class="input-group mb-3">
+                                                                <select formControlName="indicadorIdA" class="form-control">
+                                                                  <option *ngFor="let item of indicators" [value]="item.Id">{{item.Name}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </td>
+                                                          <td>
+                                                            <div class="input-group mb-3">
+                                                                <select formControlName="indicadorIdB" class="form-control">
+                                                                  <option *ngFor="let item of indicators" [value]="item.Id">{{item.Name}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </td>
+                                                          <td>
+                                                            <div class="input-group mb-3">
+                                                                <select formControlName="indicadorIdC" class="form-control">
+                                                                  <option *ngFor="let item of indicators" [value]="item.Id">{{item.Name}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/.col-->
+                                </div>
+                                <!--/.row-->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                    <!--/.row-->
+                                </div>
+                            </div>
+                    </form>
 
                 </ng-template>
             </ngb-tab>
@@ -757,4 +847,4 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
     </div>
-  </ng-template>
+</ng-template>

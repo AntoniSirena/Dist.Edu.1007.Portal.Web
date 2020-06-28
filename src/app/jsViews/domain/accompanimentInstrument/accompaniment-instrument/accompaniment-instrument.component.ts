@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
-import { IdentificationData, AccompInstRequest } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
+import { IdentificationData, AccompInstRequest, VariableRequest } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
 import { AccompanimentInstrumentService } from '../../../../services/domain/accompanimentInstrument/accompaniment-instrument.service';
 import { CommonService } from '../../../../services/common/common.service';
 import { Regional } from '../../../../models/common/regional/regional';
@@ -16,6 +16,9 @@ import { Docent } from '../../../../models/common/docent/docent';
 import { CurrentUserInfo } from '../../../../models/common/currentUserInfo/current-user-info';
 import { Visit } from '../../../../models/common/visit/visit';
 import { IidentificationData } from '../../../../interfaces/domain/IccompanimentInstrument/iaccompaniment-instrument';
+import { Observable } from 'rxjs';
+import { Area } from '../../../../models/common/area/area';
+import { Indicator } from '../../../../models/common/indicator/indicator';
 
 
 @Component({
@@ -41,6 +44,9 @@ export class AccompanimentInstrumentComponent implements OnInit {
   createIdentificationDataForm: FormGroup;
   editIdentificationDataForm: FormGroup;
 
+  editVariableAForm: FormGroup;
+
+
   _currentPage: number = 1;
 
   identificationDatas = new Array<IdentificationData>();
@@ -52,6 +58,8 @@ export class AccompanimentInstrumentComponent implements OnInit {
   docents = new Array<Docent>();
   currentUser = new CurrentUserInfo();
   visits = new Array<Visit>();
+  areas = new Array<Area>();
+  indicators = new Array<Indicator>();
   accompInstRequests = new Array<AccompInstRequest>();
 
   identificationData = new IdentificationData();
@@ -62,6 +70,9 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
   userName: string;
   userDocumentNumber: string;
+
+  //Variables
+  variable = new VariableRequest();
 
 
   //constructor
@@ -81,13 +92,17 @@ export class AccompanimentInstrumentComponent implements OnInit {
     this.getDocents();
     this.getCurentUser();
     this.getVisits();
+    this.getAreas();
+    this.getIndicators();
+    this.getVariableByRequestId(35, 'A');
   }
 
+
+  /* Region de Identification Data*/
 
   getIdentificationDataById(id: string) {
     this.acompInstService.getIdentificationDataById(id).subscribe((response: IdentificationData) => {
       this.identificationData = response;
-      console.log(this.identificationData);
 
       this.getDistritByRegionId(this.identificationData.RegionalId.toString());
       this.getCenterByDistritId(this.identificationData.DistritId.toString());
@@ -135,13 +150,12 @@ export class AccompanimentInstrumentComponent implements OnInit {
       });
   }
 
-
   getAccompInstRequests() {
     this.acompInstService.getAccompInstRequest().subscribe((response: Iresponse) => {
 
-      if(response.Code == '000'){
+      if (response.Code == '000') {
         this.accompInstRequests = response.Data;
-      }else{
+      } else {
         Swal.fire({
           icon: 'warning',
           title: response.Message,
@@ -154,7 +168,6 @@ export class AccompanimentInstrumentComponent implements OnInit {
         console.log(JSON.stringify(error));
       });
   }
-
 
   getRegionals() {
     this.commonService.getRegionals().subscribe((response: Array<Regional>) => {
@@ -248,6 +261,45 @@ export class AccompanimentInstrumentComponent implements OnInit {
       });
   }
 
+  getAreas() {
+    this.commonService.getAreas().subscribe((response: Array<Area>) => {
+      this.areas = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  getIndicators() {
+    this.commonService.getIndicators().subscribe((response: Array<Indicator>) => {
+      this.indicators = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+  //Create variables
+  createVariable(identificationDataId: number) {
+    this.acompInstService.createVariable(identificationDataId).subscribe((result: object) => {
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  //Get variables
+  getVariableByRequestId(requestId: number, variable: string) {
+    this.acompInstService.getVariableByRequestId(requestId, variable).subscribe((response: VariableRequest) => {
+      this.variable = response;
+      console.log(this.variable);
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
 
 
   //open create modal
@@ -261,6 +313,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
   openEditAccompanimentInstrumentModal(editModal, id: string) {
     this.getIdentificationDataById(id);
     this.setValueEditIdentificationDataFrom();
+    this.setValueEditVariableAForm();
     this.modalService.open(editModal, { size: 'xl', scrollable: true });
   }
 
@@ -309,8 +362,8 @@ export class AccompanimentInstrumentComponent implements OnInit {
       IsDeleted: false
     };
 
-    console.log(identificationData);
     this.acompInstService.createIdentificationData(identificationData).subscribe((response: Iresponse) => {
+      console.log(response.Data);
       if (response.Code === '000') {
         Swal.fire({
           position: 'top-end',
@@ -322,6 +375,10 @@ export class AccompanimentInstrumentComponent implements OnInit {
           this.getAccompInstRequests();
           this.modalService.dismissAll();
         });
+
+        //Create variables
+        this.createVariable(response.Data);
+
       } else {
         Swal.fire({
           icon: 'warning',
@@ -336,7 +393,6 @@ export class AccompanimentInstrumentComponent implements OnInit {
       });
 
   }
-
 
 
   //edit Identification Data
@@ -395,7 +451,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
           timer: 2000
         }).then(() => {
           this.getAccompInstRequests();
-          this.modalService.dismissAll();
+          //this.modalService.dismissAll();
         });
       } else {
         Swal.fire({
@@ -484,6 +540,30 @@ export class AccompanimentInstrumentComponent implements OnInit {
       realTimeC: ['']
     });
   }
+
+
+  //edit Variable A from set value ''
+  setValueEditVariableAForm() {
+    this.editVariableAForm = this.form.group({
+      id: [''],
+      number: [''],
+      description: [''],
+      areaIdA: [this.variable.VariableDetails[0].AreaIdA],
+      indicadorIdA: [this.variable.VariableDetails[0].IndicadorIdA],
+      areaIdB: [this.variable.VariableDetails[0].AreaIdC],
+      indicadorIdB: [this.variable.VariableDetails[0].IndicadorIdB],
+      areaIdC: [this.variable.VariableDetails[0].AreaIdC],
+      indicadorIdC: [this.variable.VariableDetails[0].IndicadorIdC],
+    });
+  }
+
+
+
+  /* End region */
+
+
+
+
 
 
 }

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { IidentificationData } from '../../../interfaces/domain/IccompanimentInstrument/iaccompaniment-instrument';
+import { strict } from 'assert';
 
 @Injectable({
   providedIn: 'root'
@@ -24,10 +25,20 @@ export class AccompanimentInstrumentService {
     return this.httpClient.get(this.apiURL + 'api/identificationData/' + id);
   }
 
+  getVariableByRequestId(requestId: number, variable: string): Observable<object> {
+    return this.httpClient.get(this.apiURL +  `api/identificationData/GetVariableByRequestId?requestId=${requestId}&variable=${variable}`);
+  }
+
   createIdentificationData(identificationData: IidentificationData) {
     let data = JSON.stringify(identificationData);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.post(`${this.apiURL}api/identificationData`, data, { headers: headers });
+  }
+
+  createVariable(identificationDataId: number): Observable<object> {
+    let data = JSON.stringify(identificationDataId = identificationDataId);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.post(`${this.apiURL}api/identificationData/CreateVariable`, data, { headers: headers });
   }
 
   editIdentificationData(identificationData: IidentificationData) {

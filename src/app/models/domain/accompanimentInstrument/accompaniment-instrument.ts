@@ -48,3 +48,27 @@ export class AccompInstRequest {
     ClosingDate: string;
     AllowEdit: string;
 }
+
+
+export class VariableRequest {
+    Id: number;
+    RequestId: number;
+    StausId: number;
+    StatusDescription: string;
+    StatusColour: string;
+    VariableDescription: string;
+    VariableTitle: string;
+    VariableDetails: Array<VariableDetail>;
+}
+
+export class VariableDetail {
+    Id: number;
+    Number: string;
+    Description: string;
+    AreaIdA: number;
+    IndicadorIdA: number;
+    AreaIdB: number;
+    IndicadorIdB: number;
+    AreaIdC: number;
+    IndicadorIdC: number;
+}
