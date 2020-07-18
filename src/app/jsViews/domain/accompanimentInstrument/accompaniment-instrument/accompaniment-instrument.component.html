@@ -367,9 +367,8 @@
 <!--Edit modal-->
 <ng-template #editModal let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">Editando Instrumento de Acompañamiento de &nbsp;</h4>
-      <h4 class="modal-title"><u> <i>{{docentFullName}}</i> </u> &nbsp;</h4>
-      <h4 class="modal-title">Número: <u>{{identificationData.RequestId}}</u> </h4>
+      <h4 class="modal-title">Editando Instrumento de Acompañamiento de <u> <i>{{docentFullName}}</i> </u> Número: <u>{{identificationData.RequestId}}</u> </h4>
+      
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
