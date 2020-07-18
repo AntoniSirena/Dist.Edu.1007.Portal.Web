@@ -38,6 +38,10 @@ export class CommonService {
     return this.httpClient.get(this.apiURL + 'api/common/GetEducativeCenterByDistrictId/' + districtId);
   }
 
+  getEducativeCenters(): Observable<object> {
+    return this.httpClient.get(this.apiURL + 'api/common/GetEducativeCenters');
+  }
+
   getAreas():Observable<object>{    
     return this.httpClient.get(this.apiURL +'api/common/GetAreas');
   }
@@ -60,6 +64,10 @@ export class CommonService {
 
   getDocents():Observable<object>{    
     return this.httpClient.get(this.apiURL +'api/common/GetDocents');
+  }
+
+  getDocentsByEducativeCenterId(centerId: number):Observable<object>{    
+    return this.httpClient.get(this.apiURL +'api/common/GetDocentsByEducativeCenter/' + centerId);
   }
 
   getDocentById(id: string):Observable<object>{    

@@ -10,6 +10,7 @@ import { DocentService } from '../../../../services/domain/docent/docent.service
 import { CommonService } from '../../../../services/common/common.service';
 import { Idocent } from '../../../../interfaces/domain/Idocent/idocent';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
+import { EducativeCenter } from '../../../../models/common/educativeCenter/educative-center';
 
 
 @Component({
@@ -37,6 +38,8 @@ export class DocentComponent implements OnInit {
   _currentPage: number = 1;
 
   docents = new Array<Docent>();
+  centers = new Array<EducativeCenter>();
+
   docent = new Docent();
 
   //docent details
@@ -63,6 +66,7 @@ export class DocentComponent implements OnInit {
     this.getDocents();
     this.getDocumenTypes();
     this.getAreas();
+    this.getEducativeCenters();
   }
 
 
@@ -95,13 +99,22 @@ export class DocentComponent implements OnInit {
       });
   }
 
+  getEducativeCenters() {
+    this.commonService.getEducativeCenters().subscribe((response: Array<EducativeCenter>) => {
+      this.centers = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
   getDocentById(id: number) {
     this.docentService.getDocentById(id).subscribe((response: Docent) => {
       this.docent = response;
-      this.docent.BirthDate =  this.datePipe.transform(this.docent.BirthDate,"yyyy-MM-dd");
+      this.docent.BirthDate = this.datePipe.transform(this.docent.BirthDate, "yyyy-MM-dd");
 
       //llenando el modal
-      this.editDocentForm = this.form.group({      
+      this.editDocentForm = this.form.group({
         id: [`${this.docent.Id}`, Validators.required],
         firstName: [`${this.docent.FirstName}`, Validators.required],
         secondName: [`${this.docent.SecondName}`],
@@ -113,14 +126,14 @@ export class DocentComponent implements OnInit {
         documentNumber: [`${this.docent.DocumentNumber}`, Validators.required],
         phone: [`${this.docent.Phone}`],
         address: [`${this.docent.Address}`, Validators.required],
-        areaId: [`${this.docent.AreaId}`, Validators.required]
+        areaId: [`${this.docent.AreaId}`, Validators.required],
+        educativeCenterId: [`${this.docent.EducativeCenterId}`, Validators.required],
       });
     },
       error => {
         console.log(JSON.stringify(error));
       });
   }
-
 
   //docent details
   getDocentDetailsById(id: number) {
@@ -167,6 +180,7 @@ export class DocentComponent implements OnInit {
       Phone: formValue.phone,
       Address: formValue.address,
       AreaId: formValue.areaId,
+      EducativeCenterId: formValue.educativeCenterId,
       CreatorUserId: null,
       CreationTime: null,
       LastModifierUserId: null,
@@ -220,6 +234,7 @@ export class DocentComponent implements OnInit {
       Phone: formValue.phone,
       Address: formValue.address,
       AreaId: formValue.areaId,
+      EducativeCenterId: formValue.educativeCenterId,
       CreationTime: this.docent.CreationTime,
       CreatorUserId: this.docent.CreatorUserId,
       LastModificationTime: this.docent.LastModificationTime,
@@ -316,7 +331,8 @@ export class DocentComponent implements OnInit {
       documentNumber: ['', Validators.required],
       phone: [''],
       address: ['', Validators.required],
-      areaId: ['', Validators.required]
+      areaId: ['', Validators.required],
+      educativeCenterId: ['', Validators.required],
     });
   }
 
@@ -334,7 +350,8 @@ export class DocentComponent implements OnInit {
       documentNumber: ['', Validators.required],
       phone: [''],
       address: ['', Validators.required],
-      areaId: [0, Validators.required]
+      areaId: [0, Validators.required],
+      educativeCenterId: ['', Validators.required],
     });
   }
 

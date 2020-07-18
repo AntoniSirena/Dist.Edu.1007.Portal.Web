@@ -13,6 +13,7 @@ export class Docent extends Audit {
     Phone: string;
     Address: string;
     AreaId: number;
+    EducativeCenterId: number;
 }
 
 export class DocentDetails {
@@ -31,4 +32,5 @@ export class DocentPersonInfo{
     Phone: string;
     Address: string;
     Area: string;
+    EducativeCenter: string;
 }

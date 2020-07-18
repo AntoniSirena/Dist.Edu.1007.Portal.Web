@@ -153,8 +153,7 @@
                                         <div class="col-sm-12">
                                             <label class="bold center">Nombre Completo del Centro:</label>
                                             <div class="input-group mb-3">
-                                                <select formControlName="centerId" class="form-control">
-                                                    <option value=""></option>
+                                                <select formControlName="centerId" class="form-control" (ngModelChange)="getDocentsByEducativeCenterId($event)">
                                                   <option *ngFor="let item of centers" [value]="item.Id">{{item.Name}}</option>
                                                 </select>
                                                 <div *ngIf="!createIdentificationDataForm.value.centerId" class="required">*</div>
@@ -462,7 +461,6 @@
                                                     <label class="bold center">Distrito:</label>
                                                     <div class="input-group mb-3">
                                                         <select formControlName="distritId" class="form-control" (ngModelChange)="getCenterByDistritId($event)">
-                                                          <option value=""></option>
                                                           <option *ngFor="let item of distrits" [value]="item.Id">{{item.Name}}</option>
                                                         </select>
                                                         <div *ngIf="!editIdentificationDataForm.value.distritId" class="required">*</div>
@@ -475,8 +473,7 @@
                                                 <div class="col-sm-12">
                                                     <label class="bold center">Nombre Completo del Centro:</label>
                                                     <div class="input-group mb-3">
-                                                        <select formControlName="centerId" class="form-control">
-                                                            <option value=""></option>
+                                                        <select formControlName="centerId" class="form-control" (ngModelChange)="getDocentsByEducativeCenterId($event)">
                                                           <option *ngFor="let item of centers" [value]="item.Id">{{item.Name}}</option>
                                                         </select>
                                                         <div *ngIf="!editIdentificationDataForm.value.centerId" class="required">*</div>

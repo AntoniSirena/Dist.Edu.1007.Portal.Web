@@ -163,6 +163,18 @@
                      </select>
                      <div *ngIf="!createDocentForm.value.areaId" class="required">*</div>
                    </div>
+
+                   <label for="educativeCenterId">Centro educativo que pertenece</label>
+                   <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                       <span class="input-group-text"><i></i></span>
+                     </div>
+                     <select formControlName="educativeCenterId" class="form-control">
+                       <option value=""></option>
+                       <option *ngFor="let item of centers" [value]="item.Id">{{item.Name}}</option>
+                     </select>
+                     <div *ngIf="!editDocentForm.value.educativeCenterId" class="required">*</div>
+                   </div>
   
                 </div>
               </div>
@@ -309,6 +321,18 @@
                                      <option *ngFor="let item of areas" [value]="item.Id">{{item.Name}}</option>
                                    </select>
                                    <div *ngIf="!editDocentForm.value.areaId" class="required">*</div>
+                                 </div>
+
+                                 <label for="educativeCenterId">Centro educativo que pertenece</label>
+                                 <div class="input-group mb-3">
+                                   <div class="input-group-prepend">
+                                     <span class="input-group-text"><i></i></span>
+                                   </div>
+                                   <select formControlName="educativeCenterId" class="form-control">
+                                     <option value=""></option>
+                                     <option *ngFor="let item of centers" [value]="item.Id">{{item.Name}}</option>
+                                   </select>
+                                   <div *ngIf="!editDocentForm.value.educativeCenterId" class="required">*</div>
                                  </div>
                 
                               </div>
@@ -457,6 +481,16 @@
                       </div>
                       <div class="col-sm-7">
                         <span class="form-control">{{docentPersonInfo.Area}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Centro educativo que pertenece</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{docentPersonInfo.EducativeCenter}}</span>
                       </div>
                     </div>
 

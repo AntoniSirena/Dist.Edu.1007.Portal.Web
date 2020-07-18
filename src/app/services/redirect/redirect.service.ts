@@ -96,17 +96,17 @@ export class RedirectService {
         error => {
           console.log(JSON.stringify(error));
         });
-    }
 
-    Swal.fire({
-      icon: 'warning',
-      title: 'Estimado usuario la solicitud no fué autorizada',
-      showConfirmButton: false,
-      timer: 4000
-    }).then(() => {
-      this.router.navigate(['login']);
-      window.location.reload();
-    });
+      Swal.fire({
+        icon: 'warning',
+        title: 'Estimado usuario la solicitud no fué autorizada',
+        showConfirmButton: false,
+        timer: 4000
+      }).then(() => {
+        this.router.navigate(['login']);
+        window.location.reload();
+      });
+    }
   }
 
   welcomeToSystem() {

@@ -13,4 +13,5 @@ export interface Idocent extends Iaudit {
     Phone: string;
     Address: string;
     AreaId: number;
+    EducativeCenterId: number;
 }

@@ -48,6 +48,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
   _currentPage: number = 1;
 
+  //Objects list
   identificationDatas = new Array<IdentificationData>();
   regionals = new Array<Regional>();
   distrits = new Array<District>();
@@ -90,7 +91,6 @@ export class AccompanimentInstrumentComponent implements OnInit {
     this.getRegionals();
     this.getTandas();
     this.getGrades();
-    this.getDocents();
     this.getCurentUser();
     this.getVisits();
     this.getAreas();
@@ -227,6 +227,15 @@ export class AccompanimentInstrumentComponent implements OnInit {
       });
   }
 
+  getDocentsByEducativeCenterId(centerId: number) {
+    this.commonService.getDocentsByEducativeCenterId(centerId).subscribe((response: Array<Docent>) => {
+      this.docents = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
   getDocentById(id: string) {
     if (id != "") {
       this.commonService.getDocentById(id).subscribe((response: Docent) => {
@@ -291,7 +300,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
   //Get variables
   getVariableByRequestId(requestId: number, variable: string) {
-    if(requestId == 0){
+    if (requestId == 0) {
       requestId = this.currentRequestId;
     }
 
@@ -324,151 +333,173 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
   //create Identification Data
   createIdentificationData(formValue: any) {
-    const identificationData: IidentificationData = {
-      Id: 0,
-      RequestId: 0,
-      RegionalId: formValue.regionalId,
-      DistritId: formValue.distritId,
-      CenterId: formValue.centerId,
-      TandaId: formValue.tandaId,
-      GradeId: formValue.gradeId,
-      DocentId: formValue.docentId,
-      CompanionId: this.currentUser.Id,
+    try {
 
-      VisitIdA: formValue.visitIdA || this.docents[0].Id,
-      VisitDateA: formValue.visitDateA || null,
-      QuantityChildrenA: formValue.quantityChildrenA || 0,
-      QuantityGirlsA: formValue.quantityGirlsA || 0,
-      ExpectedTimeA: formValue.expectedTimeA || 0,
-      RealTimeA: formValue.realTimeA || 0,
+      const identificationData: IidentificationData = {
+        Id: 0,
+        RequestId: 0,
+        RegionalId: formValue.regionalId,
+        DistritId: formValue.distritId,
+        CenterId: formValue.centerId,
+        TandaId: formValue.tandaId,
+        GradeId: formValue.gradeId,
+        DocentId: formValue.docentId,
+        CompanionId: this.currentUser.Id,
 
-      VisitIdB: this.visits[3].Id,
-      VisitDateB: formValue.visitDateB || null,
-      QuantityChildrenB: formValue.quantityChildrenB || 0,
-      QuantityGirlsB: formValue.quantityGirlsB || 0,
-      ExpectedTimeB: formValue.expectedTimeB || 0,
-      RealTimeB: formValue.realTimeB || 0,
+        VisitIdA: formValue.visitIdA || this.docents[0].Id,
+        VisitDateA: formValue.visitDateA || null,
+        QuantityChildrenA: formValue.quantityChildrenA || 0,
+        QuantityGirlsA: formValue.quantityGirlsA || 0,
+        ExpectedTimeA: formValue.expectedTimeA || 0,
+        RealTimeA: formValue.realTimeA || 0,
 
-      VisitIdC: this.visits[3].Id,
-      VisitDateC: formValue.visitDateC || null,
-      QuantityChildrenC: formValue.quantityChildrenC || 0,
-      QuantityGirlsC: formValue.quantityGirlsC || 0,
-      ExpectedTimeC: formValue.expectedTimeC || 0,
-      RealTimeC: formValue.realTimeC || 0,
+        VisitIdB: this.visits[3].Id,
+        VisitDateB: formValue.visitDateB || null,
+        QuantityChildrenB: formValue.quantityChildrenB || 0,
+        QuantityGirlsB: formValue.quantityGirlsB || 0,
+        ExpectedTimeB: formValue.expectedTimeB || 0,
+        RealTimeB: formValue.realTimeB || 0,
 
-      CreatorUserId: null,
-      CreationTime: null,
-      LastModifierUserId: null,
-      LastModificationTime: null,
-      DeleterUserId: null,
-      DeletionTime: null,
-      IsActive: true,
-      IsDeleted: false
-    };
+        VisitIdC: this.visits[3].Id,
+        VisitDateC: formValue.visitDateC || null,
+        QuantityChildrenC: formValue.quantityChildrenC || 0,
+        QuantityGirlsC: formValue.quantityGirlsC || 0,
+        ExpectedTimeC: formValue.expectedTimeC || 0,
+        RealTimeC: formValue.realTimeC || 0,
 
-    this.acompInstService.createIdentificationData(identificationData).subscribe((response: Iresponse) => {
+        CreatorUserId: null,
+        CreationTime: null,
+        LastModifierUserId: null,
+        LastModificationTime: null,
+        DeleterUserId: null,
+        DeletionTime: null,
+        IsActive: true,
+        IsDeleted: false
+      };
 
-      if (response.Code === '000') {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: response.Message,
-          showConfirmButton: true,
-          timer: 2000
-        }).then(() => {
-          this.getAccompInstRequests();
-          this.modalService.dismissAll();
+      this.acompInstService.createIdentificationData(identificationData).subscribe((response: Iresponse) => {
+
+        if (response.Code === '000') {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: response.Message,
+            showConfirmButton: true,
+            timer: 2000
+          }).then(() => {
+            this.getAccompInstRequests();
+            this.modalService.dismissAll();
+          });
+
+          //Create variables
+          this.createVariable(response.Data);
+
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: response.Message,
+            showConfirmButton: true,
+            timer: 3000
+          });
+        }
+      },
+        error => {
+          console.log(JSON.stringify(error));
         });
 
-        //Create variables
-        this.createVariable(response.Data);
-
-      } else {
-        Swal.fire({
-          icon: 'warning',
-          title: response.Message,
-          showConfirmButton: true,
-          timer: 3000
-        });
-      }
-    },
-      error => {
-        console.log(JSON.stringify(error));
+    }
+    catch (error) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'No puedes dejar campos vacíos',
+        showConfirmButton: true,
+        timer: 4000
       });
+    }
 
   }
 
 
   //edit Identification Data
   editIdentificationData(formValue: any) {
+    try {
 
-    const identificationData: IidentificationData = {
-      Id: this.identificationData.Id,
-      RequestId: this.identificationData.RequestId,
-      RegionalId: formValue.regionalId,
-      DistritId: formValue.distritId,
-      CenterId: formValue.centerId,
-      TandaId: formValue.tandaId,
-      GradeId: formValue.gradeId,
-      DocentId: formValue.docentId,
-      CompanionId: this.currentUser.Id,
-
-      VisitIdA: formValue.visitIdA,
-      VisitDateA: formValue.visitDateA,
-      QuantityChildrenA: formValue.quantityChildrenA,
-      QuantityGirlsA: formValue.quantityGirlsA,
-      ExpectedTimeA: formValue.expectedTimeA,
-      RealTimeA: formValue.realTimeA,
-
-      VisitIdB: formValue.visitIdB,
-      VisitDateB: formValue.visitDateB,
-      QuantityChildrenB: formValue.quantityChildrenB,
-      QuantityGirlsB: formValue.quantityGirlsB,
-      ExpectedTimeB: formValue.expectedTimeB,
-      RealTimeB: formValue.realTimeB,
-
-      VisitIdC: formValue.visitIdC,
-      VisitDateC: formValue.visitDateC,
-      QuantityChildrenC: formValue.quantityChildrenC,
-      QuantityGirlsC: formValue.quantityGirlsC,
-      ExpectedTimeC: formValue.expectedTimeC,
-      RealTimeC: formValue.realTimeC,
-
-      CreatorUserId: this.identificationData.CreatorUserId,
-      CreationTime: this.identificationData.CreationTime,
-      LastModifierUserId: this.identificationData.LastModifierUserId,
-      LastModificationTime: this.identificationData.LastModificationTime,
-      DeleterUserId: this.identificationData.DeleterUserId,
-      DeletionTime: this.identificationData.DeletionTime,
-      IsActive: this.identificationData.IsActive,
-      IsDeleted: this.identificationData.IsDeleted
-    };
-
-    console.log(identificationData);
-    this.acompInstService.editIdentificationData(identificationData).subscribe((response: Iresponse) => {
-      if (response.Code === '000') {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: response.Message,
-          showConfirmButton: true,
-          timer: 2000
-        }).then(() => {
-          this.getAccompInstRequests();
-          //this.modalService.dismissAll();
-        });
-      } else {
-        Swal.fire({
-          icon: 'warning',
-          title: response.Message,
-          showConfirmButton: true,
-          timer: 3000
-        });
-      }
-    },
-      error => {
-        console.log(JSON.stringify(error));
+      const identificationData: IidentificationData = {
+        Id: this.identificationData.Id,
+        RequestId: this.identificationData.RequestId,
+        RegionalId: formValue.regionalId,
+        DistritId: formValue.distritId,
+        CenterId: formValue.centerId,
+        TandaId: formValue.tandaId,
+        GradeId: formValue.gradeId,
+        DocentId: formValue.docentId,
+        CompanionId: this.currentUser.Id,
+  
+        VisitIdA: formValue.visitIdA,
+        VisitDateA: formValue.visitDateA,
+        QuantityChildrenA: formValue.quantityChildrenA,
+        QuantityGirlsA: formValue.quantityGirlsA,
+        ExpectedTimeA: formValue.expectedTimeA,
+        RealTimeA: formValue.realTimeA,
+  
+        VisitIdB: formValue.visitIdB,
+        VisitDateB: formValue.visitDateB,
+        QuantityChildrenB: formValue.quantityChildrenB,
+        QuantityGirlsB: formValue.quantityGirlsB,
+        ExpectedTimeB: formValue.expectedTimeB,
+        RealTimeB: formValue.realTimeB,
+  
+        VisitIdC: formValue.visitIdC,
+        VisitDateC: formValue.visitDateC,
+        QuantityChildrenC: formValue.quantityChildrenC,
+        QuantityGirlsC: formValue.quantityGirlsC,
+        ExpectedTimeC: formValue.expectedTimeC,
+        RealTimeC: formValue.realTimeC,
+  
+        CreatorUserId: this.identificationData.CreatorUserId,
+        CreationTime: this.identificationData.CreationTime,
+        LastModifierUserId: this.identificationData.LastModifierUserId,
+        LastModificationTime: this.identificationData.LastModificationTime,
+        DeleterUserId: this.identificationData.DeleterUserId,
+        DeletionTime: this.identificationData.DeletionTime,
+        IsActive: this.identificationData.IsActive,
+        IsDeleted: this.identificationData.IsDeleted
+      };
+  
+      this.acompInstService.editIdentificationData(identificationData).subscribe((response: Iresponse) => {
+        if (response.Code === '000') {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: response.Message,
+            showConfirmButton: true,
+            timer: 2000
+          }).then(() => {
+            this.getAccompInstRequests();
+            //this.modalService.dismissAll();
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: response.Message,
+            showConfirmButton: true,
+            timer: 3000
+          });
+        }
+      },
+        error => {
+          console.log(JSON.stringify(error));
       });
+
+     }
+     catch (error) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Debes completar los campos vacíos, para actualizar el formulario',
+        showConfirmButton: true,
+        timer: 4000
+      });
+     }
 
   }
 
@@ -507,7 +538,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
   //create Identification Data form set value ''
   setValueCreateIdentificationDataFrom() {
     this.createIdentificationDataForm = this.form.group({
-      id: [`${this.docents[0].Id}`],
+      id: [''],
       requestId: [''],
       regionalId: ['', Validators.required],
       distritId: ['', Validators.required],
@@ -515,7 +546,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
       tandaId: ['', Validators.required],
       gradeId: ['', Validators.required],
       docentId: ['', Validators.required,],
-      dompanionId: [''],
+      companionId: [''],
 
       visitIdA: { value: `${this.visits[0].Id}`, disabled: true },
       visitDateA: [''],
@@ -552,7 +583,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
       tandaId: ['', Validators.required],
       gradeId: ['', Validators.required],
       docentId: [{ value: '', disabled: true }, Validators.required],
-      dompanionId: [''],
+      companionId: [''],
 
       visitIdA: { value: '', disabled: true },
       visitDateA: [''],
