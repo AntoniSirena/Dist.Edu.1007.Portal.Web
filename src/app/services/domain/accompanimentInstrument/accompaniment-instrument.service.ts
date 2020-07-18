@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { IidentificationData } from '../../../interfaces/domain/IccompanimentInstrument/iaccompaniment-instrument';
 import { strict } from 'assert';
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
+import { VariableResponse } from '../../../models/domain/accompanimentInstrument/accompaniment-instrument';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +41,12 @@ export class AccompanimentInstrumentService {
     let data = JSON.stringify(identificationDataId = identificationDataId);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.post(`${this.apiURL}api/identificationData/CreateVariable`, data, { headers: headers });
+  }
+
+  updateVariable(variable: VariableResponse) {
+    let data = JSON.stringify(variable);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.post(`${this.apiURL}api/identificationData/UpdateVariable`, data, { headers: headers });
   }
 
   editIdentificationData(identificationData: IidentificationData) {

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DatePipe } from "@angular/common";
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
-import { IdentificationData, AccompInstRequest, VariableRequest } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
+import { IdentificationData, AccompInstRequest, VariableResponse } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
 import { AccompanimentInstrumentService } from '../../../../services/domain/accompanimentInstrument/accompaniment-instrument.service';
 import { CommonService } from '../../../../services/common/common.service';
 import { Regional } from '../../../../models/common/regional/regional';
@@ -16,9 +16,11 @@ import { Docent } from '../../../../models/common/docent/docent';
 import { CurrentUserInfo } from '../../../../models/common/currentUserInfo/current-user-info';
 import { Visit } from '../../../../models/common/visit/visit';
 import { IidentificationData } from '../../../../interfaces/domain/IccompanimentInstrument/iaccompaniment-instrument';
-import { Observable } from 'rxjs';
 import { Area } from '../../../../models/common/area/area';
 import { Indicator } from '../../../../models/common/indicator/indicator';
+import * as $ from 'jquery';
+import { tick } from '@angular/core/testing';
+import { controllers } from 'chart.js';
 
 
 @Component({
@@ -43,9 +45,6 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
   createIdentificationDataForm: FormGroup;
   editIdentificationDataForm: FormGroup;
-
-  editVariableAForm: FormGroup;
-
 
   _currentPage: number = 1;
 
@@ -72,7 +71,9 @@ export class AccompanimentInstrumentComponent implements OnInit {
   userDocumentNumber: string;
 
   //Variables
-  variable = new VariableRequest();
+  variable = new VariableResponse();
+
+  currentRequestId: number = 0;
 
 
   //constructor
@@ -94,7 +95,6 @@ export class AccompanimentInstrumentComponent implements OnInit {
     this.getVisits();
     this.getAreas();
     this.getIndicators();
-    this.getVariableByRequestId(35, 'A');
   }
 
 
@@ -291,7 +291,11 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
   //Get variables
   getVariableByRequestId(requestId: number, variable: string) {
-    this.acompInstService.getVariableByRequestId(requestId, variable).subscribe((response: VariableRequest) => {
+    if(requestId == 0){
+      requestId = this.currentRequestId;
+    }
+
+    this.acompInstService.getVariableByRequestId(requestId, variable).subscribe((response: VariableResponse) => {
       this.variable = response;
       console.log(this.variable);
     },
@@ -310,10 +314,10 @@ export class AccompanimentInstrumentComponent implements OnInit {
   }
 
   //open edit modal
-  openEditAccompanimentInstrumentModal(editModal, id: string) {
+  openEditAccompanimentInstrumentModal(editModal, id: string, requestId: number) {
+    this.currentRequestId = requestId;
     this.getIdentificationDataById(id);
     this.setValueEditIdentificationDataFrom();
-    this.setValueEditVariableAForm();
     this.modalService.open(editModal, { size: 'xl', scrollable: true });
   }
 
@@ -363,7 +367,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
     };
 
     this.acompInstService.createIdentificationData(identificationData).subscribe((response: Iresponse) => {
-      console.log(response.Data);
+
       if (response.Code === '000') {
         Swal.fire({
           position: 'top-end',
@@ -469,7 +473,38 @@ export class AccompanimentInstrumentComponent implements OnInit {
   }
 
 
-  //create Identification Data from set value ''
+  //edit variable
+  editVariable() {
+
+    console.log(this.variable);
+    this.acompInstService.updateVariable(this.variable).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 2000
+        }).then(() => {
+        });
+
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+
+  //create Identification Data form set value ''
   setValueCreateIdentificationDataFrom() {
     this.createIdentificationDataForm = this.form.group({
       id: [`${this.docents[0].Id}`],
@@ -505,7 +540,8 @@ export class AccompanimentInstrumentComponent implements OnInit {
     });
   }
 
-  //edit Identification Data from set value ''
+
+  //edit Identification Data form set value ''
   setValueEditIdentificationDataFrom() {
     this.editIdentificationDataForm = this.form.group({
       id: [''],
@@ -540,23 +576,6 @@ export class AccompanimentInstrumentComponent implements OnInit {
       realTimeC: ['']
     });
   }
-
-
-  //edit Variable A from set value ''
-  setValueEditVariableAForm() {
-    this.editVariableAForm = this.form.group({
-      id: [''],
-      number: [''],
-      description: [''],
-      areaIdA: [this.variable.VariableDetails[0].AreaIdA],
-      indicadorIdA: [this.variable.VariableDetails[0].IndicadorIdA],
-      areaIdB: [this.variable.VariableDetails[0].AreaIdC],
-      indicadorIdB: [this.variable.VariableDetails[0].IndicadorIdB],
-      areaIdC: [this.variable.VariableDetails[0].AreaIdC],
-      indicadorIdC: [this.variable.VariableDetails[0].IndicadorIdC],
-    });
-  }
-
 
 
   /* End region */

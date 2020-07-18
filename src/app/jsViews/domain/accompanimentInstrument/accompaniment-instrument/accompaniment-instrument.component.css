@@ -5,10 +5,10 @@
 
 .border{
     border-style: ridge;
-    border-width: 2px;
-    margin-left: 2px;
-    margin-right: 2px;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    border-width: 1px;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     background-color: rgb(190, 224, 224);
 }

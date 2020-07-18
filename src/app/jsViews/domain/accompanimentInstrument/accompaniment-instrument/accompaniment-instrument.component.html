@@ -39,7 +39,7 @@
             <td class="td_min">{{item.OpeningDate}}</td>
             <td class="td_min">{{item.ClosingDate}}</td>
             <td class="right"><button type="button" class="btn btn-primary" 
-                (click)="openEditAccompanimentInstrumentModal(editModal, item.Id)"
+                (click)="openEditAccompanimentInstrumentModal(editModal, item.Id, item.RequestId)"
                 [disabled]="!item.AllowEdit"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
           </tr>
         </tbody>
@@ -378,7 +378,12 @@
   
         <ngb-tabset [destroyOnHide]="false">
 
-            <ngb-tab title="Datos de Identificación">
+            <!--Identification data A-->
+            <ngb-tab>
+                <ng-template ngbTabTitle>
+                    <div class="bold">Datos de Identificación</div>
+                </ng-template>
+
                 <ng-template ngbTabContent>
 
                     <form [formGroup]="editIdentificationDataForm" (submit)="editIdentificationData(editIdentificationDataForm.value)">
@@ -703,10 +708,14 @@
 
 
             <!--Variable A-->
-            <ngb-tab title="V.A">
+            <ngb-tab>
+                <ng-template ngbTabTitle>
+                    <div (click)="getVariableByRequestId(0, 'A')" class="bold">V.A</div>
+                </ng-template>
+
                 <ng-template ngbTabContent>
 
-                    <form [formGroup]="editVariableAForm" (submit)="createIdentificationData(editVariableAForm.value)">
+                    <form (submit)="editVariable()">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -717,7 +726,7 @@
                                             <div class="card-body">
 
                                                 <div class="table-responsive">
-                                                    <table class="table table-hover table-bordered table-condensed">
+                                                    <table id="variableTable" class="table table-hover table-bordered table-condensed">
                                                       <thead>
                                                         <tr class="tabl_eHeader_Color">
                                                           <th>#</th>
@@ -725,52 +734,55 @@
                                                           <th>
                                                             Área
                                                             <div class="input-group mb-3">
-                                                                <select formControlName="areaIdA" class="form-control">
-                                                                  <option *ngFor="let item of areas" [value]="item.Id">{{item.ShortName}}</option>
+                                                                <select class="form-control" [(ngModel)] = "variable.AreaIdA" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
                                                                 </select>
                                                             </div>
                                                           </th>
                                                           <th>
                                                             Área
                                                             <div class="input-group mb-3">
-                                                                <select formControlName="areaIdB" class="form-control">
-                                                                  <option *ngFor="let item of areas" [value]="item.Id">{{item.ShortName}}</option>
+                                                                <select class="form-control" [(ngModel)] = "variable.AreaIdB" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let areaB of areas" [value]="areaB.Id">{{areaB.ShortName}}</option>
                                                                 </select>
                                                             </div>
                                                           </th>
                                                           <th>
                                                             Área
                                                             <div class="input-group mb-3">
-                                                                <select formControlName="areaIdC" class="form-control">
-                                                                  <option *ngFor="let item of areas" [value]="item.Id">{{item.ShortName}}</option>
+                                                                <select class="form-control" [(ngModel)] = "variable.AreaIdC" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let areaC of areas" [value]="areaC.Id">{{areaC.ShortName}}</option>
                                                                 </select>
                                                             </div>
                                                           </th>
                                                         </tr>
                                                       </thead>
-                                                      <tbody>
-                                                        <tr
-                                                          *ngFor="let item of variable.VariableDetails">
-                                                          <td>{{item.Number}}</td>
-                                                          <td>{{item.Description}}</td>
+                                                      <tbody class="border">
+                                                        <tr id="variableTr"
+                                                          *ngFor="let detail of variable.VariableDetails; let i = index">
+                                                          <td>{{detail.Number}}</td>
+                                                          <td>{{detail.Description}}</td>
                                                           <td>
                                                             <div class="input-group mb-3">
-                                                                <select formControlName="indicadorIdA" class="form-control">
-                                                                  <option *ngFor="let item of indicators" [value]="item.Id">{{item.Name}}</option>
+                                                                <select class="form-control" 
+                                                                  [(ngModel)] = "detail.IndicadorIdA" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let indA of indicators" [value]="indA.Id">{{indA.Name}}</option>
                                                                 </select>
                                                             </div>
                                                           </td>
                                                           <td>
                                                             <div class="input-group mb-3">
-                                                                <select formControlName="indicadorIdB" class="form-control">
-                                                                  <option *ngFor="let item of indicators" [value]="item.Id">{{item.Name}}</option>
+                                                                <select class="form-control"
+                                                                  [(ngModel)] = "detail.IndicadorIdB" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let indB of indicators" [value]="indB.Id">{{indB.Name}}</option>
                                                                 </select>
                                                             </div>
                                                           </td>
                                                           <td>
                                                             <div class="input-group mb-3">
-                                                                <select formControlName="indicadorIdC" class="form-control">
-                                                                  <option *ngFor="let item of indicators" [value]="item.Id">{{item.Name}}</option>
+                                                                <select class="form-control"
+                                                                  [(ngModel)] = "detail.IndicadorIdC" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let indC of indicators" [value]="indC.Id">{{indC.Name}}</option>
                                                                 </select>
                                                             </div>
                                                           </td>

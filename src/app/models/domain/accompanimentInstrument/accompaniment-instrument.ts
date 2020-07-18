@@ -50,14 +50,18 @@ export class AccompInstRequest {
 }
 
 
-export class VariableRequest {
+export class VariableResponse {
     Id: number;
     RequestId: number;
+    Variable: string;
     StausId: number;
     StatusDescription: string;
     StatusColour: string;
     VariableDescription: string;
     VariableTitle: string;
+    AreaIdA: number;
+    AreaIdB: number;
+    AreaIdC: number;
     VariableDetails: Array<VariableDetail>;
 }
 
