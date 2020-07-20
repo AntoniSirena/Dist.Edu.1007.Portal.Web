@@ -304,9 +304,20 @@ export class AccompanimentInstrumentComponent implements OnInit {
       requestId = this.currentRequestId;
     }
 
-    this.acompInstService.getVariableByRequestId(requestId, variable).subscribe((response: VariableResponse) => {
-      this.variable = response;
-      console.log(this.variable);
+    this.acompInstService.getVariableByRequestId(requestId, variable).subscribe((response: Iresponse) => {
+
+      if(response.Code === '000'){
+        this.variable = response.Data;
+        console.log(this.variable);
+      }else{
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+
     },
       error => {
         console.log(JSON.stringify(error));

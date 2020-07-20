@@ -26,18 +26,18 @@ export class RedirectService {
         error => {
           console.log(JSON.stringify(error));
         });
-    }
 
-    this.router.navigate(['login']).then(() => {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Su sesión ha expirado',
-        showConfirmButton: false,
-        timer: 4000
-      }).then(() => {
-        window.location.reload();
+      this.router.navigate(['login']).then(() => {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Estimado usuario su sesión ha expirado',
+          showConfirmButton: false,
+          timer: 4000
+        }).then(() => {
+          window.location.reload();
+        });
       });
-    });
+    }
 
   }
 

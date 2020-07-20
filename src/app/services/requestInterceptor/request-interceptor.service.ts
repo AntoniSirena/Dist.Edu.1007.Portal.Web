@@ -30,7 +30,10 @@ export class RequestInterceptorService implements HttpInterceptor  {
 
     const headers = new HttpHeaders({
     'Authorization': `${this.token}`,
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': 'http://localhost:61048/',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
     });
 
     const reqclone = req.clone({
@@ -40,6 +43,7 @@ export class RequestInterceptorService implements HttpInterceptor  {
     return next.handle(reqclone).pipe(   
       tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
+          
         }
       }, (err: any) => {
         if (err instanceof HttpErrorResponse) {
@@ -51,9 +55,6 @@ export class RequestInterceptorService implements HttpInterceptor  {
           }
           if(err.status === 500){
             this.redirectService.error500();
-          }
-          if(err.status === 0){
-            this.redirectService.NoAuthorizedRequest();
           }
         }
       })
