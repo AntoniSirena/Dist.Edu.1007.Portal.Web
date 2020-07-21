@@ -366,7 +366,7 @@
 <!--Edit modal-->
 <ng-template #editModal let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">Editando Instrumento de Acompañamiento de <u> <i>{{docentFullName}}</i> </u> Número: <u>{{identificationData.RequestId}}</u> </h4>
+      <h4 class="modal-title">Editando Instrumento de Acompañamiento de <i class="textColor">{{docentFullName}}</i> &nbsp; Número: <i class="textColor">{{identificationData.RequestId}}</i> </h4>
       
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
@@ -376,10 +376,10 @@
   
         <ngb-tabset [destroyOnHide]="false">
 
-            <!--Identification data A-->
+            <!--Identification data-->
             <ngb-tab>
                 <ng-template ngbTabTitle>
-                    <div class="bold">Datos de Identificación</div>
+                    <div class="bold">D.I</div>
                 </ng-template>
 
                 <ng-template ngbTabContent>
@@ -717,7 +717,14 @@
                                     <div class="col-sm-12">
                                         <div class="card">
                                             <div class="card-header">
-                                               <u> <i> <h4> Variable {{variable.VariableDescription}}: {{variable.VariableTitle}} </h4> </i> </u>
+                                              <br>
+                                              <div class="row">
+                                                <div class="col-sm-12">
+                                                  <h4 class="textCenter bold">I. <u>ASPECTOS A OBSERVAR</u> </h4>
+                                                </div>
+                                              </div>
+
+                                              <u> <i> <h4> Variable <span class="textColor">{{variable.VariableDescription}}</span>: {{variable.VariableTitle}} </h4> </i> </u>
                                             </div>
                                             <div class="card-body">
 
@@ -821,7 +828,7 @@
                                     <div class="col-sm-12">
                                         <div class="card">
                                             <div class="card-header">
-                                               <u> <i> <h4> Variable {{variable.VariableDescription}}: {{variable.VariableTitle}} </h4> </i> </u>
+                                               <u> <i> <h4> Variable <span class="textColor">{{variable.VariableDescription}}</span>: {{variable.VariableTitle}} </h4> </i> </u>
                                             </div>
                                             <div class="card-body">
 
@@ -925,7 +932,7 @@
                                     <div class="col-sm-12">
                                         <div class="card">
                                             <div class="card-header">
-                                               <u> <i> <h4> Variable {{variable.VariableDescription}}: {{variable.VariableTitle}} </h4> </i> </u>
+                                               <u> <i> <h4> Variable <span class="textColor">{{variable.VariableDescription}}</span>: {{variable.VariableTitle}} </h4> </i> </u>
                                             </div>
                                             <div class="card-body">
 
@@ -1029,7 +1036,7 @@
                                     <div class="col-sm-12">
                                         <div class="card">
                                             <div class="card-header">
-                                               <u> <i> <h4> Variable {{variable.VariableDescription}}: {{variable.VariableTitle}} </h4> </i> </u>
+                                               <u> <i> <h4> Variable <span class="textColor">{{variable.VariableDescription}}</span>: {{variable.VariableTitle}} </h4> </i> </u>
                                             </div>
                                             <div class="card-body">
 
@@ -1120,29 +1127,430 @@
 
 
 
-            <ngb-tab title="V.E">
+            <!--Variable E-->
+            <ngb-tab>
+                <ng-template ngbTabTitle>
+                    <div (click)="getVariableByRequestId(0, 'E')" class="bold">V.E</div>
+                </ng-template>
+
                 <ng-template ngbTabContent>
+
+                    <form (submit)="editVariable()">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                               <u> <i> <h4> Variable <span class="textColor">{{variable.VariableDescription}}</span>: {{variable.VariableTitle}} </h4> </i> </u>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="table-responsive">
+                                                    <table id="variableTable" class="table table-hover table-bordered table-condensed">
+                                                      <thead>
+                                                        <tr class="tabl_eHeader_Color">
+                                                          <th>#</th>
+                                                          <th>Indicadores</th>
+                                                          <th>
+                                                            Área
+                                                            <div class="input-group mb-3">
+                                                                <select class="form-control" [(ngModel)] = "variable.AreaIdA" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </th>
+                                                          <th>
+                                                            Área
+                                                            <div class="input-group mb-3">
+                                                                <select class="form-control" [(ngModel)] = "variable.AreaIdB" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let areaB of areas" [value]="areaB.Id">{{areaB.ShortName}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </th>
+                                                          <th>
+                                                            Área
+                                                            <div class="input-group mb-3">
+                                                                <select class="form-control" [(ngModel)] = "variable.AreaIdC" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let areaC of areas" [value]="areaC.Id">{{areaC.ShortName}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody class="border">
+                                                        <tr id="variableTr"
+                                                          *ngFor="let detail of variable.VariableDetails; let i = index">
+                                                          <td>{{detail.Number}}</td>
+                                                          <td>{{detail.Description}}</td>
+                                                          <td>
+                                                            <div class="input-group mb-3">
+                                                                <select class="form-control" 
+                                                                  [(ngModel)] = "detail.IndicadorIdA" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let indA of indicators" [value]="indA.Id">{{indA.Name}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </td>
+                                                          <td>
+                                                            <div class="input-group mb-3">
+                                                                <select class="form-control"
+                                                                  [(ngModel)] = "detail.IndicadorIdB" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let indB of indicators" [value]="indB.Id">{{indB.Name}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </td>
+                                                          <td>
+                                                            <div class="input-group mb-3">
+                                                                <select class="form-control"
+                                                                  [(ngModel)] = "detail.IndicadorIdC" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let indC of indicators" [value]="indC.Id">{{indC.Name}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/.col-->
+                                </div>
+                                <!--/.row-->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                    <!--/.row-->
+                                </div>
+                            </div>
+                    </form>
 
                 </ng-template>
             </ngb-tab>
 
-            <ngb-tab title="V.F">
+           
+            
+            <!--Variable F-->
+            <ngb-tab>
+                <ng-template ngbTabTitle>
+                    <div (click)="getVariableByRequestId(0, 'F')" class="bold">V.F</div>
+                </ng-template>
+
                 <ng-template ngbTabContent>
+
+                    <form (submit)="editVariable()">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                               <u> <i> <h4> Variable <span class="textColor">{{variable.VariableDescription}}</span>: {{variable.VariableTitle}} </h4> </i> </u>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="table-responsive">
+                                                    <table id="variableTable" class="table table-hover table-bordered table-condensed">
+                                                      <thead>
+                                                        <tr class="tabl_eHeader_Color">
+                                                          <th>#</th>
+                                                          <th>Indicadores</th>
+                                                          <th>
+                                                            Área
+                                                            <div class="input-group mb-3">
+                                                                <select class="form-control" [(ngModel)] = "variable.AreaIdA" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </th>
+                                                          <th>
+                                                            Área
+                                                            <div class="input-group mb-3">
+                                                                <select class="form-control" [(ngModel)] = "variable.AreaIdB" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let areaB of areas" [value]="areaB.Id">{{areaB.ShortName}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </th>
+                                                          <th>
+                                                            Área
+                                                            <div class="input-group mb-3">
+                                                                <select class="form-control" [(ngModel)] = "variable.AreaIdC" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let areaC of areas" [value]="areaC.Id">{{areaC.ShortName}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody class="border">
+                                                        <tr id="variableTr"
+                                                          *ngFor="let detail of variable.VariableDetails; let i = index">
+                                                          <td>{{detail.Number}}</td>
+                                                          <td>{{detail.Description}}</td>
+                                                          <td>
+                                                            <div class="input-group mb-3">
+                                                                <select class="form-control" 
+                                                                  [(ngModel)] = "detail.IndicadorIdA" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let indA of indicators" [value]="indA.Id">{{indA.Name}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </td>
+                                                          <td>
+                                                            <div class="input-group mb-3">
+                                                                <select class="form-control"
+                                                                  [(ngModel)] = "detail.IndicadorIdB" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let indB of indicators" [value]="indB.Id">{{indB.Name}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </td>
+                                                          <td>
+                                                            <div class="input-group mb-3">
+                                                                <select class="form-control"
+                                                                  [(ngModel)] = "detail.IndicadorIdC" [ngModelOptions]="{standalone: true}">
+                                                                  <option *ngFor="let indC of indicators" [value]="indC.Id">{{indC.Name}}</option>
+                                                                </select>
+                                                            </div>
+                                                          </td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/.col-->
+                                </div>
+                                <!--/.row-->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                    <!--/.row-->
+                                </div>
+                            </div>
+                    </form>
 
                 </ng-template>
             </ngb-tab>
 
-            <ngb-tab title="V.G">
-                <ng-template ngbTabContent>
 
-                </ng-template>
-            </ngb-tab>
+           <!--Variable G-->
+           <ngb-tab>
+            <ng-template ngbTabTitle>
+                <div (click)="getVariableByRequestId(0, 'G')" class="bold">V.G</div>
+            </ng-template>
 
-            <ngb-tab title="V.H">
-                <ng-template ngbTabContent>
+            <ng-template ngbTabContent>
 
-                </ng-template>
-            </ngb-tab>
+                <form (submit)="editVariable()">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                          <br>
+                                          <div class="row">
+                                            <div class="col-sm-12">
+                                              <h4 class="textCenter bold">II. <u>ASPECTOS A VALORAR DESPUÉS DEL DIÁLOGO CON EL DOCENTE</u> </h4>
+                                            </div>
+                                          </div>
+
+                                          <br>
+                                          <u> <i> <h4> Variable <span class="textColor">{{variable.VariableDescription}}</span>: {{variable.VariableTitle}} </h4> </i> </u>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <div class="table-responsive">
+                                                <table id="variableTable" class="table table-hover table-bordered table-condensed">
+                                                  <thead>
+                                                    <tr class="tabl_eHeader_Color">
+                                                      <th>#</th>
+                                                      <th>Indicadores</th>
+                                                      <th>
+                                                        Área
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control" [(ngModel)] = "variable.AreaIdA" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
+                                                            </select>
+                                                        </div>
+                                                      </th>
+                                                      <th>
+                                                        Área
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control" [(ngModel)] = "variable.AreaIdB" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let areaB of areas" [value]="areaB.Id">{{areaB.ShortName}}</option>
+                                                            </select>
+                                                        </div>
+                                                      </th>
+                                                      <th>
+                                                        Área
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control" [(ngModel)] = "variable.AreaIdC" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let areaC of areas" [value]="areaC.Id">{{areaC.ShortName}}</option>
+                                                            </select>
+                                                        </div>
+                                                      </th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody class="border">
+                                                    <tr id="variableTr"
+                                                      *ngFor="let detail of variable.VariableDetails; let i = index">
+                                                      <td>{{detail.Number}}</td>
+                                                      <td>{{detail.Description}}</td>
+                                                      <td>
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control" 
+                                                              [(ngModel)] = "detail.IndicadorIdA" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let indA of indicators" [value]="indA.Id">{{indA.Name}}</option>
+                                                            </select>
+                                                        </div>
+                                                      </td>
+                                                      <td>
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control"
+                                                              [(ngModel)] = "detail.IndicadorIdB" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let indB of indicators" [value]="indB.Id">{{indB.Name}}</option>
+                                                            </select>
+                                                        </div>
+                                                      </td>
+                                                      <td>
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control"
+                                                              [(ngModel)] = "detail.IndicadorIdC" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let indC of indicators" [value]="indC.Id">{{indC.Name}}</option>
+                                                            </select>
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.col-->
+                            </div>
+                            <!--/.row-->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                                <!--/.row-->
+                            </div>
+                        </div>
+                </form>
+
+            </ng-template>
+           </ngb-tab>
+
+
+           <!--Variable H-->
+           <ngb-tab>
+            <ng-template ngbTabTitle>
+                <div (click)="getVariableByRequestId(0, 'H')" class="bold">V.H</div>
+            </ng-template>
+
+            <ng-template ngbTabContent>
+
+                <form (submit)="editVariable()">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                           <u> <i> <h4> Variable <span class="textColor">{{variable.VariableDescription}}</span>: {{variable.VariableTitle}} </h4> </i> </u>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <div class="table-responsive">
+                                                <table id="variableTable" class="table table-hover table-bordered table-condensed">
+                                                  <thead>
+                                                    <tr class="tabl_eHeader_Color">
+                                                      <th>#</th>
+                                                      <th>Indicadores</th>
+                                                      <th>
+                                                        Área
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control" [(ngModel)] = "variable.AreaIdA" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
+                                                            </select>
+                                                        </div>
+                                                      </th>
+                                                      <th>
+                                                        Área
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control" [(ngModel)] = "variable.AreaIdB" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let areaB of areas" [value]="areaB.Id">{{areaB.ShortName}}</option>
+                                                            </select>
+                                                        </div>
+                                                      </th>
+                                                      <th>
+                                                        Área
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control" [(ngModel)] = "variable.AreaIdC" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let areaC of areas" [value]="areaC.Id">{{areaC.ShortName}}</option>
+                                                            </select>
+                                                        </div>
+                                                      </th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody class="border">
+                                                    <tr id="variableTr"
+                                                      *ngFor="let detail of variable.VariableDetails; let i = index">
+                                                      <td>{{detail.Number}}</td>
+                                                      <td>{{detail.Description}}</td>
+                                                      <td>
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control" 
+                                                              [(ngModel)] = "detail.IndicadorIdA" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let indA of indicators" [value]="indA.Id">{{indA.Name}}</option>
+                                                            </select>
+                                                        </div>
+                                                      </td>
+                                                      <td>
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control"
+                                                              [(ngModel)] = "detail.IndicadorIdB" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let indB of indicators" [value]="indB.Id">{{indB.Name}}</option>
+                                                            </select>
+                                                        </div>
+                                                      </td>
+                                                      <td>
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control"
+                                                              [(ngModel)] = "detail.IndicadorIdC" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let indC of indicators" [value]="indC.Id">{{indC.Name}}</option>
+                                                            </select>
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.col-->
+                            </div>
+                            <!--/.row-->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                                <!--/.row-->
+                            </div>
+                        </div>
+                </form>
+
+            </ng-template>
+           </ngb-tab>
+
 
         </ngb-tabset>
         
