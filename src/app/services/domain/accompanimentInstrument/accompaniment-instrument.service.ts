@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { IidentificationData } from '../../../interfaces/domain/IccompanimentInstrument/iaccompaniment-instrument';
 import { strict } from 'assert';
 import { Variable } from '@angular/compiler/src/render3/r3_ast';
-import { VariableResponse, CommentsRevisedDocument } from '../../../models/domain/accompanimentInstrument/accompaniment-instrument';
+import { VariableResponse, CommentsRevisedDocument, DescriptionObservationSupportProvided } from '../../../models/domain/accompanimentInstrument/accompaniment-instrument';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +31,12 @@ export class AccompanimentInstrumentService {
     return this.httpClient.get(this.apiURL +  `api/identificationData/GetVariableByRequestId?requestId=${requestId}&variable=${variable}`);
   }
 
-
   getCommentsRevisedDocumentByRequestId(requestId: number): Observable<object> {
     return this.httpClient.get(this.apiURL +  `api/identificationData/GetCommentsRevisedDocumentByRequestId?requestId=${requestId}`);
+  }
+
+  getDescriptionObservationSupportProvidedByRequestId(requestId: number): Observable<object> {
+    return this.httpClient.get(this.apiURL +  `api/identificationData/GetDescriptionObservationSupportProvidedByRequestId?requestId=${requestId}`);
   }
 
   createIdentificationData(identificationData: IidentificationData) {
@@ -58,6 +61,12 @@ export class AccompanimentInstrumentService {
     let data = JSON.stringify(commentsRevisedDocument);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.post(`${this.apiURL}api/identificationData/UpdateCommentsRevisedDocument`, data, { headers: headers });
+  }
+
+  updateDescriptionObservationSupportProvided(DescriptionObs: DescriptionObservationSupportProvided) {
+    let data = JSON.stringify(DescriptionObs);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.post(`${this.apiURL}api/identificationData/UpdateDescriptionObservationSupportProvided`, data, { headers: headers });
   }
 
   editIdentificationData(identificationData: IidentificationData) {

@@ -106,3 +106,20 @@ export class CommentsRevisedDocumenDetails {
     DateC: string;
     CommentC: string;
 }
+
+export class DescriptionObservationSupportProvided{
+    Id: number;
+    RequestId: number;
+    StausId: number;
+    StatusDescription
+    StatusColour: string;
+    AreaIdA: number;
+    DateA: string;
+    CommentA: string;
+    AreaIdB: number;
+    DateB: string;
+    CommentB: string;
+    AreaIdC: number;
+    DateC: string;
+    CommentC: string;
+}

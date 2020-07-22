@@ -1572,7 +1572,7 @@
                                           </div>
 
                                           <br>
-                                          <u> <i> <h4> Comentarios sobre los documentos revisados </h4> </i> </u>
+                                          <u> <i> <h4> Comentarios sobre los documentos revisados: </h4> </i> </u>
                                         </div>
                                         <div class="card-body">
 
@@ -1646,6 +1646,131 @@
                                                       </td>
                                                     </tr>
                                                   </tbody>
+                                                </table>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.col-->
+                            </div>
+                            <!--/.row-->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-primary buttonSize_Save">Guardar</button>
+                                </div>
+                                <!--/.row-->
+                            </div>
+                        </div>
+                </form>
+
+            </ng-template>
+           </ngb-tab>
+
+
+           <!--Description Observation Support Provided-->
+           <ngb-tab>
+            <ng-template ngbTabTitle>
+                <div (click)="getDescriptionObservationSupportProvidedByRequestId(0)" class="bold">Obs. apoyo brindado</div>
+            </ng-template>
+
+            <ng-template ngbTabContent>
+
+                <form (submit)="editDescriptionObservationSupportProvided()">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                          <br>
+                                          <u> <i> <h4> Descripción de las observaciones y del apoyo brindado: </h4> </i> </u>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <div class="table-responsive">
+                                                <table id="variableTable" class="table table-hover table-bordered table-condensed">
+                                                  <thead>
+                                                    <tr class="border">
+                                                      <th>
+                                                        
+                                                        <div class="row">
+                                                          <div class="col-sm-6">
+                                                            <div class="input-group mb-3">
+                                                              En la visita del Área: &nbsp;
+                                                              <select class="form-control" [(ngModel)] = "descriptionObservationSupportProvided.AreaIdA" [ngModelOptions]="{standalone: true}">
+                                                                <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
+                                                              </select>
+                                                            </div>
+                                                          </div>
+
+                                                          <div class="col-sm-6">
+                                                           <div class="input-group mb-3">
+                                                              de fecha: &nbsp;
+                                                              <input type="date" class="form-control" [(ngModel)] = "descriptionObservationSupportProvided.DateA" [ngModelOptions]="{standalone: true}">
+                                                            </div>
+                                                          </div>
+                                                        </div>
+
+                                                        <div class="input-group mb-3">
+                                                          <textarea [(ngModel)] = "descriptionObservationSupportProvided.CommentA" [ngModelOptions]="{standalone: true}" class="form-control">
+                                                            
+                                                          </textarea>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                          <div class="col-sm-6">
+                                                            <div class="input-group mb-3">
+                                                              En la visita del Área: &nbsp;
+                                                              <select class="form-control" [(ngModel)] = "descriptionObservationSupportProvided.AreaIdB" [ngModelOptions]="{standalone: true}">
+                                                                <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
+                                                              </select>
+                                                            </div>
+                                                          </div>
+
+                                                          <div class="col-sm-6">
+                                                           <div class="input-group mb-3">
+                                                              de fecha: &nbsp;
+                                                              <input type="date" class="form-control" [(ngModel)] = "descriptionObservationSupportProvided.DateB" [ngModelOptions]="{standalone: true}">
+                                                            </div>
+                                                          </div>
+                                                        </div>
+
+                                                        <div class="input-group mb-3">
+                                                          <textarea [(ngModel)] = "descriptionObservationSupportProvided.CommentB" [ngModelOptions]="{standalone: true}" class="form-control">
+                                                            
+                                                          </textarea>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                          <div class="col-sm-6">
+                                                            <div class="input-group mb-3">
+                                                              En la visita del Área: &nbsp;
+                                                              <select class="form-control" [(ngModel)] = "descriptionObservationSupportProvided.AreaIdC" [ngModelOptions]="{standalone: true}">
+                                                                <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
+                                                              </select>
+                                                            </div>
+                                                          </div>
+
+                                                          <div class="col-sm-6">
+                                                           <div class="input-group mb-3">
+                                                              de fecha: &nbsp;
+                                                              <input type="date" class="form-control" [(ngModel)] = "descriptionObservationSupportProvided.DateC" [ngModelOptions]="{standalone: true}">
+                                                            </div>
+                                                          </div>
+                                                        </div>
+
+                                                        <div class="input-group mb-3">
+                                                          <textarea [(ngModel)] = "descriptionObservationSupportProvided.CommentC" [ngModelOptions]="{standalone: true}" class="form-control">
+                                                            
+                                                          </textarea>
+                                                        </div>                                                      
+
+                                                      </th>                                                   
+                                                    </tr>
+                                                  </thead>
                                                 </table>
 
                                             </div>
