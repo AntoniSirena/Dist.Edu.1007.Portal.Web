@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@ang
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
-import { IdentificationData, AccompInstRequest, VariableResponse } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
+import { IdentificationData, AccompInstRequest, VariableResponse, CommentsRevisedDocument } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
 import { AccompanimentInstrumentService } from '../../../../services/domain/accompanimentInstrument/accompaniment-instrument.service';
 import { CommonService } from '../../../../services/common/common.service';
 import { Regional } from '../../../../models/common/regional/regional';
@@ -73,6 +73,8 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
   //Variables
   variable = new VariableResponse();
+
+  commentsRevisedDocument = new CommentsRevisedDocument();
 
   currentRequestId: number = 0;
 
@@ -306,10 +308,10 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
     this.acompInstService.getVariableByRequestId(requestId, variable).subscribe((response: Iresponse) => {
 
-      if(response.Code === '000'){
+      if (response.Code === '000') {
         this.variable = response.Data;
         console.log(this.variable);
-      }else{
+      } else {
         Swal.fire({
           icon: 'warning',
           title: response.Message,
@@ -324,7 +326,31 @@ export class AccompanimentInstrumentComponent implements OnInit {
       });
   }
 
+  //Get Comments Revised Documents
+  getCommentsRevisedDocumentByRequestId(requestId: number) {
 
+    if (requestId == 0) {
+      requestId = this.currentRequestId;
+    }
+
+    this.acompInstService.getCommentsRevisedDocumentByRequestId(requestId).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        this.commentsRevisedDocument = response.Data;
+        console.log(this.commentsRevisedDocument);
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
 
   //open create modal
   openCreateAccompanimentInstrumentModal(createModal) {
@@ -445,28 +471,28 @@ export class AccompanimentInstrumentComponent implements OnInit {
         GradeId: formValue.gradeId,
         DocentId: formValue.docentId,
         CompanionId: this.currentUser.Id,
-  
+
         VisitIdA: formValue.visitIdA,
         VisitDateA: formValue.visitDateA,
         QuantityChildrenA: formValue.quantityChildrenA,
         QuantityGirlsA: formValue.quantityGirlsA,
         ExpectedTimeA: formValue.expectedTimeA,
         RealTimeA: formValue.realTimeA,
-  
+
         VisitIdB: formValue.visitIdB,
         VisitDateB: formValue.visitDateB,
         QuantityChildrenB: formValue.quantityChildrenB,
         QuantityGirlsB: formValue.quantityGirlsB,
         ExpectedTimeB: formValue.expectedTimeB,
         RealTimeB: formValue.realTimeB,
-  
+
         VisitIdC: formValue.visitIdC,
         VisitDateC: formValue.visitDateC,
         QuantityChildrenC: formValue.quantityChildrenC,
         QuantityGirlsC: formValue.quantityGirlsC,
         ExpectedTimeC: formValue.expectedTimeC,
         RealTimeC: formValue.realTimeC,
-  
+
         CreatorUserId: this.identificationData.CreatorUserId,
         CreationTime: this.identificationData.CreationTime,
         LastModifierUserId: this.identificationData.LastModifierUserId,
@@ -476,7 +502,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
         IsActive: this.identificationData.IsActive,
         IsDeleted: this.identificationData.IsDeleted
       };
-  
+
       this.acompInstService.editIdentificationData(identificationData).subscribe((response: Iresponse) => {
         if (response.Code === '000') {
           Swal.fire({
@@ -500,17 +526,17 @@ export class AccompanimentInstrumentComponent implements OnInit {
       },
         error => {
           console.log(JSON.stringify(error));
-      });
+        });
 
-     }
-     catch (error) {
+    }
+    catch (error) {
       Swal.fire({
         icon: 'warning',
         title: 'Debes completar los campos vacíos, para actualizar el formulario',
         showConfirmButton: true,
         timer: 4000
       });
-     }
+    }
 
   }
 
@@ -544,6 +570,35 @@ export class AccompanimentInstrumentComponent implements OnInit {
       });
   }
 
+
+  //Edit Comments Revised Document
+  editCommentsRevisedDocument() {
+
+    console.log(this.commentsRevisedDocument);
+    this.acompInstService.updateCommentsRevisedDocument(this.commentsRevisedDocument).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 2000
+        }).then(() => {
+        });
+
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
 
 
   //create Identification Data form set value ''

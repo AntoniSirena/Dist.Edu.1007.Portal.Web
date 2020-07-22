@@ -348,7 +348,7 @@
                 <!--/.row-->
                 <div class="row">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-primary" [disabled]="createIdentificationDataForm.invalid">Crear</button>
+                        <button type="submit" class="btn btn-primary buttonSize_Save" [disabled]="createIdentificationDataForm.invalid">Crear</button>
                     </div>
                     <!--/.row-->
                 </div>
@@ -357,7 +357,7 @@
 
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+        <button type="button" class="btn btn-danger buttonSize_" (click)="modal.close('Close click')">Cerrar</button>
     </div>
 </ng-template>
 
@@ -692,7 +692,7 @@
                           <!--/.row-->
                           <div class="row">
                             <div class="col-sm-12">
-                              <button type="submit" class="btn btn-primary" [disabled]="editIdentificationDataForm.invalid">Guardar</button>
+                              <button type="submit" class="btn btn-primary buttonSize_Save" [disabled]="editIdentificationDataForm.invalid">Guardar</button>
                             </div>
                             <!--/.row-->
                           </div>
@@ -803,7 +803,7 @@
                                 <!--/.row-->
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" class="btn btn-primary buttonSize_Save">Guardar</button>
                                     </div>
                                     <!--/.row-->
                                 </div>
@@ -907,7 +907,7 @@
                                 <!--/.row-->
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" class="btn btn-primary buttonSize_Save">Guardar</button>
                                     </div>
                                     <!--/.row-->
                                 </div>
@@ -1011,7 +1011,7 @@
                                 <!--/.row-->
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" class="btn btn-primary buttonSize_Save">Guardar</button>
                                     </div>
                                     <!--/.row-->
                                 </div>
@@ -1115,7 +1115,7 @@
                                 <!--/.row-->
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" class="btn btn-primary buttonSize_Save">Guardar</button>
                                     </div>
                                     <!--/.row-->
                                 </div>
@@ -1124,7 +1124,6 @@
 
                 </ng-template>
             </ngb-tab>
-
 
 
             <!--Variable E-->
@@ -1220,7 +1219,7 @@
                                 <!--/.row-->
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" class="btn btn-primary buttonSize_Save">Guardar</button>
                                     </div>
                                     <!--/.row-->
                                 </div>
@@ -1229,7 +1228,6 @@
 
                 </ng-template>
             </ngb-tab>
-
            
             
             <!--Variable F-->
@@ -1325,7 +1323,7 @@
                                 <!--/.row-->
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" class="btn btn-primary buttonSize_Save">Guardar</button>
                                     </div>
                                     <!--/.row-->
                                 </div>
@@ -1437,7 +1435,7 @@
                             <!--/.row-->
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button type="submit" class="btn btn-primary buttonSize_Save">Guardar</button>
                                 </div>
                                 <!--/.row-->
                             </div>
@@ -1541,7 +1539,126 @@
                             <!--/.row-->
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button type="submit" class="btn btn-primary buttonSize_Save">Guardar</button>
+                                </div>
+                                <!--/.row-->
+                            </div>
+                        </div>
+                </form>
+
+            </ng-template>
+           </ngb-tab>
+
+
+           <!--Comments Revised Document-->
+           <ngb-tab>
+            <ng-template ngbTabTitle>
+                <div (click)="getCommentsRevisedDocumentByRequestId(0)" class="bold">Coment. Doc Revisados</div>
+            </ng-template>
+
+            <ng-template ngbTabContent>
+
+                <form (submit)="editCommentsRevisedDocument()">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                          <br>
+                                          <div class="row">
+                                            <div class="col-sm-12">
+                                              <h4 class="textCenter bold">III. <u>ASPECTOS CUALITATIVOS</u> </h4>
+                                            </div>
+                                          </div>
+
+                                          <br>
+                                          <u> <i> <h4> Comentarios sobre los documentos revisados </h4> </i> </u>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <div class="table-responsive">
+                                                <table id="variableTable" class="table table-hover table-bordered table-condensed">
+                                                  <thead>
+                                                    <tr class="tabl_eHeader_Color">
+                                                      <th>Aspectos</th>
+                                                      <th>
+                                                        En la visita del Área: 
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control" [(ngModel)] = "commentsRevisedDocument.AreaIdA" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
+                                                            </select>
+                                                        </div>
+                                                        de fecha:
+                                                        <div class="input-group mb-3">
+                                                          <input type="date" class="form-control" [(ngModel)] = "commentsRevisedDocument.DateA" [ngModelOptions]="{standalone: true}">
+                                                        </div>
+                                                      </th>
+                                                      <th>
+                                                        En la visita del Área: 
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control" [(ngModel)] = "commentsRevisedDocument.AreaIdB" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
+                                                            </select>
+                                                        </div>
+                                                        de fecha:
+                                                        <div class="input-group mb-3">
+                                                          <input type="date" class="form-control" [(ngModel)] = "commentsRevisedDocument.DateB" [ngModelOptions]="{standalone: true}">
+                                                        </div>
+                                                      </th>
+                                                      <th>
+                                                        En la visita del Área: 
+                                                        <div class="input-group mb-3">
+                                                            <select class="form-control" [(ngModel)] = "commentsRevisedDocument.AreaIdC" [ngModelOptions]="{standalone: true}">
+                                                              <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
+                                                            </select>
+                                                        </div>
+                                                        de fecha:
+                                                        <div class="input-group mb-3">
+                                                          <input type="date" class="form-control" [(ngModel)] = "commentsRevisedDocument.DateC" [ngModelOptions]="{standalone: true}">
+                                                        </div>
+                                                      </th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody class="border">
+                                                    <tr id="variableTr"
+                                                      *ngFor="let detail of commentsRevisedDocument.CommentsRevisedDocumenDetails; let i = index">
+                                                      <td>{{detail.Description}}</td>
+                                                      <td>
+                                                        <div class="input-group mb-3">
+                                                          <textarea [(ngModel)] = "detail.CommentA" [ngModelOptions]="{standalone: true}" class="form-control">
+                                                            {{detail.CommentA}}
+                                                          </textarea>
+                                                        </div>
+                                                      </td>
+                                                      <td>
+                                                        <div class="input-group mb-3">
+                                                          <textarea [(ngModel)] = "detail.CommentB" [ngModelOptions]="{standalone: true}" class="form-control">
+                                                            {{detail.CommentB}}
+                                                          </textarea>
+                                                        </div>
+                                                      </td>
+                                                      <td>
+                                                        <div class="input-group mb-3">
+                                                          <textarea [(ngModel)] = "detail.CommentC" [ngModelOptions]="{standalone: true}" class="form-control">
+                                                            {{detail.CommentC}}
+                                                          </textarea>
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.col-->
+                            </div>
+                            <!--/.row-->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-primary buttonSize_Save">Guardar</button>
                                 </div>
                                 <!--/.row-->
                             </div>
@@ -1557,6 +1674,6 @@
   
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+      <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
     </div>
 </ng-template>

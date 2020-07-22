@@ -76,3 +76,33 @@ export class VariableDetail {
     AreaIdC: number;
     IndicadorIdC: number;
 }
+
+
+export class CommentsRevisedDocument {
+    Id: number;
+    RequestId: number;
+    StausId: number;
+    StatusDescription
+    StatusColour: string;
+    AreaIdA: number;
+    DateA: string;
+    AreaIdB: number;
+    DateB: string;
+    AreaIdC: number;
+    DateC: string;
+    CommentsRevisedDocumenDetails: Array<string>;
+}
+
+export class CommentsRevisedDocumenDetails {
+    Id: number;
+    Description: string;
+    AreaIdA: number;
+    DateA: string;
+    CommentA: string;
+    AreaIdB: number;
+    DateB: string;
+    CommentB: string;
+    AreaIdC: number;
+    DateC: string;
+    CommentC: string;
+}

@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { IidentificationData } from '../../../interfaces/domain/IccompanimentInstrument/iaccompaniment-instrument';
 import { strict } from 'assert';
 import { Variable } from '@angular/compiler/src/render3/r3_ast';
-import { VariableResponse } from '../../../models/domain/accompanimentInstrument/accompaniment-instrument';
+import { VariableResponse, CommentsRevisedDocument } from '../../../models/domain/accompanimentInstrument/accompaniment-instrument';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,11 @@ export class AccompanimentInstrumentService {
     return this.httpClient.get(this.apiURL +  `api/identificationData/GetVariableByRequestId?requestId=${requestId}&variable=${variable}`);
   }
 
+
+  getCommentsRevisedDocumentByRequestId(requestId: number): Observable<object> {
+    return this.httpClient.get(this.apiURL +  `api/identificationData/GetCommentsRevisedDocumentByRequestId?requestId=${requestId}`);
+  }
+
   createIdentificationData(identificationData: IidentificationData) {
     let data = JSON.stringify(identificationData);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -47,6 +52,12 @@ export class AccompanimentInstrumentService {
     let data = JSON.stringify(variable);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.post(`${this.apiURL}api/identificationData/UpdateVariable`, data, { headers: headers });
+  }
+
+  updateCommentsRevisedDocument(commentsRevisedDocument: CommentsRevisedDocument) {
+    let data = JSON.stringify(commentsRevisedDocument);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.post(`${this.apiURL}api/identificationData/UpdateCommentsRevisedDocument`, data, { headers: headers });
   }
 
   editIdentificationData(identificationData: IidentificationData) {
