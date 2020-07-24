@@ -61,13 +61,15 @@ export class IndicatorComponent implements OnInit {
   getIndicatorById(id: number) {
     this.indicatorService.getIndicatorId(id).subscribe((response: Indicator) => {
       this.indicator = response;
-
+      
       //llenando el modal
       this.editIndicatorForm = this.form.group({
         id: [`${this.indicator.Id}`, Validators.required],
         shortName: [`${this.indicator.ShortName}`, Validators.required],
         name: [`${this.indicator.Name}`, Validators.required],
         description: [`${this.indicator.Description}`],
+        value:[`${this.indicator.Value}`],
+        isEvaluationFactor: [this.indicator.IsEvaluationFactor]
       });
     },
       error => {
@@ -97,6 +99,8 @@ export class IndicatorComponent implements OnInit {
       ShortName: formValue.shortName,
       Name: formValue.name,
       Description: formValue.description,
+      Value: formValue.value,
+      IsEvaluationFactor: formValue.isEvaluationFactor,
       CreatorUserId: null,
       CreationTime: null,
       LastModifierUserId: null,
@@ -143,6 +147,8 @@ export class IndicatorComponent implements OnInit {
       ShortName: formValue.shortName,
       Name: formValue.name,
       Description: formValue.description,
+      Value: formValue.value,
+      IsEvaluationFactor: formValue.isEvaluationFactor,
       CreationTime: this.indicator.CreationTime,
       CreatorUserId: this.indicator.CreatorUserId,
       LastModificationTime: this.indicator.LastModificationTime,
@@ -178,6 +184,14 @@ export class IndicatorComponent implements OnInit {
         console.log(JSON.stringify(error));
       });
 
+  }
+
+  enabledTrue() {
+    this.indicator.IsEvaluationFactor = true;
+  }
+
+  enabledFalse() {
+    this.indicator.IsEvaluationFactor = false;
   }
 
 
@@ -230,7 +244,9 @@ export class IndicatorComponent implements OnInit {
       id: [0, Validators.required],
       shortName: ['', Validators.required],
       name: ['', Validators.required],
-      description: ['']
+      description: [''],
+      value: [0],
+      isEvaluationFactor: [false]
     });
   }
 
@@ -241,7 +257,9 @@ export class IndicatorComponent implements OnInit {
       id: [0, Validators.required],
       shortName: ['', Validators.required],
       name: ['', Validators.required],
-      description: ['']
+      description: [''],
+      value: [0],
+      isEvaluationFactor: [false]
     });
   }
 

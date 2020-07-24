@@ -5,4 +5,6 @@ export interface Iindicator extends Iaudit {
     ShortName: string;
     Name: string;
     Description: string;
+    Value: number;
+    IsEvaluationFactor: boolean;
 }

@@ -5,4 +5,6 @@ export class Indicator extends Audit {
     ShortName: string;
     Name: string;
     Description: string;
+    Value: number;
+    IsEvaluationFactor: boolean;
 }

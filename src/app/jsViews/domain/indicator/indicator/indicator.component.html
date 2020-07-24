@@ -1,7 +1,5 @@
 
 
-
-
 <!--Contenedor principal-->
 <div class="container">
 
@@ -25,6 +23,8 @@
             <th>Nombre corto</th>
             <th>Nombre</th>
             <th>Descripción</th>
+            <th>Valor</th>
+            <th>Es Factor de evaluación ?</th>
             <th class="right"></th>
             <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i
                   class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
@@ -37,6 +37,8 @@
             <td>{{item.ShortName}}</td>
             <td>{{item.Name}}</td>
             <td class="td_min">{{item.Description}}</td>
+            <td>{{item.Value}}</td>
+            <td class="center"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.IsEvaluationFactor == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.IsEvaluationFactor == true ? 'sí' : 'No'}} </button> </td>
             <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
             <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
                   class="fa fa-pencil"></i>&nbsp;Editar</button></td>
@@ -98,6 +100,24 @@
                            {{indicator.Description}}
                       </textarea>
                    </div>
+
+                   <label for="value">Valor</label>
+                   <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                       <span class="input-group-text"><i class="fa fa-info"></i></span>
+                     </div>
+                     <input type="number" formControlName="value" class="form-control">
+                   </div>
+
+                   <label for="isEvaluationFactor">Es Factor de evaluación ?</label>
+                   <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                       </div>
+                       <input type="checkbox"
+                           (change)="$event.target.checked ? enabledTrue() : enabledFalse()"
+                           formControlName="isEvaluationFactor">
+                   </div>
+                   
   
                 </div>
               </div>
@@ -169,7 +189,24 @@
                                          {{indicator.Description}}
                                     </textarea>
                                 </div>
-                     
+
+                                <label for="value">Valor</label>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                                  </div>
+                                  <input type="number" formControlName="value" class="form-control">
+                                </div>
+
+                                <label for="isEvaluationFactor">Es Factor de evaluación ?</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="checkbox"
+                                        (change)="$event.target.checked ? enabledTrue() : enabledFalse()"
+                                        formControlName="isEvaluationFactor">
+                                </div>
+
                             </div>
                         </div>
                     </div>
