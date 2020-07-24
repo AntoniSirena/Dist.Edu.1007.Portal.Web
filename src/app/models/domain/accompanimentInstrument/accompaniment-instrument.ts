@@ -123,3 +123,33 @@ export class DescriptionObservationSupportProvided{
     DateC: string;
     CommentC: string;
 }
+
+
+export class SuggestionsAgreement{
+    Id: number;
+    RequestId: number;
+    StausId: number;
+    StatusDescription
+    StatusColour: string;
+
+    AreaIdA: number;
+    DateA: string;
+    CommentA: string;
+    TeacherSignatureA: string;
+    CompanionSignatureA: string;
+    DistrictTechnicianSignatureA: string;
+
+    AreaIdB: number;
+    DateB: string;
+    CommentB: string;
+    TeacherSignatureB: string;
+    CompanionSignatureB: string;
+    DistrictTechnicianSignatureB: string;
+
+    AreaIdC: number;
+    DateC: string;
+    CommentC: string;
+    TeacherSignatureC: string;
+    CompanionSignatureC: string;
+    DistrictTechnicianSignatureC: string;
+}

@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { BaseService } from '../../services/base/base.service';
 import { RedirectService } from '../../services/redirect/redirect.service';
+import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,21 @@ export class RequestInterceptorService implements HttpInterceptor  {
           }
           if(err.status === 500){
             this.redirectService.error500();
+          }
+          if(err.status === 409){
+            let userName = JSON.parse(localStorage.getItem("userName"));
+            let password = JSON.parse(localStorage.getItem("password"));
+
+            const login: Ilogin = {
+              UserName: userName,
+              Password: password,
+              EmailAddress: null
+            };
+
+            localStorage.clear();
+            this.token = "";
+            
+            this.redirectService.SubmitLogin(login, true);
           }
         }
       })

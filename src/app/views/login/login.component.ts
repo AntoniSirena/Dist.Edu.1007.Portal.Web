@@ -53,52 +53,7 @@ export class LoginComponent implements OnInit {
       EmailAddress: null
     };
 
-    this.loginService.authenticate(login).subscribe((response: Iresponse) => {
-
-      if (response.Code === '000') {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: response.Message,
-          showConfirmButton: true,
-          timer: 2000
-        }).then(() => {
-          //Cache info
-
-          //profile
-          this.profile = response.Data;
-          localStorage.setItem("profile", `${JSON.stringify(this.profile.Profile)}`);
-          localStorage.setItem("token", `${JSON.stringify(this.profile.Profile.User.Token)}`);
-          localStorage.setItem("userName", `${JSON.stringify(this.profile.Profile.User.UserName)}`);
-          localStorage.setItem("userId", `${JSON.stringify(this.profile.Profile.User.Id)}`);
-
-          localStorage.setItem('roleShortName', `${JSON.stringify(this.profile.Profile.User.RoleShortName)}`);
-          localStorage.setItem('roleParent', `${JSON.stringify(this.profile.Profile.User.RoleParent)}`);
-          localStorage.setItem('currentMenuTemplate', `${JSON.stringify(this.profile.Profile.User.MenuTemplate)}`);
-          //template
-
-          //welcome to system
-          this.redirectService.welcomeToSystem();
-
-          //systemConfiguration
-          this.systemConfiguration = response.Data;
-          localStorage.setItem("systemConfiguration", `${JSON.stringify(this.systemConfiguration.Configuration)}`);
-
-        });
-      } else {
-        Swal.fire({
-          icon: 'warning',
-          title: response.Message,
-          showConfirmButton: true,
-          timer: 2000
-        });
-      }
-
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
-
+    this.redirectService.SubmitLogin(login);
   }
   //end
 

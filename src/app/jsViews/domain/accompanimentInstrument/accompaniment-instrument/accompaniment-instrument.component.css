@@ -29,3 +29,8 @@
     border-radius: 4px;
     margin-right: 40px;
 }
+
+.hrStyle{
+    border: 3px solid rgb(54, 119, 204);
+    border-radius: 5px;
+}

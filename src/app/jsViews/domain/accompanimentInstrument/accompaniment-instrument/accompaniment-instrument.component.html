@@ -140,7 +140,6 @@
                                             <label class="bold center">Distrito:</label>
                                             <div class="input-group mb-3">
                                                 <select formControlName="distritId" class="form-control" (ngModelChange)="getCenterByDistritId($event)">
-                                                  <option value=""></option>
                                                   <option *ngFor="let item of distrits" [value]="item.Id">{{item.Name}}</option>
                                                 </select>
                                                 <div *ngIf="!createIdentificationDataForm.value.distritId" class="required">*</div>
@@ -1717,7 +1716,8 @@
                                                             
                                                           </textarea>
                                                         </div>
-                                                        <br>
+
+                                                        <hr class="hrStyle">
 
                                                         <div class="row">
                                                           <div class="col-sm-6">
@@ -1742,7 +1742,8 @@
                                                             
                                                           </textarea>
                                                         </div>
-                                                        <br>
+                                                        
+                                                        <hr class="hrStyle">
 
                                                         <div class="row">
                                                           <div class="col-sm-6">
@@ -1767,6 +1768,178 @@
                                                             
                                                           </textarea>
                                                         </div>                                                      
+
+                                                      </th>                                                   
+                                                    </tr>
+                                                  </thead>
+                                                </table>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.col-->
+                            </div>
+                            <!--/.row-->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-primary buttonSize_Save">Guardar</button>
+                                </div>
+                                <!--/.row-->
+                            </div>
+                        </div>
+                </form>
+
+            </ng-template>
+           </ngb-tab>
+
+
+           <!-- Suggestions Agreement-->
+           <ngb-tab>
+            <ng-template ngbTabTitle>
+                <div (click)="getSuggestionsAgreementByRequestId(0)" class="bold">Sugerencias y Acuerdos</div>
+            </ng-template>
+
+            <ng-template ngbTabContent>
+
+                <form (submit)="editSuggestionsAgreement()">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                          <br>
+                                          <u> <i> <h4> Sugerencias y Acuerdos: </h4> </i> </u>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <div class="table-responsive">
+                                                <table id="variableTable" class="table table-hover table-bordered table-condensed">
+                                                  <thead>
+                                                    <tr class="border">
+                                                      <th>
+                                                        
+                                                        <div class="row">
+                                                          <div class="col-sm-6">
+                                                            <div class="input-group mb-3">
+                                                              En la visita del Área: &nbsp;
+                                                              <select class="form-control" [(ngModel)] = "suggestionsAgreement.AreaIdA" [ngModelOptions]="{standalone: true}">
+                                                                <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
+                                                              </select>
+                                                            </div>
+                                                          </div>
+
+                                                          <div class="col-sm-6">
+                                                           <div class="input-group mb-3">
+                                                              de fecha: &nbsp;
+                                                              <input type="date" class="form-control" [(ngModel)] = "suggestionsAgreement.DateA" [ngModelOptions]="{standalone: true}">
+                                                            </div>
+                                                          </div>
+                                                        </div>
+
+                                                        <div class="input-group mb-3">
+                                                          <textarea [(ngModel)] = "suggestionsAgreement.CommentA" [ngModelOptions]="{standalone: true}" class="form-control">
+                                                            
+                                                          </textarea>
+                                                        </div>
+
+                                                        <div class="row">
+                                                          <div class="col-sm-4">
+                                                            Firma del Docente
+                                                            <input type="text" class="form-control" [(ngModel)] = "suggestionsAgreement.TeacherSignatureA" [ngModelOptions]="{standalone: true}">
+                                                          </div>
+                                                          <div class="col-sm-4">
+                                                            Firma del Acompañante
+                                                            <input type="text" class="form-control" [(ngModel)] = "suggestionsAgreement.CompanionSignatureA" [ngModelOptions]="{standalone: true}">
+                                                          </div>
+                                                          <div class="col-sm-4">
+                                                            Firma del Técnico Distrital
+                                                            <input type="text" class="form-control" [(ngModel)] = "suggestionsAgreement.DistrictTechnicianSignatureA" [ngModelOptions]="{standalone: true}">
+                                                          </div>
+                                                        </div>
+
+                                                        <hr class="hrStyle">
+
+                                                        <div class="row">
+                                                          <div class="col-sm-6">
+                                                            <div class="input-group mb-3">
+                                                              En la visita del Área: &nbsp;
+                                                              <select class="form-control" [(ngModel)] = "suggestionsAgreement.AreaIdB" [ngModelOptions]="{standalone: true}">
+                                                                <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
+                                                              </select>
+                                                            </div>
+                                                          </div>
+
+                                                          <div class="col-sm-6">
+                                                           <div class="input-group mb-3">
+                                                              de fecha: &nbsp;
+                                                              <input type="date" class="form-control" [(ngModel)] = "suggestionsAgreement.DateB" [ngModelOptions]="{standalone: true}">
+                                                            </div>
+                                                          </div>
+                                                        </div>
+
+                                                        <div class="input-group mb-3">
+                                                          <textarea [(ngModel)] = "suggestionsAgreement.CommentB" [ngModelOptions]="{standalone: true}" class="form-control">
+                                                            
+                                                          </textarea>
+                                                        </div>
+                                                        
+                                                        <div class="row">
+                                                          <div class="col-sm-4">
+                                                            Firma del Docente
+                                                            <input type="text" class="form-control" [(ngModel)] = "suggestionsAgreement.TeacherSignatureB" [ngModelOptions]="{standalone: true}">
+                                                          </div>
+                                                          <div class="col-sm-4">
+                                                            Firma del Acompañante
+                                                            <input type="text" class="form-control" [(ngModel)] = "suggestionsAgreement.CompanionSignatureB" [ngModelOptions]="{standalone: true}">
+                                                          </div>
+                                                          <div class="col-sm-4">
+                                                            Firma del Técnico Distrital
+                                                            <input type="text" class="form-control" [(ngModel)] = "suggestionsAgreement.DistrictTechnicianSignatureB" [ngModelOptions]="{standalone: true}">
+                                                          </div>
+                                                        </div>
+
+                                                        <hr class="hrStyle">
+
+                                                        <div class="row">
+                                                          <div class="col-sm-6">
+                                                            <div class="input-group mb-3">
+                                                              En la visita del Área: &nbsp;
+                                                              <select class="form-control" [(ngModel)] = "suggestionsAgreement.AreaIdC" [ngModelOptions]="{standalone: true}">
+                                                                <option *ngFor="let areaA of areas" [value]="areaA.Id">{{areaA.ShortName}}</option>
+                                                              </select>
+                                                            </div>
+                                                          </div>
+
+                                                          <div class="col-sm-6">
+                                                           <div class="input-group mb-3">
+                                                              de fecha: &nbsp;
+                                                              <input type="date" class="form-control" [(ngModel)] = "suggestionsAgreement.DateC" [ngModelOptions]="{standalone: true}">
+                                                            </div>
+                                                          </div>
+                                                        </div>
+
+                                                        <div class="input-group mb-3">
+                                                          <textarea [(ngModel)] = "suggestionsAgreement.CommentC" [ngModelOptions]="{standalone: true}" class="form-control">
+                                                            
+                                                          </textarea>
+                                                        </div>
+                                                        
+                                                        <div class="row">
+                                                          <div class="col-sm-4">
+                                                            Firma del Docente
+                                                            <input type="text" class="form-control" [(ngModel)] = "suggestionsAgreement.TeacherSignatureC" [ngModelOptions]="{standalone: true}">
+                                                          </div>
+                                                          <div class="col-sm-4">
+                                                            Firma del Acompañante
+                                                            <input type="text" class="form-control" [(ngModel)] = "suggestionsAgreement.CompanionSignatureC" [ngModelOptions]="{standalone: true}">
+                                                          </div>
+                                                          <div class="col-sm-4">
+                                                            Firma del Técnico Distrital
+                                                            <input type="text" class="form-control" [(ngModel)] = "suggestionsAgreement.DistrictTechnicianSignatureC" [ngModelOptions]="{standalone: true}">
+                                                          </div>
+                                                        </div>
 
                                                       </th>                                                   
                                                     </tr>

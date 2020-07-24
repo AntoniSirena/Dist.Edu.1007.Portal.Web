@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@ang
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
-import { IdentificationData, AccompInstRequest, VariableResponse, CommentsRevisedDocument, DescriptionObservationSupportProvided } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
+import { IdentificationData, AccompInstRequest, VariableResponse, CommentsRevisedDocument, DescriptionObservationSupportProvided, SuggestionsAgreement } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
 import { AccompanimentInstrumentService } from '../../../../services/domain/accompanimentInstrument/accompaniment-instrument.service';
 import { CommonService } from '../../../../services/common/common.service';
 import { Regional } from '../../../../models/common/regional/regional';
@@ -74,6 +74,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
   variable = new VariableResponse();
   commentsRevisedDocument = new CommentsRevisedDocument();
   descriptionObservationSupportProvided = new DescriptionObservationSupportProvided();
+  suggestionsAgreement = new SuggestionsAgreement();
 
   currentRequestId: number = 0;
 
@@ -317,10 +318,10 @@ export class AccompanimentInstrumentComponent implements OnInit {
           timer: 4000
         });
       }
-     },
+    },
       error => {
         console.log(JSON.stringify(error));
-    });
+      });
 
   }
 
@@ -361,6 +362,32 @@ export class AccompanimentInstrumentComponent implements OnInit {
       if (response.Code === '000') {
         this.descriptionObservationSupportProvided = response.Data;
         console.log(this.descriptionObservationSupportProvided);
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+  //Get Suggestions Agreement
+  getSuggestionsAgreementByRequestId(requestId: number) {
+    if (requestId == 0) {
+      requestId = this.currentRequestId;
+    }
+
+    this.acompInstService.getSuggestionsAgreementByRequestId(requestId).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        this.suggestionsAgreement = response.Data;
+        console.log(this.suggestionsAgreement);
       } else {
         Swal.fire({
           icon: 'warning',
@@ -656,7 +683,39 @@ export class AccompanimentInstrumentComponent implements OnInit {
       });
   }
 
-  
+
+  //Edit Suggestions Agreement
+  editSuggestionsAgreement() {
+
+    console.log(this.suggestionsAgreement);
+    this.acompInstService.updateSuggestionsAgreement(this.suggestionsAgreement).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 2000
+        }).then(() => {
+        });
+
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+
+
   //create Identification Data form set value ''
   setValueCreateIdentificationDataFrom() {
     this.createIdentificationDataForm = this.form.group({
@@ -692,7 +751,6 @@ export class AccompanimentInstrumentComponent implements OnInit {
       realTimeC: ['']
     });
   }
-
 
   //edit Identification Data form set value ''
   setValueEditIdentificationDataFrom() {
