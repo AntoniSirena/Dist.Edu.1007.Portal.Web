@@ -727,7 +727,35 @@
                                             </div>
                                             <div class="card-body">
 
-                                                <div class="table-responsive">
+                                              <!--Tabla de eficiencia-->
+                                              <table class="table table-bordered table-sm">
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="bold">Factor evaluador por cada indicador</td>
+                                                    <td class="bold center">{{variable.EfficiencyEvaluateFactor}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la primera visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourA">{{variable.EfficiencyValueA}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la segunda visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourB">{{variable.EfficiencyValueB}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la tercera visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourC">{{variable.EfficiencyValueC}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia total por las visitas asistidas</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyTotalColour">{{variable.EfficiencyTotalValue}}</td>
+                                                  </tr>                                                 
+                                                </tbody>
+                                              </table>
+                                              
+
+                                              <!--Tabla de indicadores-->
+                                              <div class="table-responsive">
                                                     <table id="variableTable" class="table table-hover table-bordered table-condensed">
                                                       <thead>
                                                         <tr class="tabl_eHeader_Color">
@@ -792,7 +820,7 @@
                                                       </tbody>
                                                     </table>
 
-                                                </div>
+                                              </div>
 
                                             </div>
                                         </div>
@@ -830,6 +858,32 @@
                                                <u> <i> <h4> Variable <span class="textColor">{{variable.VariableDescription}}</span>: {{variable.VariableTitle}} </h4> </i> </u>
                                             </div>
                                             <div class="card-body">
+
+                                              <!--Tabla de eficiencia-->
+                                              <table class="table table-bordered table-sm">
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="bold">Factor evaluador por cada indicador</td>
+                                                    <td class="bold center">{{variable.EfficiencyEvaluateFactor}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la primera visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourA">{{variable.EfficiencyValueA}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la segunda visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourB">{{variable.EfficiencyValueB}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la tercera visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourC">{{variable.EfficiencyValueC}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia total por las visitas asistidas</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyTotalColour">{{variable.EfficiencyTotalValue}}</td>
+                                                  </tr>                                                 
+                                                </tbody>
+                                              </table>
 
                                                 <div class="table-responsive">
                                                     <table id="variableTable" class="table table-hover table-bordered table-condensed">
@@ -935,6 +989,33 @@
                                             </div>
                                             <div class="card-body">
 
+                                              <!--Tabla de eficiencia-->
+                                              <table class="table table-bordered table-sm">
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="bold">Factor evaluador por cada indicador</td>
+                                                    <td class="bold center">{{variable.EfficiencyEvaluateFactor}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la primera visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourA">{{variable.EfficiencyValueA}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la segunda visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourB">{{variable.EfficiencyValueB}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la tercera visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourC">{{variable.EfficiencyValueC}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia total por las visitas asistidas</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyTotalColour">{{variable.EfficiencyTotalValue}}</td>
+                                                  </tr>                                                 
+                                                </tbody>
+                                              </table>
+                                              
+
                                                 <div class="table-responsive">
                                                     <table id="variableTable" class="table table-hover table-bordered table-condensed">
                                                       <thead>
@@ -1038,6 +1119,33 @@
                                                <u> <i> <h4> Variable <span class="textColor">{{variable.VariableDescription}}</span>: {{variable.VariableTitle}} </h4> </i> </u>
                                             </div>
                                             <div class="card-body">
+
+                                              <!--Tabla de eficiencia-->
+                                              <table class="table table-bordered table-sm">
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="bold">Factor evaluador por cada indicador</td>
+                                                    <td class="bold center">{{variable.EfficiencyEvaluateFactor}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la primera visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourA">{{variable.EfficiencyValueA}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la segunda visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourB">{{variable.EfficiencyValueB}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la tercera visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourC">{{variable.EfficiencyValueC}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia total por las visitas asistidas</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyTotalColour">{{variable.EfficiencyTotalValue}}</td>
+                                                  </tr>                                                 
+                                                </tbody>
+                                              </table>
+
 
                                                 <div class="table-responsive">
                                                     <table id="variableTable" class="table table-hover table-bordered table-condensed">
@@ -1143,6 +1251,33 @@
                                             </div>
                                             <div class="card-body">
 
+                                              <!--Tabla de eficiencia-->
+                                              <table class="table table-bordered table-sm">
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="bold">Factor evaluador por cada indicador</td>
+                                                    <td class="bold center">{{variable.EfficiencyEvaluateFactor}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la primera visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourA">{{variable.EfficiencyValueA}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la segunda visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourB">{{variable.EfficiencyValueB}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la tercera visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourC">{{variable.EfficiencyValueC}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia total por las visitas asistidas</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyTotalColour">{{variable.EfficiencyTotalValue}}</td>
+                                                  </tr>                                                 
+                                                </tbody>
+                                              </table>
+
+
                                                 <div class="table-responsive">
                                                     <table id="variableTable" class="table table-hover table-bordered table-condensed">
                                                       <thead>
@@ -1246,6 +1381,33 @@
                                                <u> <i> <h4> Variable <span class="textColor">{{variable.VariableDescription}}</span>: {{variable.VariableTitle}} </h4> </i> </u>
                                             </div>
                                             <div class="card-body">
+
+                                              <!--Tabla de eficiencia-->
+                                              <table class="table table-bordered table-sm">
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="bold">Factor evaluador por cada indicador</td>
+                                                    <td class="bold center">{{variable.EfficiencyEvaluateFactor}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la primera visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourA">{{variable.EfficiencyValueA}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la segunda visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourB">{{variable.EfficiencyValueB}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia de la tercera visita</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyColourC">{{variable.EfficiencyValueC}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="bold">Eficiencia total por las visitas asistidas</td>
+                                                    <td class="bold center" [style.background-color]= "variable.EfficiencyTotalColour">{{variable.EfficiencyTotalValue}}</td>
+                                                  </tr>                                                 
+                                                </tbody>
+                                              </table>
+
 
                                                 <div class="table-responsive">
                                                     <table id="variableTable" class="table table-hover table-bordered table-condensed">
@@ -1359,6 +1521,33 @@
                                         </div>
                                         <div class="card-body">
 
+                                          <!--Tabla de eficiencia-->
+                                          <table class="table table-bordered table-sm">
+                                            <tbody>
+                                              <tr>
+                                                <td class="bold">Factor evaluador por cada indicador</td>
+                                                <td class="bold center">{{variable.EfficiencyEvaluateFactor}}</td>
+                                              </tr>
+                                              <tr>
+                                                <td class="bold">Eficiencia de la primera visita</td>
+                                                <td class="bold center" [style.background-color]= "variable.EfficiencyColourA">{{variable.EfficiencyValueA}}</td>
+                                              </tr>
+                                              <tr>
+                                                <td class="bold">Eficiencia de la segunda visita</td>
+                                                <td class="bold center" [style.background-color]= "variable.EfficiencyColourB">{{variable.EfficiencyValueB}}</td>
+                                              </tr>
+                                              <tr>
+                                                <td class="bold">Eficiencia de la tercera visita</td>
+                                                <td class="bold center" [style.background-color]= "variable.EfficiencyColourC">{{variable.EfficiencyValueC}}</td>
+                                              </tr>
+                                              <tr>
+                                                <td class="bold">Eficiencia total por las visitas asistidas</td>
+                                                <td class="bold center" [style.background-color]= "variable.EfficiencyTotalColour">{{variable.EfficiencyTotalValue}}</td>
+                                              </tr>                                                 
+                                            </tbody>
+                                          </table>
+
+
                                             <div class="table-responsive">
                                                 <table id="variableTable" class="table table-hover table-bordered table-condensed">
                                                   <thead>
@@ -1423,7 +1612,6 @@
                                                     </tr>
                                                   </tbody>
                                                 </table>
-
                                             </div>
 
                                         </div>
@@ -1463,6 +1651,32 @@
                                         </div>
                                         <div class="card-body">
 
+                                          <!--Tabla de eficiencia-->
+                                          <table class="table table-bordered table-sm">
+                                            <tbody>
+                                              <tr>
+                                                <td class="bold">Factor evaluador por cada indicador</td>
+                                                <td class="bold center">{{variable.EfficiencyEvaluateFactor}}</td>
+                                              </tr>
+                                              <tr>
+                                                <td class="bold">Eficiencia de la primera visita</td>
+                                                <td class="bold center" [style.background-color]= "variable.EfficiencyColourA">{{variable.EfficiencyValueA}}</td>
+                                              </tr>
+                                              <tr>
+                                                <td class="bold">Eficiencia de la segunda visita</td>
+                                                <td class="bold center" [style.background-color]= "variable.EfficiencyColourB">{{variable.EfficiencyValueB}}</td>
+                                              </tr>
+                                              <tr>
+                                                <td class="bold">Eficiencia de la tercera visita</td>
+                                                <td class="bold center" [style.background-color]= "variable.EfficiencyColourC">{{variable.EfficiencyValueC}}</td>
+                                              </tr>
+                                              <tr>
+                                                <td class="bold">Eficiencia total por las visitas asistidas</td>
+                                                <td class="bold center" [style.background-color]= "variable.EfficiencyTotalColour">{{variable.EfficiencyTotalValue}}</td>
+                                              </tr>                                                 
+                                            </tbody>
+                                          </table>
+                                          
                                             <div class="table-responsive">
                                                 <table id="variableTable" class="table table-hover table-bordered table-condensed">
                                                   <thead>

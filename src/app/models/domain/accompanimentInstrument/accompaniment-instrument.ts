@@ -63,6 +63,21 @@ export class VariableResponse {
     AreaIdB: number;
     AreaIdC: number;
     VariableDetails: Array<VariableDetail>;
+
+    EfficiencyValueA: string;
+    EfficiencyColourA: string;
+
+    EfficiencyValueB: string;
+    EfficiencyColourB: string;
+
+    EfficiencyValueC: string;
+    EfficiencyColourC: string;
+
+    EfficiencyTotalValue: string;
+    EfficiencyTotalColour: string;
+
+    EfficiencyEvaluateFactor: string;
+
 }
 
 export class VariableDetail {
@@ -107,7 +122,7 @@ export class CommentsRevisedDocumenDetails {
     CommentC: string;
 }
 
-export class DescriptionObservationSupportProvided{
+export class DescriptionObservationSupportProvided {
     Id: number;
     RequestId: number;
     StausId: number;
@@ -125,7 +140,7 @@ export class DescriptionObservationSupportProvided{
 }
 
 
-export class SuggestionsAgreement{
+export class SuggestionsAgreement {
     Id: number;
     RequestId: number;
     StausId: number;
