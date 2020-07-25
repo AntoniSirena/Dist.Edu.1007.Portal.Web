@@ -311,6 +311,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
         this.variable = response.Data;
         console.log(this.variable);
       } else {
+        this.variable = response.Data;
         Swal.fire({
           icon: 'warning',
           title: response.Message,
@@ -393,7 +394,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
           icon: 'warning',
           title: response.Message,
           showConfirmButton: true,
-          timer: 4000
+          timer: 5000
         });
       }
 
@@ -610,6 +611,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
         });
 
       } else {
+        this.getVariableByRequestId(this.currentRequestId, this.variable.Variable);
         Swal.fire({
           icon: 'warning',
           title: response.Message,
