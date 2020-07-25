@@ -601,8 +601,9 @@ export class AccompanimentInstrumentComponent implements OnInit {
     this.acompInstService.updateVariable(this.variable).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
         Swal.fire({
-          position: 'top-end',
+          position: 'top',
           icon: 'success',
+          toast: false,
           title: response.Message,
           showConfirmButton: true,
           timer: 2000

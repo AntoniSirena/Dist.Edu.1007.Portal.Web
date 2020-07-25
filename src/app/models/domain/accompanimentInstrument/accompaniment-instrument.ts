@@ -76,6 +76,9 @@ export class VariableResponse {
     EfficiencyTotalValue: string;
     EfficiencyTotalColour: string;
 
+    EfficiencyGeneralValue: string;
+    EfficiencyGeneralColour: string;
+
     EfficiencyEvaluateFactor: string;
 
 }

@@ -39,7 +39,7 @@
             <td class="td_min">{{item.OpeningDate}}</td>
             <td class="td_min">{{item.ClosingDate}}</td>
             <td class="right"><button type="button" class="btn btn-primary" 
-                (click)="openEditAccompanimentInstrumentModal(editModal, item.Id, item.RequestId); getDocents()"
+                (click)="openEditAccompanimentInstrumentModal(editModal, item.Id, item.RequestId); getDocents(); getVariableByRequestId(0, 'A')"
                 [disabled]="!item.AllowEdit"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
           </tr>
         </tbody>
@@ -371,14 +371,25 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+
     <div class="modal-body">
+
+        <!--Tabla de eficiencia-->
+        <table class="table table-bordered table-sm">
+          <tbody>
+            <tr>
+              <td class="bold">Eficiencia general</td>
+              <td class=" {{variable.EfficiencyGeneralColour}} bold center">{{variable.EfficiencyGeneralValue}}</td>
+            </tr>                                                 
+          </tbody>
+        </table>
   
         <ngb-tabset [destroyOnHide]="false">
-
+          
             <!--Identification data-->
             <ngb-tab>
                 <ng-template ngbTabTitle>
-                    <div class="bold">D.I</div>
+                    <div (click)="getVariableByRequestId(0, 'A')" class="bold">D.I</div>
                 </ng-template>
 
                 <ng-template ngbTabContent>
