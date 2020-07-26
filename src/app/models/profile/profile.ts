@@ -19,7 +19,10 @@
       MenuTemplate: Object;
       RoleDescription: string;
       RoleShortName: string;   
-      RoleParent: string;  
+      RoleParent: string;
+      CanCreate: boolean;
+      CanRead: boolean;
+      CanDelete: boolean;  
     }
   
     export class Person{

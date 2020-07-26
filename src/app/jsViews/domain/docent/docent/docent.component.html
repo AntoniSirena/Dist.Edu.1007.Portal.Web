@@ -24,7 +24,7 @@
             <th>No.Documento</th>
             <th class="right">Detalles</th>
             <th class="right"></th>
-            <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i
+            <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)" [disabled]="!canCreate"><i
                   class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
           </tr>
         </thead>
@@ -35,8 +35,8 @@
             <td>{{item.FullName}}</td>
             <td>{{item.DocumentNumber}}</td>
             <td class="right"> <button (click)="openDetailModal(item.Id)"> <i class="fa fa-eye"></i> </button> </td>
-            <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
-            <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
+            <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)" [disabled]="!canDelete"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
+            <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canRead"><i
                   class="fa fa-pencil"></i>&nbsp;Editar</button></td>
           </tr>
         </tbody>

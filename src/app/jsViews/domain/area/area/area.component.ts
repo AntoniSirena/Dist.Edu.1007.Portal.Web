@@ -36,6 +36,11 @@ export class AreaComponent implements OnInit {
   area = new Area();
   areas = new Array<Area>();
 
+  //Permissions
+  canCreate = JSON.parse(localStorage.getItem("canCreate"));
+  canRead = JSON.parse(localStorage.getItem("canRead"));
+  canDelete = JSON.parse(localStorage.getItem("canDelete"));
+
   //constructor
   constructor(
     private areaService: AreaService,

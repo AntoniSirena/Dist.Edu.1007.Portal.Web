@@ -49,6 +49,10 @@ export class DocentComponent implements OnInit {
   documenTypes = new Array<DocumentType>();
   areas = new Array<Area>();
 
+  canCreate = JSON.parse(localStorage.getItem("canCreate"));
+  canRead = JSON.parse(localStorage.getItem("canRead"));
+  canDelete = JSON.parse(localStorage.getItem("canDelete"));
+
   @ViewChild('details') detailsModal: ElementRef;
 
 

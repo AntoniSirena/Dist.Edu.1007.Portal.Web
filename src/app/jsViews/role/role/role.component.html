@@ -23,7 +23,10 @@
                     <th>Nombre corto</th>
                     <th>Rol padre</th>
                     <th>Plantilla del menu</th>
-                    <th class="right">Habilidato</th>
+                    <th>Puede crear ?</th>
+                    <th>Puede editar ?</th>
+                    <th>Puede eliminar ?</th>
+                    <th class="right">Eesta habilitado ?</th>
                     <th class="right"><button type="button" class="btn btn-success"
                             (click)="openCreateModal(createModal)"> <i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
                 </tr>
@@ -37,6 +40,9 @@
                     <td class="td_min">{{item.ShortName}}</td>
                     <td>{{item.Parent}}</td>
                     <td class="td_min">{{item.MenuTemplate == null || '' ? '' : item.MenuTemplate}}</td>
+                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanCreate == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanCreate == true ? 'sí' : 'No'}} </button> </td>
+                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanRead == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanRead == true ? 'sí' : 'No'}} </button> </td>
+                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanDelete == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanDelete == true ? 'sí' : 'No'}} </button> </td>
                     <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.Enabled == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.Enabled == true ? 'sí' : 'No'}} </button> </td>
                     <td class="right"><button type="button" class="btn btn-primary"
                             (click)="openEditModal(editModal, item.Id)"><i
@@ -131,6 +137,33 @@
                                         placeholder="Plantilla del menu">
                                          {{role.MenuTemplate}}
                                     </textarea>
+                                </div>
+
+                                <label for="canCreate">Puede crear ?</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="checkbox"
+                                        (change)="$event.target.checked ? canCreateTrue() : canCreateFalse()"
+                                        formControlName="canCreate">
+                                </div>
+
+                                <label for="canRead">Puede editar ?</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="checkbox"
+                                        (change)="$event.target.checked ? canReadTrue() : canReadFalse()"
+                                        formControlName="canRead">
+                                </div>
+
+                                <label for="canDelete">Puede eliminar ?</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="checkbox"
+                                        (change)="$event.target.checked ? canDeleteTrue() : canDeleteFalse()"
+                                        formControlName="canDelete">
                                 </div>
 
                                 <label for="menuTemplate">Habilidar</label>
@@ -233,6 +266,42 @@
                                         placeholder="Plantilla del menu">
                                          {{role.MenuTemplate}}
                                     </textarea>
+                                </div>
+
+                                <label for="canCreate">Puede crear ?</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="checkbox"
+                                        (change)="$event.target.checked ? canCreateTrue() : canCreateFalse()"
+                                        formControlName="canCreate">
+                                </div>
+
+                                <label for="canRead">Puede editar ?</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="checkbox"
+                                        (change)="$event.target.checked ? canReadTrue() : canReadFalse()"
+                                        formControlName="canRead">
+                                </div>
+
+                                <label for="canDelete">Puede eliminar ?</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="checkbox"
+                                        (change)="$event.target.checked ? canDeleteTrue() : canDeleteFalse()"
+                                        formControlName="canDelete">
+                                </div>
+
+                                <label for="menuTemplate">Habilidar</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="checkbox"
+                                        (change)="$event.target.checked ? enabledTrue() : enabledFalse()"
+                                        formControlName="enabled">
                                 </div>
 
                                 <label for="menuTemplate">Habilidar</label>

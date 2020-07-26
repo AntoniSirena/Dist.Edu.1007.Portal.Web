@@ -36,6 +36,12 @@ export class TandaComponent implements OnInit {
   tanda = new Tanda();
   tandas = new Array<Tanda>();
 
+
+  //Permissions
+  canCreate = JSON.parse(localStorage.getItem("canCreate"));
+  canRead = JSON.parse(localStorage.getItem("canRead"));
+  canDelete = JSON.parse(localStorage.getItem("canDelete"));
+
   //constructor
   constructor(
     private tandaService: TandaService,

@@ -40,6 +40,11 @@ export class EducativeCenterComponent implements OnInit {
 
   districts = new Array<District>();
 
+  //Permissions
+  canCreate = JSON.parse(localStorage.getItem("canCreate"));
+  canRead = JSON.parse(localStorage.getItem("canRead"));
+  canDelete = JSON.parse(localStorage.getItem("canDelete"));
+
   //constructor
   constructor(
     private educativeCenterService: EducativeCenterService,

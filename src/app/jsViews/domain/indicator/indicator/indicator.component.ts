@@ -36,6 +36,11 @@ export class IndicatorComponent implements OnInit {
   indicator = new Indicator();
   indicators = new Array<Indicator>();
 
+  //Permissions
+  canCreate = JSON.parse(localStorage.getItem("canCreate"));
+  canRead = JSON.parse(localStorage.getItem("canRead"));
+  canDelete = JSON.parse(localStorage.getItem("canDelete"));
+
   //constructor
   constructor(
     private indicatorService: IndicatorService,
@@ -61,14 +66,14 @@ export class IndicatorComponent implements OnInit {
   getIndicatorById(id: number) {
     this.indicatorService.getIndicatorId(id).subscribe((response: Indicator) => {
       this.indicator = response;
-      
+
       //llenando el modal
       this.editIndicatorForm = this.form.group({
         id: [`${this.indicator.Id}`, Validators.required],
         shortName: [`${this.indicator.ShortName}`, Validators.required],
         name: [`${this.indicator.Name}`, Validators.required],
         description: [`${this.indicator.Description}`],
-        value:[`${this.indicator.Value}`],
+        value: [`${this.indicator.Value}`],
         isEvaluationFactor: [this.indicator.IsEvaluationFactor]
       });
     },

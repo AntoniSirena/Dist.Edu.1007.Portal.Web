@@ -35,6 +35,11 @@ export class VisitComponent implements OnInit {
   visit = new Visit();
   visits = new Array<Visit>();
 
+  //Permissions
+  canCreate = JSON.parse(localStorage.getItem("canCreate"));
+  canRead = JSON.parse(localStorage.getItem("canRead"));
+  canDelete = JSON.parse(localStorage.getItem("canDelete"));
+
   //constructor
   constructor(
     private visitService: VisitService,

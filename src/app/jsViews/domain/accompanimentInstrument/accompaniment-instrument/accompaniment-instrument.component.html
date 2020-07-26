@@ -26,7 +26,7 @@
             <th>Eficiencia</th>
             <th>Fecha de apertura</th>
             <th>Fecha de cierre</th>
-            <th class="right"><button type="button" class="btn btn-success" (click)="openCreateAccompanimentInstrumentModal(createAccompanimentInstrument)"><i
+            <th class="right"><button type="button" class="btn btn-success" (click)="openCreateAccompanimentInstrumentModal(createAccompanimentInstrument)" [disabled]="!canCreate"><i
                   class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
           </tr>
         </thead>
@@ -42,7 +42,7 @@
             <td class="td_min">{{item.ClosingDate}}</td>
             <td class="right"><button type="button" class="btn btn-primary" 
                 (click)="openEditAccompanimentInstrumentModal(editModal, item.Id, item.RequestId); getDocents(); getVariableByRequestId(0, 'A')"
-                [disabled]="!item.AllowEdit"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
+                [disabled]="!item.AllowEdit || !canRead"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
           </tr>
         </tbody>
       </table>

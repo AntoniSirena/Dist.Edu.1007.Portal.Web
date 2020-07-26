@@ -36,6 +36,11 @@ export class RegionalComponent implements OnInit {
   regional = new Regional();
   regionals = new Array<Regional>();
 
+  //Permissions
+  canCreate = JSON.parse(localStorage.getItem("canCreate"));
+  canRead = JSON.parse(localStorage.getItem("canRead"));
+  canDelete = JSON.parse(localStorage.getItem("canDelete"));
+
   //constructor
   constructor(
     private regionalService: RegionalService,

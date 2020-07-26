@@ -40,6 +40,7 @@ export class RoleComponent implements OnInit {
 
   personTypes = new Array<PersonType>();
 
+
   //constructor
   constructor(
     private roleService: RoleService,
@@ -78,6 +79,9 @@ export class RoleComponent implements OnInit {
         enabled: [this.role.Enabled],
         personTypeId: [`${this.role.PersonTypeId}`, Validators.required],
         code: [this.role.Code],
+        canCreate: [this.role.CanCreate],
+        canRead: [this.role.CanRead],
+        canDelete: [this.role.CanDelete],
       });
     },
       error => {
@@ -117,6 +121,30 @@ export class RoleComponent implements OnInit {
     this.role.Enabled = false;
   }
 
+  canCreateTrue(){
+    this.role.CanCreate = true;
+  }
+
+  canCreateFalse(){
+    this.role.CanCreate = false;
+  }
+
+  canReadTrue(){
+    this.role.CanRead = true;
+  }
+
+  canReadFalse(){
+    this.role.CanRead = false;
+  }
+
+  canDeleteTrue(){
+    this.role.CanDelete = true;
+  }
+
+  canDeleteFalse(){
+    this.role.CanDelete = false;
+  }
+
   //edit
   edit(formValue: any) {
 
@@ -129,6 +157,9 @@ export class RoleComponent implements OnInit {
       Enabled: formValue.enabled,
       Code: this.role.Code,
       PersonTypeId: formValue.personTypeId,
+      CanCreate: formValue.canCreate,
+      CanRead: formValue.canRead,
+      CanDelete: formValue.canDelete,
       CreationTime: this.role.CreationTime,
       CreatorUserId: this.role.CreatorUserId,
       LastModificationTime: this.role.LastModificationTime,
@@ -181,6 +212,9 @@ export class RoleComponent implements OnInit {
       IsDeleted: false,
       Code: null,
       PersonTypeId: formValue.personTypeId,
+      CanCreate: formValue.canCreate,
+      CanRead: formValue.canRead,
+      CanDelete: formValue.canDelete,
       CreatorUserId: null,
       CreationTime: null,
       LastModifierUserId: null,
@@ -227,7 +261,10 @@ export class RoleComponent implements OnInit {
       parent: ['', Validators.required],
       enabled: [false],
       personTypeId: [0, Validators.required],
-      code:['']
+      code:[''],
+      canRead: [false],
+      canDelete: [false],
+      canCreate: [false]
     });
   }
 
@@ -240,7 +277,10 @@ export class RoleComponent implements OnInit {
       menuTemplate: [''],
       parent: ['', Validators.required],
       enabled: [false],
-      personTypeId: [0, Validators.required]
+      personTypeId: [0, Validators.required],
+      canRead: [false],
+      canDelete: [false],
+      canCreate: [false]
     });
   }
 

@@ -20,7 +20,7 @@
           <th>Código</th>
           <th class="td_min">Descripción</th>
           <th class="right"></th>
-          <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i
+          <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)" [disabled]="!canCreate"><i
                 class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
         </tr>
       </thead>
@@ -29,8 +29,8 @@
           *ngFor="let item of personTypes | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
           <td>{{item.Code}}</td>
           <td>{{item.Description}}</td>
-          <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
-          <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
+          <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)" [disabled]="!canDelete"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
+          <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canRead"><i
                 class="fa fa-pencil"></i>&nbsp;Editar</button></td>
         </tr>
       </tbody>
