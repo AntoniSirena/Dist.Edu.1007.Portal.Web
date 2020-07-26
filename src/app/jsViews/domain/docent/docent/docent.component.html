@@ -36,7 +36,7 @@
             <td>{{item.DocumentNumber}}</td>
             <td class="right"> <button (click)="openDetailModal(item.Id)"> <i class="fa fa-eye"></i> </button> </td>
             <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)" [disabled]="!canDelete"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
-            <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canRead"><i
+            <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canEdit"><i
                   class="fa fa-pencil"></i>&nbsp;Editar</button></td>
           </tr>
         </tbody>

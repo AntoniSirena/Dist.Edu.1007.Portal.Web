@@ -25,6 +25,8 @@ export class Role  extends Audit{
     Code: string;
     PersonTypeId: number;
     CanCreate: boolean;
-    CanRead: boolean;
+    CanEdit: boolean;
     CanDelete: boolean;
+    CanCreateRequest: boolean;
+    CanEditRequest: boolean;
 }

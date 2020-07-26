@@ -36,7 +36,7 @@
             <td>{{item.Name}}</td>
             <td class="td_min">{{item.Description}}</td>
             <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)" [disabled]="!canDelete || item.ShortName == 'Pendiente' "><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
-            <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canRead  || item.ShortName == 'Pendiente' "><i
+            <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canEdit  || item.ShortName == 'Pendiente' "><i
                   class="fa fa-pencil"></i>&nbsp;Editar</button></td>
           </tr>
         </tbody>

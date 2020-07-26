@@ -40,7 +40,7 @@ export class PersonTypeComponent implements OnInit {
 
   //Permissions
   canCreate = JSON.parse(localStorage.getItem("canCreate"));
-  canRead = JSON.parse(localStorage.getItem("canRead"));
+  canEdit = JSON.parse(localStorage.getItem("canEdit"));
   canDelete = JSON.parse(localStorage.getItem("canDelete"));
 
   //constructor

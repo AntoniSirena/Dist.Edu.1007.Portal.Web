@@ -10,6 +10,8 @@ export interface Irole extends Iaudit{
     Code: string;
     PersonTypeId: number;
     CanCreate: boolean;
-    CanRead: boolean;
+    CanEdit: boolean;
     CanDelete: boolean;
+    CanCreateRequest: boolean;
+    CanEditRequest: boolean;
 }

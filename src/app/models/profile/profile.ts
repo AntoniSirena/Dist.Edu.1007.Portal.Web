@@ -21,8 +21,10 @@
       RoleShortName: string;   
       RoleParent: string;
       CanCreate: boolean;
-      CanRead: boolean;
-      CanDelete: boolean;  
+      CanEdit: boolean;
+      CanDelete: boolean;
+      CanCreateRequest: boolean;
+      CanEditRequest: boolean;
     }
   
     export class Person{

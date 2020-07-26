@@ -51,8 +51,10 @@ export class RedirectService {
             localStorage.setItem("userName", `${JSON.stringify(this.profile.Profile.User.UserName)}`);
             localStorage.setItem("userId", `${JSON.stringify(this.profile.Profile.User.Id)}`);
             localStorage.setItem("canCreate", `${JSON.stringify(this.profile.Profile.User.CanCreate)}`);
-            localStorage.setItem("canRead", `${JSON.stringify(this.profile.Profile.User.CanRead)}`);
+            localStorage.setItem("canEdit", `${JSON.stringify(this.profile.Profile.User.CanEdit)}`);
             localStorage.setItem("canDelete", `${JSON.stringify(this.profile.Profile.User.CanDelete)}`);
+            localStorage.setItem("canCreateRequest", `${JSON.stringify(this.profile.Profile.User.CanCreateRequest)}`);
+            localStorage.setItem("canEditRequest", `${JSON.stringify(this.profile.Profile.User.CanEditRequest)}`);
 
             localStorage.setItem('roleShortName', `${JSON.stringify(this.profile.Profile.User.RoleShortName)}`);
             localStorage.setItem('roleParent', `${JSON.stringify(this.profile.Profile.User.RoleParent)}`);
@@ -77,8 +79,10 @@ export class RedirectService {
           localStorage.setItem("userName", `${JSON.stringify(this.profile.Profile.User.UserName)}`);
           localStorage.setItem("userId", `${JSON.stringify(this.profile.Profile.User.Id)}`);
           localStorage.setItem("canCreate", `${JSON.stringify(this.profile.Profile.User.CanCreate)}`);
-          localStorage.setItem("canRead", `${JSON.stringify(this.profile.Profile.User.CanRead)}`);
+          localStorage.setItem("canEdit", `${JSON.stringify(this.profile.Profile.User.CanEdit)}`);
           localStorage.setItem("canDelete", `${JSON.stringify(this.profile.Profile.User.CanDelete)}`);
+          localStorage.setItem("canCreateRequest", `${JSON.stringify(this.profile.Profile.User.CanCreateRequest)}`);
+          localStorage.setItem("canEditRequest", `${JSON.stringify(this.profile.Profile.User.CanEditRequest)}`);
 
           localStorage.setItem('roleShortName', `${JSON.stringify(this.profile.Profile.User.RoleShortName)}`);
           localStorage.setItem('roleParent', `${JSON.stringify(this.profile.Profile.User.RoleParent)}`);

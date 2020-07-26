@@ -50,7 +50,7 @@ export class DocentComponent implements OnInit {
   areas = new Array<Area>();
 
   canCreate = JSON.parse(localStorage.getItem("canCreate"));
-  canRead = JSON.parse(localStorage.getItem("canRead"));
+  canEdit = JSON.parse(localStorage.getItem("canEdit"));
   canDelete = JSON.parse(localStorage.getItem("canDelete"));
 
   @ViewChild('details') detailsModal: ElementRef;
@@ -71,6 +71,9 @@ export class DocentComponent implements OnInit {
     this.getDocumenTypes();
     this.getAreas();
     this.getEducativeCenters();
+
+    this.setValueCreateFrom();
+    this.setValueEditFrom();
   }
 
 

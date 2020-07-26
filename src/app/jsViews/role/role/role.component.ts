@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RoleService } from '../../../services/role/role.service';
@@ -80,8 +80,10 @@ export class RoleComponent implements OnInit {
         personTypeId: [`${this.role.PersonTypeId}`, Validators.required],
         code: [this.role.Code],
         canCreate: [this.role.CanCreate],
-        canRead: [this.role.CanRead],
+        canEdit: [this.role.CanEdit],
         canDelete: [this.role.CanDelete],
+        canCreateRequest: [this.role.CanCreateRequest],
+        canEditRequest: [this.role.CanEditRequest],
       });
     },
       error => {
@@ -129,12 +131,12 @@ export class RoleComponent implements OnInit {
     this.role.CanCreate = false;
   }
 
-  canReadTrue(){
-    this.role.CanRead = true;
+  canEditTrue(){
+    this.role.CanEdit = true;
   }
 
-  canReadFalse(){
-    this.role.CanRead = false;
+  canEditFalse(){
+    this.role.CanEdit = false;
   }
 
   canDeleteTrue(){
@@ -143,6 +145,23 @@ export class RoleComponent implements OnInit {
 
   canDeleteFalse(){
     this.role.CanDelete = false;
+  }
+
+
+  canCreateRequestTrue(){
+    this.role.CanCreateRequest = true;
+  }
+
+  canCreateRequestFalse(){
+    this.role.CanCreateRequest = false;
+  }
+
+  canEditRequestTrue(){
+    this.role.CanEditRequest = true;
+  }
+
+  canEditRequestFalse(){
+    this.role.CanEditRequest = false;
   }
 
   //edit
@@ -158,8 +177,10 @@ export class RoleComponent implements OnInit {
       Code: this.role.Code,
       PersonTypeId: formValue.personTypeId,
       CanCreate: formValue.canCreate,
-      CanRead: formValue.canRead,
+      CanEdit: formValue.canEdit,
       CanDelete: formValue.canDelete,
+      CanCreateRequest: formValue.canCreateRequest,
+      CanEditRequest: formValue.canEditRequest,
       CreationTime: this.role.CreationTime,
       CreatorUserId: this.role.CreatorUserId,
       LastModificationTime: this.role.LastModificationTime,
@@ -213,8 +234,10 @@ export class RoleComponent implements OnInit {
       Code: null,
       PersonTypeId: formValue.personTypeId,
       CanCreate: formValue.canCreate,
-      CanRead: formValue.canRead,
+      CanEdit: formValue.canEdit,
       CanDelete: formValue.canDelete,
+      CanCreateRequest: formValue.canCreateRequest,
+      CanEditRequest: formValue.canEditRequest,
       CreatorUserId: null,
       CreationTime: null,
       LastModifierUserId: null,
@@ -262,9 +285,11 @@ export class RoleComponent implements OnInit {
       enabled: [false],
       personTypeId: [0, Validators.required],
       code:[''],
-      canRead: [false],
+      canEdit: [false],
       canDelete: [false],
-      canCreate: [false]
+      canCreate: [false],
+      canCreateRequest: [false],
+      canEditRequest: [false]
     });
   }
 
@@ -278,9 +303,11 @@ export class RoleComponent implements OnInit {
       parent: ['', Validators.required],
       enabled: [false],
       personTypeId: [0, Validators.required],
-      canRead: [false],
+      canEdit: [false],
       canDelete: [false],
-      canCreate: [false]
+      canCreate: [false],
+      canCreateRequest: [false],
+      canEditRequest: [false]
     });
   }
 

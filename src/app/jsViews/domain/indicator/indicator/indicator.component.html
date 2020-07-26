@@ -40,7 +40,7 @@
             <td>{{item.Value}}</td>
             <td class="center"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.IsEvaluationFactor == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.IsEvaluationFactor == true ? 'sí' : 'No'}} </button> </td>
             <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)" [disabled]="!canDelete || item.ShortName == 'IndicadorInicial' "><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
-            <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canRead || item.ShortName == 'IndicadorInicial' "><i
+            <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canEdit || item.ShortName == 'IndicadorInicial' "><i
                   class="fa fa-pencil"></i>&nbsp;Editar</button></td>
           </tr>
         </tbody>

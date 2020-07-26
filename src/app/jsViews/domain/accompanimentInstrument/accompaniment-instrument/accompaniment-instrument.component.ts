@@ -79,9 +79,8 @@ export class AccompanimentInstrumentComponent implements OnInit {
   currentRequestId: number = 0;
 
   //Permissions
-  canCreate = JSON.parse(localStorage.getItem("canCreate"));
-  canRead = JSON.parse(localStorage.getItem("canRead"));
-  canDelete = JSON.parse(localStorage.getItem("canDelete"));
+  canCreateReuqest = JSON.parse(localStorage.getItem("canCreateRequest"));
+  canEditReuqest = JSON.parse(localStorage.getItem("canEditRequest"));
 
   //constructor
   constructor(
