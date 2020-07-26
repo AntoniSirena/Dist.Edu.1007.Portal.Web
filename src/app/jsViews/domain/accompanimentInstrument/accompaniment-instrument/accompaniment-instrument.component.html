@@ -23,6 +23,7 @@
             <th>Docente</th>
             <th>No.Documento</th>
             <th>Estado</th>
+            <th>Eficiencia</th>
             <th>Fecha de apertura</th>
             <th>Fecha de cierre</th>
             <th class="right"><button type="button" class="btn btn-success" (click)="openCreateAccompanimentInstrumentModal(createAccompanimentInstrument)"><i
@@ -36,6 +37,7 @@
             <td class="td_min">{{item.DocentFullName}}</td>
             <td class="td_min">{{item.DocumentNumber}}</td>
             <td class="td_min"> <span class="colorBorder" [style.background-color]= "item.StatusColour">{{item.Status}}</span> </td>
+            <td> <span class="{{item.EfficiencyGeneralColour}} center">{{item.EfficiencyGeneralValue}}</span></td>
             <td class="td_min">{{item.OpeningDate}}</td>
             <td class="td_min">{{item.ClosingDate}}</td>
             <td class="right"><button type="button" class="btn btn-primary" 
@@ -367,7 +369,7 @@
     <div class="modal-header">
       <h4 class="modal-title">Editando Instrumento de Acompañamiento de <i class="textColor">{{docentFullName}}</i> &nbsp; Número: <i class="textColor">{{identificationData.RequestId}}</i> </h4>
       
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click'); getAccompInstRequests()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -2197,6 +2199,6 @@
   
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+      <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click'); getAccompInstRequests()">Cerrar</button>
     </div>
 </ng-template>

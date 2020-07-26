@@ -34,3 +34,7 @@
     border: 3px solid rgb(54, 119, 204);
     border-radius: 5px;
 }
+
+._center{
+    align-items: center;
+}

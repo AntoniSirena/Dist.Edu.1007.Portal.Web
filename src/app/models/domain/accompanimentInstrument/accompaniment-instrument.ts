@@ -47,6 +47,8 @@ export class AccompInstRequest {
     OpeningDate: string;
     ClosingDate: string;
     AllowEdit: string;
+    EfficiencyGeneralValue: string;
+    EfficiencyGeneralColour: string;
 }
 
 
