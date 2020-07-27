@@ -83,6 +83,10 @@ export class VariableResponse {
 
     EfficiencyEvaluateFactor: string;
 
+    VisitAIsAvailable: boolean;
+    VisitBIsAvailable: boolean;
+    VisitCIsAvailable: boolean;
+
 }
 
 export class VariableDetail {
