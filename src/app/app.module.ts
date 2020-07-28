@@ -52,7 +52,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PortadaComponent } from './jsViews/portada/portada/portada.component';
 import { UserComponent } from './jsViews/user/user/user.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { UserRoleComponent } from './jsViews/userRole/user-role/user-role.component';
 import { RoleComponent } from './jsViews/role/role/role.component';
 import { ConfigurationParameterComponent } from './jsViews/configurationParameter/configuration-parameter/configuration-parameter.component';
@@ -66,9 +66,12 @@ import { GradeComponent } from './jsViews/domain/grade/grade/grade.component';
 import { AreaComponent } from './jsViews/domain/area/area/area.component';
 import { DocentComponent } from './jsViews/domain/docent/docent/docent.component';
 
-import {DatePipe} from "@angular/common";
+import { DatePipe } from "@angular/common";
 import { VisitComponent } from './jsViews/domain/visit/visit/visit.component';
 import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicator.component';
+import { TemplateComponent } from './jsViews/template/template.component';
+
+import { CKEditorModule } from 'ngx-ckeditor';
 
 
 @NgModule({
@@ -90,7 +93,9 @@ import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicat
     HttpClientModule,
     NgbModule,
     Ng2SearchPipeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CKEditorModule
+
   ],
   declarations: [
     AppComponent,
@@ -115,9 +120,10 @@ import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicat
     AreaComponent,
     DocentComponent,
     VisitComponent,
-    IndicatorComponent
-    
-   ],
+    IndicatorComponent,
+    TemplateComponent
+
+  ],
   providers: [
     {
       provide: LocationStrategy,
@@ -129,12 +135,12 @@ import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicat
       multi: true
     },
     DatePipe
-    
+
   ],
 
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 
 export class AppModule {
 
- }
+}

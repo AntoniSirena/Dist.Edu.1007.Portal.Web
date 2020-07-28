@@ -25,6 +25,7 @@ import { AreaComponent } from './jsViews/domain/area/area/area.component';
 import { DocentComponent } from './jsViews/domain/docent/docent/docent.component';
 import { VisitComponent } from './jsViews/domain/visit/visit/visit.component';
 import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicator.component';
+import { TemplateComponent } from './jsViews/template/template.component';
 
 
 export const routes: Routes = [
@@ -239,6 +240,14 @@ export const routes: Routes = [
         component: IndicatorComponent,
         data: {
           title: 'Indicadores'
+        }
+      },
+      {
+        path: 'template',
+        canActivate: [AuthGuard],
+        component: TemplateComponent,
+        data: {
+          title: 'Plantillas'
         }
       }
 
