@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { DatePipe } from "@angular/common";
 import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -18,9 +18,6 @@ import { Visit } from '../../../../models/common/visit/visit';
 import { IidentificationData } from '../../../../interfaces/domain/IccompanimentInstrument/iaccompaniment-instrument';
 import { Area } from '../../../../models/common/area/area';
 import { Indicator } from '../../../../models/common/indicator/indicator';
-import * as $ from 'jquery';
-import { tick } from '@angular/core/testing';
-import { controllers } from 'chart.js';
 
 
 @Component({
@@ -47,6 +44,9 @@ export class AccompanimentInstrumentComponent implements OnInit {
   editIdentificationDataForm: FormGroup;
 
   _currentPage: number = 1;
+
+  @ViewChild('details') detailsModal: ElementRef;
+
 
   //Objects list
   identificationDatas = new Array<IdentificationData>();
@@ -425,6 +425,12 @@ export class AccompanimentInstrumentComponent implements OnInit {
   }
 
 
+  //open details modal
+  openDetailModal() {
+    this.modalService.open(this.detailsModal, { size: 'xl', scrollable: true });
+  }
+
+
   //create Identification Data
   createIdentificationData(formValue: any) {
     try {
@@ -721,6 +727,58 @@ export class AccompanimentInstrumentComponent implements OnInit {
   }
 
 
+  //Approve
+  approve() {
+    Swal.fire({
+      title: 'Está seguro que desea aprobar el Instrumento de Acompañamiento ?',
+      text: "Los cambios no podran ser revertidos!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, aprobar!'
+    }).then((result) => {
+      if (result.value) {
+        //delete service
+      }
+    })
+  }
+
+
+  //Send to observation
+  sendToObservation() {
+    Swal.fire({
+      title: 'Está seguro que desea enviar a observación el Instrumento de Acompañamiento ?',
+      text: "Los cambios no podran ser revertidos!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, enviar!'
+    }).then((result) => {
+      if (result.value) {
+        //delete service
+      }
+    })
+  }
+
+
+  //Cancel
+  cancel() {
+    Swal.fire({
+      title: 'Está seguro que desea cancelar el Instrumento de Acompañamiento ?',
+      text: "Los cambios no podran ser revertidos!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, cancelar!'
+    }).then((result) => {
+      if (result.value) {
+        //delete service
+      }
+    })
+  }
 
 
   //create Identification Data form set value ''

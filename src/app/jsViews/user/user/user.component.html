@@ -24,7 +24,7 @@
           <th>Rol</th>
           <th class="right">En linea</th>
           <th class="right">Detalles</th>
-          <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i
+          <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)" [disabled]="!canCreate"><i
                 class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
         </tr>
       </thead>
@@ -37,7 +37,7 @@
           <td>{{item.Role == null ? '' : item.Role.Description}}</td>
           <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.IsOnline == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}"> {{item.IsOnline == true ? 'sí' : 'No'}} </button> </td>
           <td class="right"> <button (click)="openDetailModal(item.Id)"> <i class="fa fa-eye"></i> </button> </td>
-          <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
+          <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canEdit"><i
                 class="fa fa-pencil"></i>&nbsp;Editar</button></td>
         </tr>
       </tbody>

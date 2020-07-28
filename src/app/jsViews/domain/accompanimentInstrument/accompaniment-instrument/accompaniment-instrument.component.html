@@ -5,7 +5,7 @@
 
     <h5>INSTRUMENTOS DE ACOMPAÑAMIENTOS</h5>
     <br>
-  
+
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-lg-12">
         <div class="form-group">
@@ -26,6 +26,8 @@
             <th>Eficiencia</th>
             <th>Fecha de apertura</th>
             <th>Fecha de cierre</th>
+            <th class="right">Detalles</th>
+            <th> <span class="center">Acciones</span></th>
             <th class="right"><button type="button" class="btn btn-success" *ngIf="canCreateReuqest" (click)="openCreateAccompanimentInstrumentModal(createAccompanimentInstrument)"><i
                   class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
           </tr>
@@ -40,6 +42,22 @@
             <td> <span class="{{item.EfficiencyGeneralColour}} center">{{item.EfficiencyGeneralValue}}</span></td>
             <td class="td_min">{{item.OpeningDate}}</td>
             <td class="td_min">{{item.ClosingDate}}</td>
+            <td class="right"> <button (click)="openDetailModal()" class="center"> <i class="fa fa-eye"></i> </button> </td>
+            
+            <!--Acciones-->
+            <td>
+              <div class="col">
+                <div ngbDropdown class="d-inline-block">
+                  <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Acciones</button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem (click)="approve()">Aprobar</button>
+                    <button ngbDropdownItem (click)="sendToObservation()">Envíar a observación</button>
+                    <button ngbDropdownItem (click)="cancel()">Cacelar</button>
+                  </div>
+                </div>
+              </div>
+            </td>
+
             <td class="right"> <button type="button" class="btn btn-primary" 
                 (click)="openEditAccompanimentInstrumentModal(editModal, item.Id, item.RequestId); getDocents(); getVariableByRequestId(0, 'A')"
                 *ngIf="canEditReuqest" [disabled]="!item.AllowEdit"><i class="fa fa-pencil"></i>&nbsp;Editar</button> </td>
@@ -793,7 +811,7 @@
                                                           <th>
                                                             Área
                                                             <div class="input-group mb-3">
-                                                                <select class="form-control" [(ngModel)] = "variable.AreaIdC" [ngModelOptions]="{standalone: true}" [disabled]="!variable.VisitAIsCvailable">
+                                                                <select class="form-control" [(ngModel)] = "variable.AreaIdC" [ngModelOptions]="{standalone: true}" [disabled]="!variable.VisitCIsAvailable">
                                                                   <option *ngFor="let areaC of areas" [value]="areaC.Id">{{areaC.ShortName}}</option>
                                                                 </select>
                                                             </div>
@@ -1085,7 +1103,7 @@
                                                           <td>
                                                             <div class="input-group mb-3">
                                                                 <select class="form-control"
-                                                                  [(ngModel)] = "detail.IndicadorIdC" [ngModelOptions]="{standalone: true}" [disabled]="!variable.VisitAIsCvailable">
+                                                                  [(ngModel)] = "detail.IndicadorIdC" [ngModelOptions]="{standalone: true}" [disabled]="!variable.VisitCIsAvailable">
                                                                   <option *ngFor="let indC of indicators" [value]="indC.Id">{{indC.Name}}</option>
                                                                 </select>
                                                             </div>
@@ -1715,7 +1733,7 @@
                                                       <th>
                                                         Área
                                                         <div class="input-group mb-3">
-                                                            <select class="form-control" [(ngModel)] = "variable.AreaIdC" [ngModelOptions]="{standalone: true}" [disabled]="!variable.VisitICsAvailable">
+                                                            <select class="form-control" [(ngModel)] = "variable.AreaIdC" [ngModelOptions]="{standalone: true}" [disabled]="!variable.VisitCIsAvailable">
                                                               <option *ngFor="let areaC of areas" [value]="areaC.Id">{{areaC.ShortName}}</option>
                                                             </select>
                                                         </div>
@@ -2201,4 +2219,24 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click'); getAccompInstRequests()">Cerrar</button>
     </div>
+</ng-template>
+
+
+
+<!--Details Modal -->
+<ng-template #details let-modal>
+  <div class="modal-header">
+    <h3 class="modal-title">Detalles del Instrumento de Acompañamiento &nbsp; Número: <i class="textColor">{{identificationData.RequestId}}</i> </h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <h1 class="center"> Funcionalidad en desarrollo <br> Gracias por su paciencia...</h1>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
 </ng-template>

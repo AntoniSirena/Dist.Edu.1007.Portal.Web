@@ -2,3 +2,8 @@
 .style{
     width: 100%;
 }
+
+.text-modal{
+    word-break : break-word;
+    width: 100%;
+  }
