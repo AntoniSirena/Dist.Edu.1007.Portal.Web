@@ -72,8 +72,8 @@
     font-size: 24px;
     width: 100%;
     border-radius: 4px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 7px;
+    margin-bottom: 7px;
   }
 
   .colorBorder{
@@ -91,6 +91,17 @@
 
   .right{
     text-align: right;
+  }
+
+  .justify{
+    text-align: justify;
+  }
+
+  .templateStyle{
+    text-align: justify;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 22px;
   }
 
   .tabl_eHeader_Color{
@@ -113,5 +124,31 @@
     border-left: rgb(23, 137, 182) 10px solid;
     border-right: rgb(201, 12, 12) 10px solid;
   }
+
+  
+  .buttonSize_Save{
+    font-size: 19px;
+    width: 90px;
+    border-radius: 4px;
+}
+
+.buttonSize_Closed{
+    font-size: 19px;
+    width: 90px;
+    border-radius: 4px;
+    margin-right: 40px;
+}
+
+
+.modal-xl {
+  max-width: 80%;
+  margin-left: 10%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  display: flex;
+}
 
   

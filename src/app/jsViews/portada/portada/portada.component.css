@@ -7,7 +7,7 @@
 
 .headerRow{
     background-color: rgb(16, 16, 117);
-    border-radius: 15px;
+    border-radius: 10px;
     margin: 5px;
 }
 
@@ -15,6 +15,7 @@
     height:100%;
     overflow-y: scroll;
 }
+
 
 .textColorWhite{
     color: black;
@@ -28,9 +29,20 @@
     border-radius: 8px;
 }
 
+.modal-lg {
+    max-width: 60%;
+    margin-left: 20%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+  }
+
 .imgPortada{
     background: transparent;
-    background-image: url(assets/img/portada/logoDist1007.jpg);
+    background-image: url(assets/img/portada/playa.jpg);
     height: 100%;
     /* Para dejar la imagen de fondo centrada, vertical yhorizontalmente */
     background-position: center center;

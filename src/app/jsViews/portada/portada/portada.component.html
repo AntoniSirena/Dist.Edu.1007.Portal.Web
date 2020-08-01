@@ -4,26 +4,56 @@
     <div class="container-fluid" style="width: 75%;">
 
         <br>
-        <div class="wow headerRow">
+        <div class="row headerRow">
           <div class="col-md-12">
-            <h1 class="Header">Bienvenido a su Dist.Edu.1007 de Guerra</h1>
+            <div class="row">
+              <div class="col-md-8 center Header">
+                <div class="row">
+                  <div class="col-md-12">
+                   <h1>Bienvenido a su Dist.Edu.1007 de Guerra</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <br>
 
         <!--Menú-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand">Menú</a>
+            <a class="navbar-brand btn-white">Menú</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
           
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown btn-info">
                   <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" 
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      Ética
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" (click)="openMisionModal()">Misión</a>
+                    <a class="dropdown-item" (click)="alert()">Visión</a>
+                    <a class="dropdown-item" (click)="alert()">Valores</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown btn-danger">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" 
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Historia
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" (click)="alert()">Misión</a>
+                    <a class="dropdown-item" (click)="alert()">Visión</a>
+                    <a class="dropdown-item" (click)="alert()">Valores</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown btn-info">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" 
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Equipo
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" (click)="alert()">Misión</a>
@@ -103,5 +133,30 @@
     </div>
 
 </div>
+
+
+<!--Mision Modal -->
+<ng-template #misionModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Misión</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <h1 class="center"> Funcionalidad en desarrollo <br> Gracias por su paciencia...</h1>
+
+
+    <div>
+      <span [innerHTML]="editorValue" class="templateStyle"> </span>
+  </div>
+
+    
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
 
 

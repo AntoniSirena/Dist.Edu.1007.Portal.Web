@@ -84,7 +84,7 @@
     <div class="modal-body">
 
         <form [formGroup]="createIdentificationDataForm" (submit)="createIdentificationData(createIdentificationDataForm.value)">
-            <div class="container">
+            <div class="container-fluid" style="width: 95%;">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
@@ -415,7 +415,7 @@
                 <ng-template ngbTabContent>
 
                     <form [formGroup]="editIdentificationDataForm" (submit)="editIdentificationData(editIdentificationDataForm.value)">
-                        <div class="container">
+                        <div class="container-fluid" style="width: 95%;">
                           <div class="row">
                             <div class="col-sm-12">
                               <div class="card">
@@ -742,7 +742,7 @@
                 <ng-template ngbTabContent>
 
                     <form (submit)="editVariable()">
-                            <div class="container">
+                            <div class="container-fluid" style="width: 95%;">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="card">
@@ -881,7 +881,7 @@
                 <ng-template ngbTabContent>
 
                     <form (submit)="editVariable()">
-                            <div class="container">
+                            <div class="container-fluid" style="width: 95%;">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="card">
@@ -1011,7 +1011,7 @@
                 <ng-template ngbTabContent>
 
                     <form (submit)="editVariable()">
-                            <div class="container">
+                            <div class="container-fluid" style="width: 95%;">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="card">
@@ -1142,7 +1142,7 @@
                 <ng-template ngbTabContent>
 
                     <form (submit)="editVariable()">
-                            <div class="container">
+                            <div class="container-fluid" style="width: 95%;">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="card">
@@ -1273,7 +1273,7 @@
                 <ng-template ngbTabContent>
 
                     <form (submit)="editVariable()">
-                            <div class="container">
+                            <div class="container-fluid" style="width: 95%;">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="card">
@@ -1404,7 +1404,7 @@
                 <ng-template ngbTabContent>
 
                     <form (submit)="editVariable()">
-                            <div class="container">
+                            <div class="container-fluid" style="width: 95%;">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="card">
@@ -1535,7 +1535,7 @@
             <ng-template ngbTabContent>
 
                 <form (submit)="editVariable()">
-                        <div class="container">
+                        <div class="container-fluid" style="width: 95%;">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card">
@@ -1673,7 +1673,7 @@
             <ng-template ngbTabContent>
 
                 <form (submit)="editVariable()">
-                        <div class="container">
+                        <div class="container-fluid" style="width: 95%;">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card">
@@ -1803,7 +1803,7 @@
             <ng-template ngbTabContent>
 
                 <form (submit)="editCommentsRevisedDocument()">
-                        <div class="container">
+                        <div class="container-fluid" style="width: 95%;">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card">
@@ -1922,7 +1922,7 @@
             <ng-template ngbTabContent>
 
                 <form (submit)="editDescriptionObservationSupportProvided()">
-                        <div class="container">
+                        <div class="container-fluid" style="width: 95%;">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card">
@@ -2049,7 +2049,7 @@
             <ng-template ngbTabContent>
 
                 <form (submit)="editSuggestionsAgreement()">
-                        <div class="container">
+                        <div class="container-fluid" style="width: 95%;">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card">
@@ -2224,7 +2224,7 @@
 
 
 <!--Details Modal -->
-<ng-template #details let-modal>
+<ng-template #details let-modal class="container-fluid" style="width: 95%;">
   <div class="modal-header">
     <h3 class="modal-title">Detalles del Instrumento de Acompañamiento &nbsp; Número: <i class="textColor">{{identificationData.RequestId}}</i> </h3>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
