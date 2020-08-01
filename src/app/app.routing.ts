@@ -26,6 +26,7 @@ import { DocentComponent } from './jsViews/domain/docent/docent/docent.component
 import { VisitComponent } from './jsViews/domain/visit/visit/visit.component';
 import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicator.component';
 import { TemplateComponent } from './jsViews/template/template.component';
+import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portada.component';
 
 
 export const routes: Routes = [
@@ -66,7 +67,6 @@ export const routes: Routes = [
   },
   {
     path: '',
-    canActivate: [AuthGuard],
     component: DefaultLayoutComponent,
     data: {
       
@@ -118,6 +118,13 @@ export const routes: Routes = [
         component: PortadaComponent,
         data: {
           title: 'Portada'
+        }
+      },
+      {
+        path: 'pre-portada',
+        component: PrePortadaComponent,
+        data: {
+          title: 'Pre-Portada'
         }
       },
       {

@@ -2,6 +2,7 @@
     color: rgb(252, 231, 231);
     text-align: center; 
     font-weight: bold;
+    font: bold;
 }
 
 .scroll {
@@ -10,11 +11,48 @@
 }
 
 .textColorWhite{
-    color: white;
+    color: black;
+    background-color: rgb(245, 227, 227);
+    font: bold;
+    font-size: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 8px;
 }
 
 .imgPortada{
     background: transparent;
     background-image: url(assets/img/portada/BandDom.jpg);
     height: 100%;
- }
+    /* Para dejar la imagen de fondo centrada, vertical yhorizontalmente */
+    background-position: center center;
+
+    /* Para que la imagen de fondo no se repita */
+    background-repeat: no-repeat;
+
+    /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+    background-attachment: fixed;
+
+    /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
+    background-size: cover;
+
+}
+
+.menuRowStyle{
+    background-color: rgb(253, 244, 244);
+    height: 45px;
+    border-radius: 7px;
+    -webkit-box-shadow: -19px 5px 300px 30px rgba(137,120,140,1);
+    -moz-box-shadow: -19px 5px 300px 30px rgba(137,120,140,1);
+    box-shadow: -19px 5px 300px 30px rgba(137,120,140,1);
+}
+
+.menuButton{
+    font-size: 20px;
+    width: 90px;
+    border-radius: 4px;
+    margin-top: 6px;
+    width:120px; 
+}

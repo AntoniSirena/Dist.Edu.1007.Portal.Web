@@ -72,6 +72,7 @@ import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicat
 import { TemplateComponent } from './jsViews/template/template.component';
 
 import { CKEditorModule } from 'ngx-ckeditor';
+import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portada.component';
 
 
 @NgModule({
@@ -95,7 +96,6 @@ import { CKEditorModule } from 'ngx-ckeditor';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     CKEditorModule
-
   ],
   declarations: [
     AppComponent,
@@ -121,7 +121,8 @@ import { CKEditorModule } from 'ngx-ckeditor';
     DocentComponent,
     VisitComponent,
     IndicatorComponent,
-    TemplateComponent
+    TemplateComponent,
+    PrePortadaComponent
 
   ],
   providers: [

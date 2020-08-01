@@ -37,7 +37,7 @@ export class DefaultLayoutComponent implements OnInit {
   }
 
   //Get profile
-  getProfile(){  
+  getProfile(){ 
     this.profile = this.baseService.getProfile();
   }
 
