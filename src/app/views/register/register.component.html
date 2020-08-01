@@ -2,7 +2,7 @@
   <main class="main d-flex align-items-center">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-8 mx-auto">
           <div class="card mx-4">
             <div class="card-body p-4">
               <!--Form-->
@@ -58,7 +58,7 @@
                   <input type="text" formControlName="code" class="form-control" placeholder="Código de seguridad si posee" autocomplete="code">
                 </div>
 
-                <button type="submit" class="btn btn-block btn-twitter" style="background-color:rgb(97, 170, 219);" [disabled]="myForm.invalid" >Crear cuenta</button>
+                <button type="submit" class="btn btn-block btn-primary loginButton" [disabled]="myForm.invalid" >Crear cuenta</button>
 
               </form>
               <!--End-->
@@ -66,7 +66,7 @@
             <div class="card-footer p-4">
               <div class="row">
                 <div class="col-12">
-                  <button class="btn btn-block" type="button" (click)="goToBack()" style="background-color:rgb(89, 226, 96) ; "><span class="text-white">volver atras</span></button>
+                  <button class="btn btn-block btn-danger loginButton" type="button" (click)="goToBack()"><span class="text-white">volver atras</span></button>
                 </div>
               </div>
             </div>

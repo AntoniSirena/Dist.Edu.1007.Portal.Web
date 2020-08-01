@@ -1,8 +1,14 @@
 .Header{
-    color: rgb(252, 231, 231);
+    color: wheat;
     text-align: center; 
     font-weight: bold;
     font: bold;
+}
+
+.headerRow{
+    background-color: rgb(16, 16, 117);
+    border-radius: 15px;
+    margin: 5px;
 }
 
 .scroll {
@@ -24,7 +30,7 @@
 
 .imgPortada{
     background: transparent;
-    background-image: url(assets/img/portada/BandDom.jpg);
+    background-image: url(assets/img/portada/logoDist1007.jpg);
     height: 100%;
     /* Para dejar la imagen de fondo centrada, vertical yhorizontalmente */
     background-position: center center;

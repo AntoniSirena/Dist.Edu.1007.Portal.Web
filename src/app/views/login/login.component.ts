@@ -44,6 +44,18 @@ export class LoginComponent implements OnInit {
   };
 
 
+  redirectPortada(){
+
+    const login: Ilogin = {
+      UserName: 'admin',
+      Password: 'admin123',
+      EmailAddress: null
+    };
+
+    this.redirectService.SubmitLogin(login, true, true);
+  }
+
+
   //Login
   onSubmit(loginForm: any) {
 

@@ -16,7 +16,7 @@ export class PrePortadaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loginUserVisit();
+    
   }
 
 

@@ -26,7 +26,7 @@ export class RedirectService {
   systemConfiguration = new SystemConfiguration();
 
   //Iniciar sesion
-  SubmitLogin(request: Ilogin, refressToken: boolean = false) {
+  SubmitLogin(request: Ilogin, refressToken: boolean = false, isUserPortada: boolean = false) {
 
     this.loginService.authenticate(request).subscribe((response: Iresponse) => {
 
@@ -92,6 +92,12 @@ export class RedirectService {
           //systemConfiguration
           this.systemConfiguration = response.Data;
           localStorage.setItem("systemConfiguration", `${JSON.stringify(this.systemConfiguration.Configuration)}`);
+
+          //Check if the user is a visitor
+          if(isUserPortada){
+            //welcome to system
+            this.welcomeToSystem();
+          }
         }
 
       } else {
