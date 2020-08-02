@@ -85,6 +85,8 @@ export class ProfileComponent implements OnInit {
 
   //Init
   ngOnInit(): void {
+    this.setValueEditPersonFrom();
+    this.setValueCreatePersonFrom();
     this.setValueEditFrom();
     this.setValueCreateFrom();
     this.setValueCreateLocatorFrom();
@@ -248,16 +250,9 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  //edit from set value ''
-  setValueEditFrom() {
-    this.userForm = this.form.group({
-      userName: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      name: ['', Validators.required],
-      surName: ['', Validators.required],
-      emailAddress: ['', [Validators.required, Validators.email]]
-    });
 
+  
+  setValueEditPersonFrom() {
     this.personForm = this.form.group({
       firstName: ['', Validators.required],
       secondName: ['',],
@@ -266,8 +261,33 @@ export class ProfileComponent implements OnInit {
       fullName: [''],
       birthDate: ['', Validators.required],
       genderId: ['', Validators.required],
-      documenTypeId: ['', Validators.required],
+      documentTypeId: ['', Validators.required],
       documentNumber: ['', Validators.required]
+    });
+  }
+
+  setValueCreatePersonFrom() {
+    this.personForm = this.form.group({
+      firstName: ['', Validators.required],
+      secondName: ['',],
+      surName: ['', Validators.required],
+      secondSurname: ['',],
+      fullName: [''],
+      birthDate: ['', Validators.required],
+      genderId: ['', Validators.required],
+      documentTypeId: ['', Validators.required],
+      documentNumber: ['', Validators.required]
+    });
+  }
+
+  //edit from set value ''
+  setValueEditFrom() {
+    this.userForm = this.form.group({
+      userName: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      name: ['', Validators.required],
+      surName: ['', Validators.required],
+      emailAddress: ['', [Validators.required, Validators.email]]
     });
   }
 
@@ -279,18 +299,6 @@ export class ProfileComponent implements OnInit {
       name: ['', Validators.required],
       surName: ['', Validators.required],
       emailAddress: ['', [Validators.required, Validators.email]]
-    });
-
-    this.personForm = this.form.group({
-      firstName: ['', Validators.required],
-      secondName: ['',],
-      surName: ['', Validators.required],
-      secondSurname: ['',],
-      fullName: [''],
-      birthDate: ['', Validators.required],
-      genderId: ['', Validators.required],
-      documenTypeId: ['', Validators.required],
-      documentNumber: ['', Validators.required]
     });
   }
 

@@ -29,20 +29,10 @@
     border-radius: 8px;
 }
 
-.modal-lg {
-    max-width: 60%;
-    margin-left: 20%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100vh;
-    display: flex;
-  }
 
 .imgPortada{
     background: transparent;
-    background-image: url(assets/img/portada/playa.jpg);
+    background-image: url(assets/img/portada/LOGO_MINERD.png);
     height: 100%;
     /* Para dejar la imagen de fondo centrada, vertical yhorizontalmente */
     background-position: center center;

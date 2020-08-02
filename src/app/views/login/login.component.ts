@@ -47,8 +47,8 @@ export class LoginComponent implements OnInit {
   redirectPortada(){
 
     const login: Ilogin = {
-      UserName: 'admin',
-      Password: 'admin123',
+      UserName: 'visitador',
+      Password: 'visitador123',
       EmailAddress: null
     };
 

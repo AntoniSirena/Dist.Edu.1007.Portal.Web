@@ -51,6 +51,7 @@ export class TemplateComponent implements OnInit {
   }
 
 
+
   getTemplates() {
     this.templateService.getTemplates().subscribe((response: Array<Template>) => {
       this.templates = response;
@@ -63,7 +64,6 @@ export class TemplateComponent implements OnInit {
   getTemplateById(id: number) {
     this.templateService.getTemplateById(id).subscribe((response: Template) => {
       this.template = response;
-      console.log(this.template);
 
       //llenando el modal
       this.editTemplateForm = this.form.group({
@@ -130,6 +130,7 @@ export class TemplateComponent implements OnInit {
         }).then(() => {
           this.getTemplates();
           this.modalService.dismissAll();
+          window.location.reload();
         });
       } else {
         Swal.fire({
