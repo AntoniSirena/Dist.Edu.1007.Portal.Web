@@ -44,6 +44,8 @@ export class PortadaComponent implements OnInit {
   @ViewChild('misionModal') misionModal: ElementRef;
   @ViewChild('visionModal') visionModal: ElementRef;
   @ViewChild('valoresModal') valoresModal: ElementRef;
+  @ViewChild('planEstrategicoModal') planEstrategicoModal: ElementRef;
+
 
 
   public editorValue: string = '<html> <head> <title></title> </head> <body> <p style="text-align:center">&nbsp;</p> <p style="text-align:center">El&nbsp;<strong>Escudo de armas de la&nbsp;<a href="https://es.wikipedia.org/wiki/Rep%C3%BAblica_Dominicana" title="República Dominicana">Rep&uacute;blica Dominicana</a></strong>&nbsp;es el emblema her&aacute;ldico que representa al pa&iacute;s y que, junto con la&nbsp;<a href="https://es.wikipedia.org/wiki/Bandera_de_la_Rep%C3%BAblica_Dominicana" title="Bandera de la República Dominicana">Bandera</a>&nbsp;y el&nbsp;<a href="https://es.wikipedia.org/wiki/Himno_nacional_de_la_Rep%C3%BAblica_Dominicana" title="Himno nacional de la República Dominicana">Himno Nacional</a>, tiene la categor&iacute;a de s&iacute;mbolo patrio.</p> <p style="text-align:center">La existencia del escudo est&aacute; consagrada en la constituci&oacute;n de la rep&uacute;blica, que lo describe de la manera siguiente:</p> <p style="text-align:center"><strong>Art&iacute;culo 32.</strong>- El Escudo Nacional tiene los mismos colores de la Bandera Nacional dispuestos en igual forma. Lleva en el centro la Biblia abierta en el Evangelio de San Juan cap&iacute;tulo 8, vers&iacute;culo 32 y encima una cruz, lo cual surge de un trofeo integrado por dos lanzas y cuatro banderas nacionales sin escudo, dispuestas a ambos lados; lleva un ramo de&nbsp;<strong>laurel</strong>&nbsp;del lado izquierdo y uno de palma al lado derecho. Est&aacute; coronado por una cinta azul ultramar en la cual se lee el lema &ldquo;Dios Patria Libertad&rdquo;. En la base hay otra cinta de color rojo bermell&oacute;n&nbsp;<strong>cuyos extremos se orientan hacia arriba</strong>&nbsp;con las palabras &ldquo;Rep&uacute;blica Dominicana&rdquo;. La forma del Escudo Nacional es de un cuadrilongo, con los &aacute;ngulos superiores salientes y los inferiores redondeados, el centro de cuya base termina en punta, y est&aacute; dispuesto en forma tal que resulte un cuadrado perfecto al trazar una l&iacute;nea horizontal que una las dos verticales del cuadrilongo desde donde comienzan los &aacute;ngulos inferiores.</p> <p style="text-align:center">&nbsp;</p> </body> </html>';
@@ -117,7 +119,15 @@ export class PortadaComponent implements OnInit {
     this.getTemplate(operation);
     this.modalService.open(this.valoresModal, { size: 'lg', scrollable: true });
   }
-  
+
+
+  //open valores modal
+  openPlanEstrategicoModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.planEstrategicoModal, { size: 'xl', scrollable: true });
+  }
+
+
 
   loginUserVisit() {
     const login: Ilogin = {

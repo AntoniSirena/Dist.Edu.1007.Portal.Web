@@ -61,6 +61,15 @@
                     <a class="dropdown-item" (click)="alert()">Valores</a>
                   </div>
                 </li>
+                <li class="nav-item dropdown btn-success">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" 
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Nosotros
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" (click)="openPlanEstrategicoModal('PlanEstrategico')">Plan estrategico 2019-2004</a>
+                  </div>
+                </li>
               </ul>
               <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Buscar">
@@ -198,7 +207,6 @@
 </ng-template>
 
 
-
 <!--Valores Modal -->
 <ng-template #valoresModal let-modal class="modal-dialog">
   <div class="modal-header">
@@ -229,4 +237,34 @@
   </div>
 </ng-template>
 
+
+<!--plan estrategico Modal -->
+<ng-template #planEstrategicoModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Plan Estrategico</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card border-primary" style="background-color: rgb(206, 238, 247);">
+        <br>
+        <strong class="center" style="color: rgb(43, 161, 207); font-size: 35px;">Plan Estrategico</strong>
+        <div class="card-body">
+          <div>
+            <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+          </div>
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
 
