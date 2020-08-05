@@ -27,6 +27,7 @@ import { VisitComponent } from './jsViews/domain/visit/visit/visit.component';
 import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicator.component';
 import { TemplateComponent } from './jsViews/template/template.component';
 import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portada.component';
+import { FileUploadComponent } from './jsViews/fileUpload/file-upload/file-upload.component';
 
 
 export const routes: Routes = [
@@ -255,6 +256,14 @@ export const routes: Routes = [
         component: TemplateComponent,
         data: {
           title: 'Plantillas'
+        }
+      },
+      {
+        path: 'file-upload',
+        canActivate: [AuthGuard],
+        component: FileUploadComponent,
+        data: {
+          title: 'Subir archivos'
         }
       }
 

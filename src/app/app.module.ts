@@ -73,6 +73,9 @@ import { TemplateComponent } from './jsViews/template/template.component';
 
 import { CKEditorModule } from 'ngx-ckeditor';
 import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portada.component';
+import { FileUploadComponent } from './jsViews/fileUpload/file-upload/file-upload.component';
+
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 
 @NgModule({
@@ -95,8 +98,9 @@ import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portad
     NgbModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    CKEditorModule
-  ],
+    CKEditorModule,
+    NgxFileDropModule
+    ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
@@ -122,7 +126,8 @@ import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portad
     VisitComponent,
     IndicatorComponent,
     TemplateComponent,
-    PrePortadaComponent
+    PrePortadaComponent,
+    FileUploadComponent
 
   ],
   providers: [
