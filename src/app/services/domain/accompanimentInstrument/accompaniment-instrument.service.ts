@@ -85,4 +85,9 @@ export class AccompanimentInstrumentService {
     return this.httpClient.put(`${this.apiURL}api/identificationData`, data, { headers: headers });
   }
 
+  completeRequest(requestId: number): Observable<object> {
+    return this.httpClient.get(this.apiURL +  `api/identificationData/CompleteRequest?requestId=${requestId}`);
+  }
+
+
 }

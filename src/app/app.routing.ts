@@ -28,6 +28,7 @@ import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicat
 import { TemplateComponent } from './jsViews/template/template.component';
 import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portada.component';
 import { FileUploadComponent } from './jsViews/fileUpload/file-upload/file-upload.component';
+import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component';
 
 
 export const routes: Routes = [
@@ -265,7 +266,15 @@ export const routes: Routes = [
         data: {
           title: 'Subir archivos'
         }
-      }
+      },
+      {
+        path: 'my-files',
+        canActivate: [AuthGuard],
+        component: MyFilesComponent,
+        data: {
+          title: 'Mis archivos'
+        }
+      },
 
     ]
   },

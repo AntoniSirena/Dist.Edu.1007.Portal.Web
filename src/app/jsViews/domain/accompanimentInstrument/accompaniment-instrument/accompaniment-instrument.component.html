@@ -38,7 +38,7 @@
             <td class="td_min">{{item.RequestId}}</td>
             <td class="td_min">{{item.DocentFullName}}</td>
             <td class="td_min">{{item.DocumentNumber}}</td>
-            <td class="td_min"> <span class="colorBorder" [style.background-color]= "item.StatusColour">{{item.Status}}</span> </td>
+            <td class="td_min"> <span class="colorBorder statusTextColor" [style.background-color]= "item.StatusColour">{{item.Status}}</span> </td>
             <td> <span class="{{item.EfficiencyGeneralColour}} center">{{item.EfficiencyGeneralValue}}</span></td>
             <td class="td_min">{{item.OpeningDate}}</td>
             <td class="td_min">{{item.ClosingDate}}</td>
@@ -394,6 +394,18 @@
 
     <div class="modal-body">
 
+        <div class="container">
+          <div class="row">
+            <div class="cold-md-4 center">
+              <button type="button" class="btn btn-primary completeStyle" (click)="complete()">
+                Completar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        
         <!--Tabla de eficiencia-->
         <table class="table table-bordered table-sm">
           <tbody>
@@ -403,7 +415,7 @@
             </tr>                                                 
           </tbody>
         </table>
-  
+
         <ngb-tabset [destroyOnHide]="false">
           
             <!--Identification data-->

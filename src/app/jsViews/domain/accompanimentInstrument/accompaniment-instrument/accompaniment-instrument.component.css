@@ -26,3 +26,12 @@
     align-items: center;
 }
   
+.completeStyle{
+    font-size: 20px;
+    width: 250px;
+    border-radius: 6px;
+}
+
+.statusTextColor{
+    color: rgb(236, 225, 225);
+}

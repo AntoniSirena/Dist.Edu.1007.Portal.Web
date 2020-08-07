@@ -108,6 +108,8 @@ export class AccompanimentInstrumentComponent implements OnInit {
   getIdentificationDataById(id: string) {
     this.acompInstService.getIdentificationDataById(id).subscribe((response: IdentificationData) => {
       this.identificationData = response;
+      
+      this.currentRequestId = response.RequestId;
 
       this.getDistritByRegionId(this.identificationData.RegionalId.toString());
       this.getCenterByDistritId(this.identificationData.DistritId.toString());
@@ -607,7 +609,6 @@ export class AccompanimentInstrumentComponent implements OnInit {
   //edit variable
   editVariable() {
 
-    console.log(this.variable);
     this.acompInstService.updateVariable(this.variable).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
         Swal.fire({
@@ -726,6 +727,48 @@ export class AccompanimentInstrumentComponent implements OnInit {
       });
   }
 
+
+ //Complete
+ complete(){
+  Swal.fire({
+    title: 'Está seguro que desea completar el Instrumento de Acompañamiento ?',
+    text: "Los cambios no podran ser revertidos!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, completar!'
+  }).then((result) => {
+    if (result.value) {
+
+      this.acompInstService.completeRequest(this.currentRequestId).subscribe((response: Iresponse) => {
+        if (response.Code === '000') {
+          Swal.fire({
+            position: 'top',
+            icon: 'success',
+            toast: false,
+            title: response.Message,
+            showConfirmButton: true,
+            timer: 3000
+          }).then(() => {
+            this.getAccompInstRequests();
+          });
+  
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: response.Message,
+            showConfirmButton: true,
+            timer: 4000
+          });
+        }
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
+    }
+  })
+ }
 
   //Approve
   approve() {

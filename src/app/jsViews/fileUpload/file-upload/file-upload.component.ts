@@ -14,9 +14,11 @@ export class FileUploadComponent implements OnInit {
 
   constructor(private fileUploadService: FileUploadService) { }
 
-  ngOnInit(): void {
-  }
 
+  ngOnInit(): void {
+
+  }
+  
 
   public dropped(files: NgxFileDropEntry[]) {
     this.files = files;

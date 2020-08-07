@@ -76,6 +76,7 @@ import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portad
 import { FileUploadComponent } from './jsViews/fileUpload/file-upload/file-upload.component';
 
 import { NgxFileDropModule } from 'ngx-file-drop';
+import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component';
 
 
 @NgModule({
@@ -127,7 +128,8 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     IndicatorComponent,
     TemplateComponent,
     PrePortadaComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    MyFilesComponent
 
   ],
   providers: [
