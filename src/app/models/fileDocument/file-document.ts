@@ -4,4 +4,5 @@ export class FileDocument {
     Description: string;
     Path: string;
     IsPublic: string;
+    ContentType: string;
 }

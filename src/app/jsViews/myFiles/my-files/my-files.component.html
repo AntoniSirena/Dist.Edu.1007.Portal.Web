@@ -23,14 +23,16 @@
             <th>Nombre</th>
             <th>Descripción</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr
             *ngFor="let item of files | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
             <td>{{item.Id}}</td>
-            <td>{{item.Name}}</td>
+            <td class="td_min">{{item.Name}}</td>
             <td class="td_min">{{item.Description}}</td>
+            <td class="right"><button type="button" *ngIf="item.ContentType === 'pdf'" class="btn btn-danger" (click)="viewFileById(item.Id)"><i class="fa fa-eye"></i>&nbsp;Ver detalles</button></td>
             <td class="right"><button type="button" class="btn btn-primary" (click)="getFileById(item.Id, item.Name)"><i class="fa fa-cloud-download"></i>&nbsp;Descargar</button></td>
           </tr>
         </tbody>

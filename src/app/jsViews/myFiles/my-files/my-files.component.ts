@@ -31,7 +31,6 @@ export class MyFilesComponent implements OnInit {
 
   getFileById(id: number, name: string) {
     this.fileService.getFileById(id).subscribe((response: any) => {
-
       this.downloadPdf(response, name);
     },
       error => {
@@ -51,5 +50,17 @@ export class MyFilesComponent implements OnInit {
     downloadLink.click();
   }
 
+
+  //view Pdf
+  viewFileById(id: number) {
+    this.fileService.getFileById(id).subscribe((response: any) => {
+      let pdfWindow = window.open("")
+      pdfWindow.document.write("<iframe width='100%' height='100%' src='data:application/pdf;base64, " + encodeURI(response) + "'></iframe>")
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+  
 
 }
