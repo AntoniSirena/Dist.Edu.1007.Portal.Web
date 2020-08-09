@@ -47,6 +47,7 @@ export class AccompInstRequest {
     OpeningDate: string;
     ClosingDate: string;
     AllowEdit: string;
+    CanViewResumenOption: boolean;
     EfficiencyGeneralValue: string;
     EfficiencyGeneralColour: string;
 }
@@ -176,4 +177,10 @@ export class SuggestionsAgreement {
     TeacherSignatureC: string;
     CompanionSignatureC: string;
     DistrictTechnicianSignatureC: string;
+}
+
+
+export class ResearchSummary {
+    RequestId: number;
+    Summary: number;
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { DatePipe } from "@angular/common";
-import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators, FormControl, FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
-import { IdentificationData, AccompInstRequest, VariableResponse, CommentsRevisedDocument, DescriptionObservationSupportProvided, SuggestionsAgreement } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
+import { IdentificationData, AccompInstRequest, VariableResponse, CommentsRevisedDocument, DescriptionObservationSupportProvided, SuggestionsAgreement, ResearchSummary } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
 import { AccompanimentInstrumentService } from '../../../../services/domain/accompanimentInstrument/accompaniment-instrument.service';
 import { CommonService } from '../../../../services/common/common.service';
 import { Regional } from '../../../../models/common/regional/regional';
@@ -42,10 +42,13 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
   createIdentificationDataForm: FormGroup;
   editIdentificationDataForm: FormGroup;
+  researchSummaryDataForm: FormGroup;
 
   _currentPage: number = 1;
 
   @ViewChild('details') detailsModal: ElementRef;
+  @ViewChild('researchSummary') researchSummaryModal: ElementRef;
+
 
 
   //Objects list
@@ -108,7 +111,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
   getIdentificationDataById(id: string) {
     this.acompInstService.getIdentificationDataById(id).subscribe((response: IdentificationData) => {
       this.identificationData = response;
-      
+
       this.currentRequestId = response.RequestId;
 
       this.getDistritByRegionId(this.identificationData.RegionalId.toString());
@@ -433,6 +436,14 @@ export class AccompanimentInstrumentComponent implements OnInit {
   }
 
 
+  //Research summary modal
+  openResearchSummaryModal(requestId: number) {
+    this.setValueResearchSummaryDataForm();
+    this.currentRequestId = requestId;
+    this.modalService.open(this.researchSummaryModal, { size: 'xl', scrollable: true });
+  }
+
+
   //create Identification Data
   createIdentificationData(formValue: any) {
     try {
@@ -501,7 +512,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
             icon: 'warning',
             title: response.Message,
             showConfirmButton: true,
-            timer: 3000
+            timer: 6000
           });
         }
       },
@@ -519,6 +530,40 @@ export class AccompanimentInstrumentComponent implements OnInit {
       });
     }
 
+  }
+
+
+  // Create Research Summary 
+  createResearchSummary(formValue: any) {
+    const summary = new ResearchSummary;
+    summary.RequestId = this.currentRequestId;
+    summary.Summary = formValue.summary;
+
+    this.acompInstService.createResearchSummary(summary).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          toast: false,
+          title: response.Message,
+          showConfirmButton: true,
+          timer:3000
+        }).then(() => {
+          this.modalService.dismissAll();
+        });
+
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
 
@@ -728,50 +773,51 @@ export class AccompanimentInstrumentComponent implements OnInit {
   }
 
 
- //Complete
- complete(){
-  Swal.fire({
-    title: 'Está seguro que desea completar el Instrumento de Acompañamiento ?',
-    text: "Los cambios no podran ser revertidos!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Sí, completar!'
-  }).then((result) => {
-    if (result.value) {
+  //Complete
+  complete() {
+    Swal.fire({
+      title: 'Está seguro que desea completar el Instrumento de Acompañamiento ?',
+      text: "Los cambios no podran ser revertidos!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, completar!'
+    }).then((result) => {
+      if (result.value) {
 
-      this.acompInstService.completeRequest(this.currentRequestId).subscribe((response: Iresponse) => {
-        if (response.Code === '000') {
-          Swal.fire({
-            position: 'top',
-            icon: 'success',
-            toast: false,
-            title: response.Message,
-            showConfirmButton: true,
-            timer: 3000
-          }).then(() => {
-            this.getAccompInstRequests();
+        this.acompInstService.completeRequest(this.currentRequestId).subscribe((response: Iresponse) => {
+          if (response.Code === '000') {
+            Swal.fire({
+              position: 'top',
+              icon: 'success',
+              toast: false,
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 3000
+            }).then(() => {
+              this.getAccompInstRequests();
+              this.modalService.dismissAll();
+            });
+
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 4000
+            });
+          }
+        },
+          error => {
+            console.log(JSON.stringify(error));
           });
-  
-        } else {
-          Swal.fire({
-            icon: 'warning',
-            title: response.Message,
-            showConfirmButton: true,
-            timer: 4000
-          });
-        }
-      },
-        error => {
-          console.log(JSON.stringify(error));
-        });
-    }
-  })
- }
+      }
+    })
+  }
 
   //Approve
-  approve() {
+  approve(requestId: number) {
     Swal.fire({
       title: 'Está seguro que desea aprobar el Instrumento de Acompañamiento ?',
       text: "Los cambios no podran ser revertidos!",
@@ -782,14 +828,39 @@ export class AccompanimentInstrumentComponent implements OnInit {
       confirmButtonText: 'Sí, aprobar!'
     }).then((result) => {
       if (result.value) {
-        //delete service
+
+        this.acompInstService.approveRequest(requestId).subscribe((response: Iresponse) => {
+          if (response.Code === '000') {
+            Swal.fire({
+              position: 'top',
+              icon: 'success',
+              toast: false,
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 3000
+            }).then(() => {
+              this.getAccompInstRequests();
+            });
+
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 4000
+            });
+          }
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
       }
     })
   }
 
 
   //Send to observation
-  sendToObservation() {
+  sendToObservation(requestId: number) {
     Swal.fire({
       title: 'Está seguro que desea enviar a observación el Instrumento de Acompañamiento ?',
       text: "Los cambios no podran ser revertidos!",
@@ -800,14 +871,81 @@ export class AccompanimentInstrumentComponent implements OnInit {
       confirmButtonText: 'Sí, enviar!'
     }).then((result) => {
       if (result.value) {
-        //delete service
+
+        this.acompInstService.sendToObservationRequest(requestId).subscribe((response: Iresponse) => {
+          if (response.Code === '000') {
+            Swal.fire({
+              position: 'top',
+              icon: 'success',
+              toast: false,
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 3000
+            }).then(() => {
+              this.getAccompInstRequests();
+            });
+
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 4000
+            });
+          }
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
       }
     })
   }
 
 
+  //process
+  process(requestId: number) {
+    Swal.fire({
+      title: 'Está seguro que desea volver a procesar el Instrumento de Acompañamiento ?',
+      text: "Los cambios no podran ser revertidos!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, procesar!'
+    }).then((result) => {
+      if (result.value) {
+        this.acompInstService.processRequest(requestId).subscribe((response: Iresponse) => {
+          if (response.Code === '000') {
+            Swal.fire({
+              position: 'top',
+              icon: 'success',
+              toast: false,
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 3000
+            }).then(() => {
+              this.getAccompInstRequests();
+            });
+
+          } else {
+            this.modalService.dismissAll();
+            Swal.fire({
+              icon: 'warning',
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 4000
+            });
+          }
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
+      }
+    })
+  }
+
   //Cancel
-  cancel() {
+  cancel(requestId: number) {
     Swal.fire({
       title: 'Está seguro que desea cancelar el Instrumento de Acompañamiento ?',
       text: "Los cambios no podran ser revertidos!",
@@ -818,10 +956,36 @@ export class AccompanimentInstrumentComponent implements OnInit {
       confirmButtonText: 'Sí, cancelar!'
     }).then((result) => {
       if (result.value) {
-        //delete service
+
+        this.acompInstService.cancelRequest(requestId).subscribe((response: Iresponse) => {
+          if (response.Code === '000') {
+            Swal.fire({
+              position: 'top',
+              icon: 'success',
+              toast: false,
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 3000
+            }).then(() => {
+              this.getAccompInstRequests();
+            });
+
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 4000
+            });
+          }
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
       }
     })
   }
+
 
 
   //create Identification Data form set value ''
@@ -894,6 +1058,14 @@ export class AccompanimentInstrumentComponent implements OnInit {
       expectedTimeC: [''],
       realTimeC: ['']
     });
+  }
+
+
+  // researchSummaryData Form set value ''
+  setValueResearchSummaryDataForm() {
+    this.researchSummaryDataForm = this.form.group({
+      summary: ['', Validators.required]
+    })
   }
 
 

@@ -33,7 +33,7 @@
           <td class="td_min">{{item.Id}}</td>
           <td class="td_min">{{item.UserName}}</td>
           <td class="td_min">{{item.EmailAddress}}</td>
-          <td class="td_min"> <span class="colorBorder" [style.background-color]= "item.StatusColor">{{item.Status}}</span> </td>
+          <td class="td_min"> <span class="{{item.StatusColor}} center">{{item.Status}}</span> </td>
           <td>{{item.Role == null ? '' : item.Role.Description}}</td>
           <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.IsOnline == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}"> {{item.IsOnline == true ? 'sí' : 'No'}} </button> </td>
           <td class="right"> <button (click)="openDetailModal(item.Id)"> <i class="fa fa-eye"></i> </button> </td>

@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { IidentificationData } from '../../../interfaces/domain/IccompanimentInstrument/iaccompaniment-instrument';
 import { strict } from 'assert';
 import { Variable } from '@angular/compiler/src/render3/r3_ast';
-import { VariableResponse, CommentsRevisedDocument, DescriptionObservationSupportProvided, SuggestionsAgreement } from '../../../models/domain/accompanimentInstrument/accompaniment-instrument';
+import { VariableResponse, CommentsRevisedDocument, DescriptionObservationSupportProvided, SuggestionsAgreement, ResearchSummary } from '../../../models/domain/accompanimentInstrument/accompaniment-instrument';
 
 @Injectable({
   providedIn: 'root'
@@ -89,5 +89,26 @@ export class AccompanimentInstrumentService {
     return this.httpClient.get(this.apiURL +  `api/identificationData/CompleteRequest?requestId=${requestId}`);
   }
 
+  approveRequest(requestId: number): Observable<object> {
+    return this.httpClient.get(this.apiURL +  `api/identificationData/ApproveRequest?requestId=${requestId}`);
+  }
+
+  sendToObservationRequest(requestId: number): Observable<object> {
+    return this.httpClient.get(this.apiURL +  `api/identificationData/SendToObservationRequest?requestId=${requestId}`);
+  }
+
+  cancelRequest(requestId: number): Observable<object> {
+    return this.httpClient.get(this.apiURL +  `api/identificationData/CancelRequest?requestId=${requestId}`);
+  }
+
+  processRequest(requestId: number): Observable<object> {
+    return this.httpClient.get(this.apiURL +  `api/identificationData/ProcessRequest?requestId=${requestId}`);
+  }
+
+  createResearchSummary(summary: ResearchSummary) {
+    let data = JSON.stringify(summary);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.post(`${this.apiURL}api/identificationData/CreateResearchSummary`, data, { headers: headers });
+  }
 
 }
