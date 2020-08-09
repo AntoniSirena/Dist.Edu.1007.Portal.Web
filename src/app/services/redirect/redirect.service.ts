@@ -54,6 +54,8 @@ export class RedirectService {
             localStorage.setItem("canDelete", `${JSON.stringify(this.profile.Profile.User.CanDelete)}`);
             localStorage.setItem("canCreateRequest", `${JSON.stringify(this.profile.Profile.User.CanCreateRequest)}`);
             localStorage.setItem("canEditRequest", `${JSON.stringify(this.profile.Profile.User.CanEditRequest)}`);
+            localStorage.setItem("isVisitorUser", `${JSON.stringify(this.profile.Profile.User.IsVisitorUser)}`);
+
 
             localStorage.setItem('roleShortName', `${JSON.stringify(this.profile.Profile.User.RoleShortName)}`);
             localStorage.setItem('roleParent', `${JSON.stringify(this.profile.Profile.User.RoleParent)}`);
@@ -82,6 +84,7 @@ export class RedirectService {
           localStorage.setItem("canDelete", `${JSON.stringify(this.profile.Profile.User.CanDelete)}`);
           localStorage.setItem("canCreateRequest", `${JSON.stringify(this.profile.Profile.User.CanCreateRequest)}`);
           localStorage.setItem("canEditRequest", `${JSON.stringify(this.profile.Profile.User.CanEditRequest)}`);
+          localStorage.setItem("isVisitorUser", `${JSON.stringify(this.profile.Profile.User.IsVisitorUser)}`);
 
           localStorage.setItem('roleShortName', `${JSON.stringify(this.profile.Profile.User.RoleShortName)}`);
           localStorage.setItem('roleParent', `${JSON.stringify(this.profile.Profile.User.RoleParent)}`);

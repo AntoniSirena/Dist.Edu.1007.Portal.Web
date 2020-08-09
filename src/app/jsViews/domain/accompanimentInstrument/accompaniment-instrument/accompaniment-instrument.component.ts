@@ -171,6 +171,8 @@ export class AccompanimentInstrumentComponent implements OnInit {
           title: response.Message,
           showConfirmButton: true,
           timer: 5000
+        }).then(() => {
+          this.getAccompInstRequests();
         });
       }
     },

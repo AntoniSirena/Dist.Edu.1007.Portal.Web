@@ -18,18 +18,18 @@
   </ul>
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item d-md-down-none">
-      <button *ngIf="roleShortName == 'Visitador'" class="btn btn-primary portadaLoginButton" (click)="goToLogin()"><i class="fa fa-user-circle"></i>Inisiar sesión</button>
+      <button *ngIf="isVisitorUser == true" class="btn btn-primary portadaLoginButton" (click)="goToLogin()"><i class="fa fa-user-circle"></i>Inisiar sesión</button>
     </li>
 
     <li class="nav-item d-md-down-none"></li>
 
     <li class="nav-item d-md-down-none">
-      <button *ngIf="roleShortName == 'Visitador'" class="btn btn-danger portadaRegisterButton" (click)="goToRegister()"><i class="fa fa-user-circle"></i>Registrarme</button>
+      <button *ngIf="isVisitorUser == true" class="btn btn-danger portadaRegisterButton" (click)="goToRegister()"><i class="fa fa-user-circle"></i>Registrarme</button>
     </li>
 
 
     <li class="nav-item d-md-down-none">
-      <button *ngIf="roleShortName != 'Visitador'" class="btn btn-primary portadaLoginButton" (click)="goToLogOut()"><i class="fa fa-user-circle"></i>Cerrar sesión</button>
+      <button *ngIf="isVisitorUser != true" class="btn btn-primary portadaLoginButton" (click)="goToLogOut()"><i class="fa fa-user-circle"></i>Cerrar sesión</button>
     </li>
 
     <!-- 

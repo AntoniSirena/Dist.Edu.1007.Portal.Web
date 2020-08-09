@@ -21,6 +21,8 @@ export class DefaultLayoutComponent implements OnInit {
   @ViewChild(ProfileComponent) profileComponent: ProfileComponent;
 
   roleShortName = JSON.parse(localStorage.getItem("roleShortName"));
+  isVisitorUser = JSON.parse(localStorage.getItem("isVisitorUser"));
+
   
   constructor(private redirectService: RedirectService, private router: Router, 
     private baseService: BaseService){

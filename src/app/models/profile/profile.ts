@@ -25,6 +25,7 @@
       CanDelete: boolean;
       CanCreateRequest: boolean;
       CanEditRequest: boolean;
+      IsVisitorUser: boolean;
     }
   
     export class Person{
