@@ -11,7 +11,8 @@
       </div>
     </div>
     <br>
-
+    <br>
+    
     <!--Menú-->
     <div class="row">
       <div class="col-md-12">
@@ -87,30 +88,12 @@
         <div class="container-fluid">
           <br>
           <br>
-          <p style="text-align: justify;">
-            Según la constitución dominicana establece que: la Bandera Nacional contiene los colores; azul ultramar
-            y
-            rojo
-            bermellón, en cuarteles esquinados y alternados de tal manera que el azul debe quedar en la parte
-            superior
-            del
-            asta, separados por una cruz blanca, de un ancho igual a la mitad de la altura de cada cuartel, llevando
-            en
-            su
-            centro el escudo de armas de la República.
-
-            El día de la bandera tiene algunas controversias ya que según la Gaceta Oficial #5231 de mayo 1938 era
-            la
-            celebración de la misma, la cual fue declarado el 24 de octubre por motivo al nacimiento del
-            Generalisímo
-            Trujillo. Pero no fue hasta la finalización de la era Trujillista que la ley 6085 del 22 de octubre de
-            1962
-            dio
-            oficialmente el 27 de febrero día de la Independencia Nacional, como el día de la Bandera.
-
-            Plaza de la BanderaSignificado
-
-          </p>
+          
+          <div class="row textLateralStyle">
+            <div class="col-md-12">
+              <span [innerHTML]="leftInfo.Body"> </span>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -118,64 +101,36 @@
 
       <!--Col2-->
       <div class="col-md-8">
-        <br>
 
-        <!--carousel-->
+        <div class="row centerTextStyle">
+          <div class="col-md-12">
+            <br>
 
-        <br>
+            <!--carousel-->
+    
+            <br>
+    
+            <ngb-carousel class="center" *ngIf="images" [showNavigationArrows]="true"
+              [showNavigationIndicators]="showNavigationIndicators">
+              <ng-template ngbSlide *ngFor="let image of images">
+                <div class="picsum-img-wrapper">
+                  <img [src]="image" alt="Random slide" style="width:70%; height:50%;">
+                </div>
+              </ng-template>
+            </ngb-carousel>
+    
+            <br>
+            <br>
 
-        <ngb-carousel class="center" *ngIf="images" [showNavigationArrows]="true"
-          [showNavigationIndicators]="showNavigationIndicators">
-          <ng-template ngbSlide *ngFor="let image of images">
-            <div class="picsum-img-wrapper">
-              <img [src]="image" alt="Random slide" style="width:70%; height:50%;">
+            <div class="row textColorWhite">
+              <div class="col-md-12">
+                <span [innerHTML]="centerInfo.Body"> </span>
+              </div>
             </div>
-          </ng-template>
-        </ngb-carousel>
-
-        <br>
-
-        <p class="textColorWhite" style="text-align: justify;">
-          Según la constitución dominicana establece que: la Bandera Nacional contiene los colores; azul ultramar y
-          rojo
-          bermellón, en cuarteles esquinados y alternados de tal manera que el azul debe quedar en la parte superior
-          del
-          asta, separados por una cruz blanca, de un ancho igual a la mitad de la altura de cada cuartel, llevando en
-          su
-          centro el escudo de armas de la República.
-
-          El día de la bandera tiene algunas controversias ya que según la Gaceta Oficial #5231 de mayo 1938 era la
-          celebración de la misma, la cual fue declarado el 24 de octubre por motivo al nacimiento del Generalisímo
-          Trujillo. Pero no fue hasta la finalización de la era Trujillista que la ley 6085 del 22 de octubre de 1962
-          dio
-          oficialmente el 27 de febrero día de la Independencia Nacional, como el día de la Bandera.
-
-          Plaza de la BanderaSignificado
-
-        </p>
-
-        <br>
-
-        <p class="textColorWhite" style="text-align: justify;">
-          Según la constitución dominicana establece que: la Bandera Nacional contiene los colores; azul ultramar y
-          rojo
-          bermellón, en cuarteles esquinados y alternados de tal manera que el azul debe quedar en la parte superior
-          del
-          asta, separados por una cruz blanca, de un ancho igual a la mitad de la altura de cada cuartel, llevando en
-          su
-          centro el escudo de armas de la República.
-
-          El día de la bandera tiene algunas controversias ya que según la Gaceta Oficial #5231 de mayo 1938 era la
-          celebración de la misma, la cual fue declarado el 24 de octubre por motivo al nacimiento del Generalisímo
-          Trujillo. Pero no fue hasta la finalización de la era Trujillista que la ley 6085 del 22 de octubre de 1962
-          dio
-          oficialmente el 27 de febrero día de la Independencia Nacional, como el día de la Bandera.
-
-          Plaza de la BanderaSignificado
-
-        </p>
-
-        <br>
+    
+            <br>
+          </div>
+        </div>
 
       </div>
 
@@ -185,30 +140,12 @@
         <div class="container-fluid">
           <br>
           <br>
-          <p style="text-align: justify;">
-            Según la constitución dominicana establece que: la Bandera Nacional contiene los colores; azul ultramar
-            y
-            rojo
-            bermellón, en cuarteles esquinados y alternados de tal manera que el azul debe quedar en la parte
-            superior
-            del
-            asta, separados por una cruz blanca, de un ancho igual a la mitad de la altura de cada cuartel, llevando
-            en
-            su
-            centro el escudo de armas de la República.
 
-            El día de la bandera tiene algunas controversias ya que según la Gaceta Oficial #5231 de mayo 1938 era
-            la
-            celebración de la misma, la cual fue declarado el 24 de octubre por motivo al nacimiento del
-            Generalisímo
-            Trujillo. Pero no fue hasta la finalización de la era Trujillista que la ley 6085 del 22 de octubre de
-            1962
-            dio
-            oficialmente el 27 de febrero día de la Independencia Nacional, como el día de la Bandera.
-
-            Plaza de la BanderaSignificado
-
-          </p>
+          <div class="row textLateralStyle">
+            <div class="col-md-12">
+              <span [innerHTML]="rightInfo.Body"> </span>
+            </div>
+          </div>
 
         </div>
       </div>

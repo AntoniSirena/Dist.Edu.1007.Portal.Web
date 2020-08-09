@@ -1,7 +1,7 @@
 .Header{
     text-align: center; 
     font-weight: bold;
-    font-size: 30px;
+    font-size: 26px;
     width: 100%;
     border-radius: 17px;
 }
@@ -23,13 +23,27 @@
     background-color: rgb(245, 227, 227);
     font: bold;
     font-size: 20px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
     border-radius: 8px;
+    text-align: justify;
 }
 
+.textLateralStyle{
+    color: black;
+    background-color: rgb(245, 227, 227);
+    font: bold;
+    font-size: 20px;
+    text-align: justify;
+}
+
+
+.centerTextStyle{
+    margin-left: 42px;
+    margin-right: 37px;
+}
 
 .imgPortada{
     background: transparent;
