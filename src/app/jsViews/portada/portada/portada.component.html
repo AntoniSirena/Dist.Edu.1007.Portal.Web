@@ -1,84 +1,123 @@
 <!--Contenedor principal-->
 <div class="container-fluid imgPortada" style="width: 100%;">
 
-    <div class="container-fluid" style="width: 75%;">
+  <div class="container-fluid" style="width: 100%;">
 
-        <br>
-        <div class="row headerRow">
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-8 center Header">
-                <div class="row">
-                  <div class="col-md-12">
-                   <h1>Bienvenido a su Dist.Edu.1007 de Guerra</h1>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
+    <br>
+    <!--Principal title-->
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-primary Header">Bienvenido a su Dist.Edu.1007 de Guerra</button>
+      </div>
+    </div>
+    <br>
 
-        <!--Menú-->
+    <!--Menú-->
+    <div class="row">
+      <div class="col-md-12">
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand btn-white">Menú</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown btn-info">
-                  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" 
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     ÉTICA
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" (click)="openMisionModal('Mision')">Misión</a>
-                    <a class="dropdown-item" (click)="openVisionModal('Vision')">Visión</a>
-                    <a class="dropdown-item" (click)="openValoresModal('Valores')">Valores</a>
-                  </div>
-                </li>
-                <li class="nav-item dropdown btn-danger">
-                  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" 
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     SOBRE NOSOTROS
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" (click)="alert()">Misión</a>
-                    <a class="dropdown-item" (click)="alert()">Visión</a>
-                    <a class="dropdown-item" (click)="alert()">Valores</a>
-                  </div>
-                </li>
-                <li class="nav-item dropdown btn-info">
-                  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" 
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     SERVICIOS
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" (click)="alert()">Misión</a>
-                    <a class="dropdown-item" (click)="alert()">Visión</a>
-                    <a class="dropdown-item" (click)="alert()">Valores</a>
-                  </div>
-                </li>
-                <li class="nav-item dropdown btn-success">
-                  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" 
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     NOTICIAS
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" (click)="openPlanEstrategicoModal('PlanEstrategico')">Plan estrategico 2019-2004</a>
-                  </div>
-                </li>
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Buscar">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-              </form>
-            </div>
-        </nav>
+          <a class="navbar-brand btn-white">Menú</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <br>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item dropdown btn-info">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  ÉTICA
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" (click)="openMisionModal('Mision')">Misión</a>
+                  <a class="dropdown-item" (click)="openVisionModal('Vision')">Visión</a>
+                  <a class="dropdown-item" (click)="openValoresModal('Valores')">Valores</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown btn-danger">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  SOBRE NOSOTROS
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" (click)="alert()">Misión</a>
+                  <a class="dropdown-item" (click)="alert()">Visión</a>
+                  <a class="dropdown-item" (click)="alert()">Valores</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown btn-info">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  SERVICIOS
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" (click)="alert()">Misión</a>
+                  <a class="dropdown-item" (click)="alert()">Visión</a>
+                  <a class="dropdown-item" (click)="alert()">Valores</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown btn-success">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  NOTICIAS
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" (click)="openPlanEstrategicoModal('PlanEstrategico')">Plan estrategico
+                    2019-2004</a>
+                </div>
+              </li>
+            </ul>
+            <!-- <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Buscar">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form> -->
+          </div>
+        </nav>
+      </div>
+    </div>
+    <br>
+
+    <!--Principal row-->
+    <div class="row">
+
+      <!--Col1-->
+      <div class="col-md-2">
+        <div class="container-fluid">
+          <br>
+          <br>
+          <p style="text-align: justify;">
+            Según la constitución dominicana establece que: la Bandera Nacional contiene los colores; azul ultramar
+            y
+            rojo
+            bermellón, en cuarteles esquinados y alternados de tal manera que el azul debe quedar en la parte
+            superior
+            del
+            asta, separados por una cruz blanca, de un ancho igual a la mitad de la altura de cada cuartel, llevando
+            en
+            su
+            centro el escudo de armas de la República.
+
+            El día de la bandera tiene algunas controversias ya que según la Gaceta Oficial #5231 de mayo 1938 era
+            la
+            celebración de la misma, la cual fue declarado el 24 de octubre por motivo al nacimiento del
+            Generalisímo
+            Trujillo. Pero no fue hasta la finalización de la era Trujillista que la ley 6085 del 22 de octubre de
+            1962
+            dio
+            oficialmente el 27 de febrero día de la Independencia Nacional, como el día de la Bandera.
+
+            Plaza de la BanderaSignificado
+
+          </p>
+
+        </div>
+      </div>
+
+
+      <!--Col2-->
+      <div class="col-md-8">
         <br>
 
         <!--carousel-->
@@ -86,62 +125,103 @@
         <br>
 
         <ngb-carousel class="center" *ngIf="images" [showNavigationArrows]="true"
-            [showNavigationIndicators]="showNavigationIndicators">
-            <ng-template ngbSlide *ngFor="let image of images">
-                <div class="picsum-img-wrapper">
-                    <img [src]="image" alt="Random slide" style="width:70%; height:50%;">
-                </div>
-            </ng-template>
+          [showNavigationIndicators]="showNavigationIndicators">
+          <ng-template ngbSlide *ngFor="let image of images">
+            <div class="picsum-img-wrapper">
+              <img [src]="image" alt="Random slide" style="width:70%; height:50%;">
+            </div>
+          </ng-template>
         </ngb-carousel>
 
         <br>
 
         <p class="textColorWhite" style="text-align: justify;">
-            Según la constitución dominicana establece que: la Bandera Nacional contiene los colores; azul ultramar y
-            rojo
-            bermellón, en cuarteles esquinados y alternados de tal manera que el azul debe quedar en la parte superior
-            del
-            asta, separados por una cruz blanca, de un ancho igual a la mitad de la altura de cada cuartel, llevando en
-            su
-            centro el escudo de armas de la República.
+          Según la constitución dominicana establece que: la Bandera Nacional contiene los colores; azul ultramar y
+          rojo
+          bermellón, en cuarteles esquinados y alternados de tal manera que el azul debe quedar en la parte superior
+          del
+          asta, separados por una cruz blanca, de un ancho igual a la mitad de la altura de cada cuartel, llevando en
+          su
+          centro el escudo de armas de la República.
 
-            El día de la bandera tiene algunas controversias ya que según la Gaceta Oficial #5231 de mayo 1938 era la
-            celebración de la misma, la cual fue declarado el 24 de octubre por motivo al nacimiento del Generalisímo
-            Trujillo. Pero no fue hasta la finalización de la era Trujillista que la ley 6085 del 22 de octubre de 1962
-            dio
-            oficialmente el 27 de febrero día de la Independencia Nacional, como el día de la Bandera.
+          El día de la bandera tiene algunas controversias ya que según la Gaceta Oficial #5231 de mayo 1938 era la
+          celebración de la misma, la cual fue declarado el 24 de octubre por motivo al nacimiento del Generalisímo
+          Trujillo. Pero no fue hasta la finalización de la era Trujillista que la ley 6085 del 22 de octubre de 1962
+          dio
+          oficialmente el 27 de febrero día de la Independencia Nacional, como el día de la Bandera.
 
-            Plaza de la BanderaSignificado
+          Plaza de la BanderaSignificado
 
         </p>
 
         <br>
 
         <p class="textColorWhite" style="text-align: justify;">
-            Según la constitución dominicana establece que: la Bandera Nacional contiene los colores; azul ultramar y
-            rojo
-            bermellón, en cuarteles esquinados y alternados de tal manera que el azul debe quedar en la parte superior
-            del
-            asta, separados por una cruz blanca, de un ancho igual a la mitad de la altura de cada cuartel, llevando en
-            su
-            centro el escudo de armas de la República.
+          Según la constitución dominicana establece que: la Bandera Nacional contiene los colores; azul ultramar y
+          rojo
+          bermellón, en cuarteles esquinados y alternados de tal manera que el azul debe quedar en la parte superior
+          del
+          asta, separados por una cruz blanca, de un ancho igual a la mitad de la altura de cada cuartel, llevando en
+          su
+          centro el escudo de armas de la República.
 
-            El día de la bandera tiene algunas controversias ya que según la Gaceta Oficial #5231 de mayo 1938 era la
-            celebración de la misma, la cual fue declarado el 24 de octubre por motivo al nacimiento del Generalisímo
-            Trujillo. Pero no fue hasta la finalización de la era Trujillista que la ley 6085 del 22 de octubre de 1962
-            dio
-            oficialmente el 27 de febrero día de la Independencia Nacional, como el día de la Bandera.
+          El día de la bandera tiene algunas controversias ya que según la Gaceta Oficial #5231 de mayo 1938 era la
+          celebración de la misma, la cual fue declarado el 24 de octubre por motivo al nacimiento del Generalisímo
+          Trujillo. Pero no fue hasta la finalización de la era Trujillista que la ley 6085 del 22 de octubre de 1962
+          dio
+          oficialmente el 27 de febrero día de la Independencia Nacional, como el día de la Bandera.
 
-            Plaza de la BanderaSignificado
+          Plaza de la BanderaSignificado
 
         </p>
 
         <br>
 
+      </div>
+
+
+      <!--Col3-->
+      <div class="col-md-2">
+        <div class="container-fluid">
+          <br>
+          <br>
+          <p style="text-align: justify;">
+            Según la constitución dominicana establece que: la Bandera Nacional contiene los colores; azul ultramar
+            y
+            rojo
+            bermellón, en cuarteles esquinados y alternados de tal manera que el azul debe quedar en la parte
+            superior
+            del
+            asta, separados por una cruz blanca, de un ancho igual a la mitad de la altura de cada cuartel, llevando
+            en
+            su
+            centro el escudo de armas de la República.
+
+            El día de la bandera tiene algunas controversias ya que según la Gaceta Oficial #5231 de mayo 1938 era
+            la
+            celebración de la misma, la cual fue declarado el 24 de octubre por motivo al nacimiento del
+            Generalisímo
+            Trujillo. Pero no fue hasta la finalización de la era Trujillista que la ley 6085 del 22 de octubre de
+            1962
+            dio
+            oficialmente el 27 de febrero día de la Independencia Nacional, como el día de la Bandera.
+
+            Plaza de la BanderaSignificado
+
+          </p>
+
+        </div>
+      </div>
 
     </div>
+    <!--End principal row-->
+
+
+  </div>
 
 </div>
+
+
 
 
 <!--Mision Modal -->
@@ -155,19 +235,20 @@
   <div class="modal-body">
 
     <!--Misión-->
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card border-primary" style="background-color: rgb(206, 238, 247);">
-        <br>
-        <strong class="center" style="color: rgb(43, 161, 207); font-size: 35px;">Misión</strong>
-        <div class="card-body">
-          <div>
-            <span [innerHTML]="portada.Body" class="templateStyle"> </span>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card border-primary" style="background-color: rgb(206, 238, 247);">
+          <br>
+          <strong class="center" style="color: rgb(43, 161, 207); font-size: 35px;">Misión</strong>
+          <div class="card-body">
+            <div>
+              <span [innerHTML]="portada.Body" class="templateStyle"> </span>
+            </div>
           </div>
         </div>
       </div>
-    </div><!--/.col-->
-  </div>
+      <!--/.col-->
+    </div>
 
   </div>
   <div class="modal-footer">
@@ -186,19 +267,20 @@
   </div>
   <div class="modal-body">
 
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card border-primary" style="background-color: rgb(206, 238, 247);">
-        <br>
-        <strong class="center" style="color: rgb(43, 161, 207); font-size: 35px;">Visión</strong>
-        <div class="card-body">
-          <div>
-            <span [innerHTML]="portada.Body" class="templateStyle"> </span>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card border-primary" style="background-color: rgb(206, 238, 247);">
+          <br>
+          <strong class="center" style="color: rgb(43, 161, 207); font-size: 35px;">Visión</strong>
+          <div class="card-body">
+            <div>
+              <span [innerHTML]="portada.Body" class="templateStyle"> </span>
+            </div>
           </div>
         </div>
       </div>
-    </div><!--/.col-->
-  </div>
+      <!--/.col-->
+    </div>
 
   </div>
   <div class="modal-footer">
@@ -217,19 +299,20 @@
   </div>
   <div class="modal-body">
 
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card border-primary" style="background-color: rgb(206, 238, 247);">
-        <br>
-        <strong class="center" style="color: rgb(43, 161, 207); font-size: 35px;">Valores</strong>
-        <div class="card-body">
-          <div>
-            <span [innerHTML]="portada.Body" class="templateStyle"> </span>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card border-primary" style="background-color: rgb(206, 238, 247);">
+          <br>
+          <strong class="center" style="color: rgb(43, 161, 207); font-size: 35px;">Valores</strong>
+          <div class="card-body">
+            <div>
+              <span [innerHTML]="portada.Body" class="templateStyle"> </span>
+            </div>
           </div>
         </div>
       </div>
-    </div><!--/.col-->
-  </div>
+      <!--/.col-->
+    </div>
 
   </div>
   <div class="modal-footer">
@@ -248,23 +331,23 @@
   </div>
   <div class="modal-body">
 
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card border-primary" style="background-color: rgb(206, 238, 247);">
-        <br>
-        <strong class="center" style="color: rgb(43, 161, 207); font-size: 35px;">Plan Estrategico</strong>
-        <div class="card-body">
-          <div>
-            <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card border-primary" style="background-color: rgb(206, 238, 247);">
+          <br>
+          <strong class="center" style="color: rgb(43, 161, 207); font-size: 35px;">Plan Estrategico</strong>
+          <div class="card-body">
+            <div>
+              <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+            </div>
           </div>
         </div>
       </div>
-    </div><!--/.col-->
-  </div>
+      <!--/.col-->
+    </div>
 
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
   </div>
 </ng-template>
-
