@@ -100,12 +100,16 @@ export class RedirectService {
         }
 
       } else {
-        Swal.fire({
-          icon: 'warning',
-          title: response.Message,
-          showConfirmButton: true,
-          timer: 2000
-        });
+        if (window.location.hash === '#/login') {
+          Swal.fire({
+            icon: 'warning',
+            title: response.Message,
+            showConfirmButton: true,
+            timer: 2000
+          });
+        }else{
+          window.location.reload();
+        }
       }
 
     },
