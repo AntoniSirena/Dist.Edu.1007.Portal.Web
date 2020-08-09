@@ -17,7 +17,6 @@ export class RedirectService {
   constructor(private router: Router,
     private loginSevice: LoginService,
     private loginService: LoginService,
-    private redirectService: RedirectService,
   ) {
 
   }
@@ -94,7 +93,7 @@ export class RedirectService {
           localStorage.setItem("systemConfiguration", `${JSON.stringify(this.systemConfiguration.Configuration)}`);
 
           //Check if the user is a visitor
-          if(isUserPortada){
+          if (isUserPortada) {
             //welcome to system
             this.welcomeToSystem();
           }

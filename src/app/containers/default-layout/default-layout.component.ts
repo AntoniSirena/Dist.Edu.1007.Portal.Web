@@ -5,6 +5,7 @@ import {BaseService} from '../../services/base/base.service'
 import { from } from 'rxjs';
 import { Profile } from '../../models/profile/profile';
 import { ProfileComponent } from '../../jsViews/profile/profile/profile.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,8 +19,10 @@ export class DefaultLayoutComponent implements OnInit {
 
 
   @ViewChild(ProfileComponent) profileComponent: ProfileComponent;
+
+  roleShortName = JSON.parse(localStorage.getItem("roleShortName"));
   
-  constructor(private redirectService: RedirectService, 
+  constructor(private redirectService: RedirectService, private router: Router, 
     private baseService: BaseService){
   
   }
@@ -46,5 +49,8 @@ export class DefaultLayoutComponent implements OnInit {
     this.profileComponent.openProfileModal();
   }
 
+  goToLogin(){
+    this.router.navigate(['login']);
+  }
 
 }
