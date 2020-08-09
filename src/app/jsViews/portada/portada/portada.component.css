@@ -6,7 +6,7 @@
 }
 
 .headerRow{
-    background-color: rgb(16, 16, 117);
+    background-color: rgba(1, 88, 201, 0.945);
     border-radius: 10px;
     margin: 5px;
 }
@@ -32,7 +32,7 @@
 
 .imgPortada{
     background: transparent;
-    background-image: url(assets/img/portada/BandDom.jpg);
+    background-image: url(assets/img/portada/fondoBlanco.jpg);
     height: 100%;
     /* Para dejar la imagen de fondo centrada, vertical yhorizontalmente */
     background-position: center center;

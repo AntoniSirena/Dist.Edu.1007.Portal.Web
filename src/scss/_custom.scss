@@ -26,27 +26,10 @@
     padding: 0.02rem;
   }
 
-  .imgPortada{
-    background: transparent;
-    background-image: url(assets/img/portada/BandDom.jpg);
-    height: 100%;
-    /* Para dejar la imagen de fondo centrada, vertical yhorizontalmente */
-    background-position: center center;
-
-    /* Para que la imagen de fondo no se repita */
-    background-repeat: no-repeat;
-
-    /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
-    background-attachment: fixed;
-
-    /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
-    background-size: cover;
-
-  }
 
   .imglogin{
     background: transparent;
-    background-image: url(assets/img/portada/logoDist1007.jpg);
+    background-image: url(assets/img/portada/BandDom.jpg);
     height: 100%;
     /* Para dejar la imagen de fondo centrada, vertical yhorizontalmente */
     background-position: center center;
