@@ -85,6 +85,12 @@ export class AccompanimentInstrumentComponent implements OnInit {
   canCreateReuqest = JSON.parse(localStorage.getItem("canCreateRequest"));
   canEditReuqest = JSON.parse(localStorage.getItem("canEditRequest"));
 
+  canViewActionsButton = JSON.parse(localStorage.getItem("canViewActionsButton"));
+  canApprove = JSON.parse(localStorage.getItem("canApprove"));
+  canSendToObservation = JSON.parse(localStorage.getItem("canSendToObservation"));
+  canProcess = JSON.parse(localStorage.getItem("canProcess"));
+  canCancel = JSON.parse(localStorage.getItem("canCancel"));
+
   //constructor
   constructor(
     private acompInstService: AccompanimentInstrumentService,
