@@ -53,4 +53,13 @@ export class DefaultLayoutComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+
+  goToRegister(){
+    this.router.navigate(['register']);
+  }
+
+  goToLogOut(){
+    this.redirectService.logout();
+  }
+
 }
