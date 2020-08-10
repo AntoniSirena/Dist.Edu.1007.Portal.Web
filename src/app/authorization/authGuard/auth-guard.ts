@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { CanActivate, Router } from '@angular/router';
 import { ListenService } from '../../services/listen/listen.service';
+import { RedirectService } from '../../services/redirect/redirect.service';
 
 
 @Injectable({ providedIn: 'root' })
@@ -9,23 +10,23 @@ export class AuthGuard implements CanActivate {
 
     isVisitorUser = JSON.parse(localStorage.getItem("isVisitorUser"));
 
-    constructor(private router: Router, private listenService: ListenService) {
+    constructor(private router: Router, private listenService: ListenService, private redirectService: RedirectService) {
     }
 
     canActivate() {
-        if (!this.isVisitorUser) {
-            if (localStorage.length > 0) {
-                return true;
-            }
-        } else {
+        if (this.isVisitorUser) {
             if (this.validateHashVisitador()) {
                 if (localStorage.length > 0) {
                     return true;
                 }
             }
+        } else {
+            if (localStorage.length > 0) {
+                return true;
+            }
         }
 
-        this.router.navigate(['login']);
+        this.redirectService.login(true);
     }
 
     readyToRequest() {

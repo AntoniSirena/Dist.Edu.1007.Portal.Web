@@ -127,7 +127,7 @@ export class RedirectService {
             showConfirmButton: true,
             timer: 2000
           });
-        }else{
+        } else {
           window.location.reload();
         }
       }
@@ -140,27 +140,34 @@ export class RedirectService {
   }
 
   //Redirecciona a la pantalla de login
-  login() {
+  login(isAutGuard: boolean = false) {
 
     if (localStorage.length > 0) {
-      let userName = JSON.parse(localStorage.getItem('userName'));
+      let userId = JSON.parse(localStorage.getItem('userId'));
       localStorage.clear();
-      this.loginSevice.logOut(userName).subscribe((response: any) => {
+      this.loginSevice.logOut(userId).subscribe((response: any) => {
       },
         error => {
           console.log(JSON.stringify(error));
         });
 
-      this.router.navigate(['login']).then(() => {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Estimado usuario su sesión ha expirado',
-          showConfirmButton: false,
-          timer: 4000
-        }).then(() => {
+      if (isAutGuard) {
+        this.router.navigate(['login']).then(() => {
           window.location.reload();
         });
-      });
+      } else {
+        this.router.navigate(['login']).then(() => {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Estimado usuario su sesión ha expirado',
+            showConfirmButton: false,
+            timer: 4000
+          }).then(() => {
+            window.location.reload();
+          });
+        });
+      }
+
     }
 
   }
