@@ -35,3 +35,16 @@
 .statusTextColor{
     color: rgb(236, 225, 225);
 }
+
+.textBoxDetail{
+    background-color: rgb(209, 236, 238);
+    font-size: 15px;
+}
+
+.textDetail{
+    font-size: 15px;
+}
+
+.labelDetail{
+    font-size: 17px;
+}

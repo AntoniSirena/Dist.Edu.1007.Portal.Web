@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, FormArray, Validators, FormControl, FormsModule
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
-import { IdentificationData, AccompInstRequest, VariableResponse, CommentsRevisedDocument, DescriptionObservationSupportProvided, SuggestionsAgreement, ResearchSummary } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
+import { IdentificationData, AccompInstRequest, VariableResponse, CommentsRevisedDocument, DescriptionObservationSupportProvided, SuggestionsAgreement, ResearchSummary, AccompanyInstrumentDetails } from '../../../../models/domain/accompanimentInstrument/accompaniment-instrument';
 import { AccompanimentInstrumentService } from '../../../../services/domain/accompanimentInstrument/accompaniment-instrument.service';
 import { CommonService } from '../../../../services/common/common.service';
 import { Regional } from '../../../../models/common/regional/regional';
@@ -64,6 +64,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
   areas = new Array<Area>();
   indicators = new Array<Indicator>();
   accompInstRequests = new Array<AccompInstRequest>();
+  accInstDetails = new AccompanyInstrumentDetails();
 
   identificationData = new IdentificationData();
   docent = new Docent();
@@ -96,7 +97,6 @@ export class AccompanimentInstrumentComponent implements OnInit {
     private acompInstService: AccompanimentInstrumentService,
     private commonService: CommonService,
     private modalService: NgbModal,
-    private datePipe: DatePipe,
     private form: FormBuilder) {
   }
 
@@ -171,6 +171,28 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
       if (response.Code == '000') {
         this.accompInstRequests = response.Data;
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 5000
+        }).then(() => {
+          this.getAccompInstRequests();
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  getAccompanyInstrumentDetails(requestId: number) {
+    this.acompInstService.getAccompanyInstrumentDetails(requestId).subscribe((response: Iresponse) => {
+
+      if (response.Code == '000') {
+        this.accInstDetails = response.Data;
+        console.log(this.accInstDetails);
       } else {
         Swal.fire({
           icon: 'warning',
@@ -439,7 +461,8 @@ export class AccompanimentInstrumentComponent implements OnInit {
 
 
   //open details modal
-  openDetailModal() {
+  openDetailModal(requestId: number) {
+    this.getAccompanyInstrumentDetails(requestId);
     this.modalService.open(this.detailsModal, { size: 'xl', scrollable: true });
   }
 

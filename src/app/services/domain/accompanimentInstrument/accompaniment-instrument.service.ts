@@ -105,6 +105,10 @@ export class AccompanimentInstrumentService {
     return this.httpClient.get(this.apiURL +  `api/identificationData/ProcessRequest?requestId=${requestId}`);
   }
 
+  getAccompanyInstrumentDetails(requestId: number): Observable<object> {
+    return this.httpClient.get(this.apiURL +  `api/identificationData/GetAccompanyInstrumentDetails?requestId=${requestId}`);
+  }
+
   createResearchSummary(summary: ResearchSummary) {
     let data = JSON.stringify(summary);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
