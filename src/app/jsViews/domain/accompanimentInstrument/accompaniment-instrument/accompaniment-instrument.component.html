@@ -2389,6 +2389,13 @@
         <ng-template ngbTabContent>
           <br>
 
+          <u>
+            <i>
+              <h4>Dtos de identificación</h4>
+            </i>
+          </u>
+          <br>
+
           <div class="row">
             <div class="col-md-6">
               <span class="bold center labelDetail">Regional:</span>
@@ -2422,11 +2429,11 @@
 
           <br>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <span class="bold center labelDetail">Nombre y Apellido del Docente:</span>
               <span class="form-control bold textBoxDetail">{{accInstDetails.IdentificationData.Docent}}</span>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <span class="bold center labelDetail">Cédula:</span>
               <span class="form-control bold textBoxDetail">{{accInstDetails.IdentificationData.DocentDocument}}</span>
             </div>
@@ -2434,11 +2441,11 @@
 
           <br>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <span class="bold center labelDetail">Nombre y Apellido del Acompañante:</span>
               <span class="form-control bold textBoxDetail">{{accInstDetails.IdentificationData.Companion}}</span>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <span class="bold center labelDetail">Cédula:</span>
               <span
                 class="form-control bold textBoxDetail">{{accInstDetails.IdentificationData.CompanionDocument}}</span>
@@ -2612,9 +2619,9 @@
                 <tr class="tabl_eHeader_Color">
                   <th>#</th>
                   <th>Indicadores</th>
-                  <th>                    
-                   <span>Área</span>
-                   <span class="form-control">{{accInstDetails.VariableA.AreaA}}</span>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableA.AreaA}}</span>
                   </th>
                   <th>
                     <span>Área</span>
@@ -2622,7 +2629,7 @@
                   </th>
                   <th>
                     <span>Área</span>
-                   <span class="form-control">{{accInstDetails.VariableA.AreaC}}</span>
+                    <span class="form-control">{{accInstDetails.VariableA.AreaC}}</span>
                   </th>
                 </tr>
               </thead>
@@ -2649,6 +2656,994 @@
 
       </ngb-tab>
 
+
+      <!--Variable B-->
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div class="bold labelDetail">Dominio de contenidos</div>
+        </ng-template>
+
+        <ng-template ngbTabContent>
+          <br>
+
+          <u>
+            <i>
+              <h4> Variable <span class="textColor">{{accInstDetails.VariableB.VariableDescription}}</span>:
+                {{accInstDetails.VariableB.VariableTitle}} </h4>
+            </i>
+          </u>
+          <br>
+
+          <!--Tabla de eficiencia-->
+          <table class="table table-bordered table-sm">
+            <tbody>
+              <tr>
+                <td class="bold labelDetail">Factor evaluador por cada indicador</td>
+                <td class="textDetail bold center">{{accInstDetails.VariableB.EfficiencyEvaluateFactor}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la primera visita</td>
+                <td class=" {{accInstDetails.VariableB.EfficiencyColourA}} textDetail bold center">
+                  {{accInstDetails.VariableB.EfficiencyValueA}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la segunda visita</td>
+                <td class="{{accInstDetails.VariableB.EfficiencyColourB}} textDetail bold center">
+                  {{accInstDetails.VariableB.EfficiencyValueB}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la tercera visita</td>
+                <td class=" {{accInstDetails.VariableB.EfficiencyColourC}} textDetail bold center">
+                  {{accInstDetails.VariableB.EfficiencyValueC}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia total por las visitas asistidas</td>
+                <td class=" {{accInstDetails.VariableB.EfficiencyTotalColour}} textDetail bold center">
+                  {{accInstDetails.VariableB.EfficiencyTotalValue}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <!--Tabla de indicadores-->
+          <div class="table-responsive">
+            <table id="variableTable" class="table table-hover table-bordered table-condensed">
+              <thead>
+                <tr class="tabl_eHeader_Color">
+                  <th>#</th>
+                  <th>Indicadores</th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableB.AreaA}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableB.AreaB}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableB.AreaC}}</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="border">
+                <tr *ngFor="let detail of accInstDetails.VariableB.VariableDetails; let i = index">
+                  <td>{{detail.Number}}</td>
+                  <td>{{detail.Description}}</td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorA}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorB}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorC}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </ng-template>
+
+      </ngb-tab>
+
+
+      <!--Variable C-->
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div class="bold labelDetail">Utilización de Estrategias y Actividades</div>
+        </ng-template>
+
+        <ng-template ngbTabContent>
+          <br>
+
+          <u>
+            <i>
+              <h4> Variable <span class="textColor">{{accInstDetails.VariableC.VariableDescription}}</span>:
+                {{accInstDetails.VariableC.VariableTitle}} </h4>
+            </i>
+          </u>
+          <br>
+
+          <!--Tabla de eficiencia-->
+          <table class="table table-bordered table-sm">
+            <tbody>
+              <tr>
+                <td class="bold labelDetail">Factor evaluador por cada indicador</td>
+                <td class="textDetail bold center">{{accInstDetails.VariableC.EfficiencyEvaluateFactor}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la primera visita</td>
+                <td class=" {{accInstDetails.VariableC.EfficiencyColourA}} textDetail bold center">
+                  {{accInstDetails.VariableC.EfficiencyValueA}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la segunda visita</td>
+                <td class="{{accInstDetails.VariableC.EfficiencyColourB}} textDetail bold center">
+                  {{accInstDetails.VariableC.EfficiencyValueB}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la tercera visita</td>
+                <td class=" {{accInstDetails.VariableC.EfficiencyColourC}} textDetail bold center">
+                  {{accInstDetails.VariableC.EfficiencyValueC}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia total por las visitas asistidas</td>
+                <td class=" {{accInstDetails.VariableC.EfficiencyTotalColour}} textDetail bold center">
+                  {{accInstDetails.VariableC.EfficiencyTotalValue}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <!--Tabla de indicadores-->
+          <div class="table-responsive">
+            <table id="variableTable" class="table table-hover table-bordered table-condensed">
+              <thead>
+                <tr class="tabl_eHeader_Color">
+                  <th>#</th>
+                  <th>Indicadores</th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableC.AreaA}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableC.AreaB}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableC.AreaC}}</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="border">
+                <tr *ngFor="let detail of accInstDetails.VariableC.VariableDetails; let i = index">
+                  <td>{{detail.Number}}</td>
+                  <td>{{detail.Description}}</td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorA}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorB}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorC}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </ng-template>
+
+      </ngb-tab>
+
+
+      <!--Variable D-->
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div class="bold labelDetail">Utilización de Recursos Pedagógicos</div>
+        </ng-template>
+
+        <ng-template ngbTabContent>
+          <br>
+
+          <u>
+            <i>
+              <h4> Variable <span class="textColor">{{accInstDetails.VariableD.VariableDescription}}</span>:
+                {{accInstDetails.VariableD.VariableTitle}} </h4>
+            </i>
+          </u>
+          <br>
+
+          <!--Tabla de eficiencia-->
+          <table class="table table-bordered table-sm">
+            <tbody>
+              <tr>
+                <td class="bold labelDetail">Factor evaluador por cada indicador</td>
+                <td class="textDetail bold center">{{accInstDetails.VariableD.EfficiencyEvaluateFactor}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la primera visita</td>
+                <td class=" {{accInstDetails.VariableD.EfficiencyColourA}} textDetail bold center">
+                  {{accInstDetails.VariableD.EfficiencyValueA}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la segunda visita</td>
+                <td class="{{accInstDetails.VariableD.EfficiencyColourB}} textDetail bold center">
+                  {{accInstDetails.VariableD.EfficiencyValueB}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la tercera visita</td>
+                <td class=" {{accInstDetails.VariableD.EfficiencyColourC}} textDetail bold center">
+                  {{accInstDetails.VariableD.EfficiencyValueC}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia total por las visitas asistidas</td>
+                <td class=" {{accInstDetails.VariableD.EfficiencyTotalColour}} textDetail bold center">
+                  {{accInstDetails.VariableD.EfficiencyTotalValue}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <!--Tabla de indicadores-->
+          <div class="table-responsive">
+            <table id="variableTable" class="table table-hover table-bordered table-condensed">
+              <thead>
+                <tr class="tabl_eHeader_Color">
+                  <th>#</th>
+                  <th>Indicadores</th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableD.AreaA}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableD.AreaB}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableD.AreaC}}</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="border">
+                <tr *ngFor="let detail of accInstDetails.VariableD.VariableDetails; let i = index">
+                  <td>{{detail.Number}}</td>
+                  <td>{{detail.Description}}</td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorA}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorB}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorC}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </ng-template>
+
+      </ngb-tab>
+
+
+      <!--Variable E-->
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div class="bold labelDetail">Procesos Evaluativos</div>
+        </ng-template>
+
+        <ng-template ngbTabContent>
+          <br>
+
+          <u>
+            <i>
+              <h4> Variable <span class="textColor">{{accInstDetails.VariableE.VariableDescription}}</span>:
+                {{accInstDetails.VariableE.VariableTitle}} </h4>
+            </i>
+          </u>
+          <br>
+
+          <!--Tabla de eficiencia-->
+          <table class="table table-bordered table-sm">
+            <tbody>
+              <tr>
+                <td class="bold labelDetail">Factor evaluador por cada indicador</td>
+                <td class="textDetail bold center">{{accInstDetails.VariableE.EfficiencyEvaluateFactor}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la primera visita</td>
+                <td class=" {{accInstDetails.VariableE.EfficiencyColourA}} textDetail bold center">
+                  {{accInstDetails.VariableE.EfficiencyValueA}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la segunda visita</td>
+                <td class="{{accInstDetails.VariableE.EfficiencyColourB}} textDetail bold center">
+                  {{accInstDetails.VariableE.EfficiencyValueB}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la tercera visita</td>
+                <td class=" {{accInstDetails.VariableE.EfficiencyColourC}} textDetail bold center">
+                  {{accInstDetails.VariableE.EfficiencyValueC}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia total por las visitas asistidas</td>
+                <td class=" {{accInstDetails.VariableE.EfficiencyTotalColour}} textDetail bold center">
+                  {{accInstDetails.VariableE.EfficiencyTotalValue}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <!--Tabla de indicadores-->
+          <div class="table-responsive">
+            <table id="variableTable" class="table table-hover table-bordered table-condensed">
+              <thead>
+                <tr class="tabl_eHeader_Color">
+                  <th>#</th>
+                  <th>Indicadores</th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableE.AreaA}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableE.AreaB}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableE.AreaC}}</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="border">
+                <tr *ngFor="let detail of accInstDetails.VariableE.VariableDetails; let i = index">
+                  <td>{{detail.Number}}</td>
+                  <td>{{detail.Description}}</td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorA}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorB}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorC}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </ng-template>
+
+      </ngb-tab>
+
+
+      <!--Variable F-->
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div class="bold labelDetail">Clima del Aula</div>
+        </ng-template>
+
+        <ng-template ngbTabContent>
+          <br>
+
+          <u>
+            <i>
+              <h4> Variable <span class="textColor">{{accInstDetails.VariableF.VariableDescription}}</span>:
+                {{accInstDetails.VariableF.VariableTitle}} </h4>
+            </i>
+          </u>
+          <br>
+
+          <!--Tabla de eficiencia-->
+          <table class="table table-bordered table-sm">
+            <tbody>
+              <tr>
+                <td class="bold labelDetail">Factor evaluador por cada indicador</td>
+                <td class="textDetail bold center">{{accInstDetails.VariableF.EfficiencyEvaluateFactor}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la primera visita</td>
+                <td class=" {{accInstDetails.VariableF.EfficiencyColourA}} textDetail bold center">
+                  {{accInstDetails.VariableF.EfficiencyValueA}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la segunda visita</td>
+                <td class="{{accInstDetails.VariableF.EfficiencyColourB}} textDetail bold center">
+                  {{accInstDetails.VariableF.EfficiencyValueB}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la tercera visita</td>
+                <td class=" {{accInstDetails.VariableF.EfficiencyColourC}} textDetail bold center">
+                  {{accInstDetails.VariableF.EfficiencyValueC}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia total por las visitas asistidas</td>
+                <td class=" {{accInstDetails.VariableF.EfficiencyTotalColour}} textDetail bold center">
+                  {{accInstDetails.VariableF.EfficiencyTotalValue}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <!--Tabla de indicadores-->
+          <div class="table-responsive">
+            <table id="variableTable" class="table table-hover table-bordered table-condensed">
+              <thead>
+                <tr class="tabl_eHeader_Color">
+                  <th>#</th>
+                  <th>Indicadores</th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableF.AreaA}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableF.AreaB}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableF.AreaC}}</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="border">
+                <tr *ngFor="let detail of accInstDetails.VariableF.VariableDetails; let i = index">
+                  <td>{{detail.Number}}</td>
+                  <td>{{detail.Description}}</td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorA}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorB}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorC}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </ng-template>
+
+      </ngb-tab>
+
+
+      <!--Variable G-->
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div class="bold labelDetail">Reflexión de la Práctica</div>
+        </ng-template>
+
+        <ng-template ngbTabContent>
+          <br>
+
+          <u>
+            <i>
+              <h4> Variable <span class="textColor">{{accInstDetails.VariableG.VariableDescription}}</span>:
+                {{accInstDetails.VariableG.VariableTitle}} </h4>
+            </i>
+          </u>
+          <br>
+
+          <!--Tabla de eficiencia-->
+          <table class="table table-bordered table-sm">
+            <tbody>
+              <tr>
+                <td class="bold labelDetail">Factor evaluador por cada indicador</td>
+                <td class="textDetail bold center">{{accInstDetails.VariableG.EfficiencyEvaluateFactor}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la primera visita</td>
+                <td class=" {{accInstDetails.VariableG.EfficiencyColourA}} textDetail bold center">
+                  {{accInstDetails.VariableG.EfficiencyValueA}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la segunda visita</td>
+                <td class="{{accInstDetails.VariableG.EfficiencyColourB}} textDetail bold center">
+                  {{accInstDetails.VariableG.EfficiencyValueB}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la tercera visita</td>
+                <td class=" {{accInstDetails.VariableG.EfficiencyColourC}} textDetail bold center">
+                  {{accInstDetails.VariableG.EfficiencyValueC}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia total por las visitas asistidas</td>
+                <td class=" {{accInstDetails.VariableG.EfficiencyTotalColour}} textDetail bold center">
+                  {{accInstDetails.VariableG.EfficiencyTotalValue}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <!--Tabla de indicadores-->
+          <div class="table-responsive">
+            <table id="variableTable" class="table table-hover table-bordered table-condensed">
+              <thead>
+                <tr class="tabl_eHeader_Color">
+                  <th>#</th>
+                  <th>Indicadores</th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableG.AreaA}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableG.AreaB}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableG.AreaC}}</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="border">
+                <tr *ngFor="let detail of accInstDetails.VariableG.VariableDetails; let i = index">
+                  <td>{{detail.Number}}</td>
+                  <td>{{detail.Description}}</td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorA}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorB}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorC}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </ng-template>
+
+      </ngb-tab>
+
+
+      <!--Variable H-->
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div class="bold labelDetail">Relaciones con los Padres, las Madres, los Tutores y la Comunidad</div>
+        </ng-template>
+
+        <ng-template ngbTabContent>
+          <br>
+
+          <u>
+            <i>
+              <h4> Variable <span class="textColor">{{accInstDetails.VariableH.VariableDescription}}</span>:
+                {{accInstDetails.VariableH.VariableTitle}} </h4>
+            </i>
+          </u>
+          <br>
+
+          <!--Tabla de eficiencia-->
+          <table class="table table-bordered table-sm">
+            <tbody>
+              <tr>
+                <td class="bold labelDetail">Factor evaluador por cada indicador</td>
+                <td class="textDetail bold center">{{accInstDetails.VariableH.EfficiencyEvaluateFactor}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la primera visita</td>
+                <td class=" {{accInstDetails.VariableH.EfficiencyColourA}} textDetail bold center">
+                  {{accInstDetails.VariableH.EfficiencyValueA}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la segunda visita</td>
+                <td class="{{accInstDetails.VariableH.EfficiencyColourB}} textDetail bold center">
+                  {{accInstDetails.VariableH.EfficiencyValueB}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia de la tercera visita</td>
+                <td class=" {{accInstDetails.VariableH.EfficiencyColourC}} textDetail bold center">
+                  {{accInstDetails.VariableH.EfficiencyValueC}}</td>
+              </tr>
+              <tr>
+                <td class="bold labelDetail">Eficiencia total por las visitas asistidas</td>
+                <td class=" {{accInstDetails.VariableH.EfficiencyTotalColour}} textDetail bold center">
+                  {{accInstDetails.VariableH.EfficiencyTotalValue}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <!--Tabla de indicadores-->
+          <div class="table-responsive">
+            <table id="variableTable" class="table table-hover table-bordered table-condensed">
+              <thead>
+                <tr class="tabl_eHeader_Color">
+                  <th>#</th>
+                  <th>Indicadores</th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableH.AreaA}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableH.AreaB}}</span>
+                  </th>
+                  <th>
+                    <span>Área</span>
+                    <span class="form-control">{{accInstDetails.VariableH.AreaC}}</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="border">
+                <tr *ngFor="let detail of accInstDetails.VariableH.VariableDetails; let i = index">
+                  <td>{{detail.Number}}</td>
+                  <td>{{detail.Description}}</td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorA}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorB}}</span>
+                  </td>
+                  <td>
+                    <span class="form-control">{{detail.IndicadorC}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </ng-template>
+
+      </ngb-tab>
+
+
+      <!--Variable Comentarios sobre los documentos revisados-->
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div class="bold labelDetail">Comentarios sobre los documentos revisados</div>
+        </ng-template>
+
+        <ng-template ngbTabContent>
+          <br>
+
+          <u>
+            <i>
+              <h4>Comentarios sobre los documentos revisados</h4>
+            </i>
+          </u>
+          <br>
+
+          <!--Tabla-->
+          <div class="table-responsive">
+            <table id="variableTable" class="table table-hover table-bordered table-condensed">
+              <thead>
+                <tr class="tabl_eHeader_Color">
+                  <th>Aspectos</th>
+                  <th>
+                    <span>En la visita del Área:</span>
+                    <span class="form-control">{{accInstDetails.CommentsRevisedDocument.AreaA}}</span>
+
+                    <span>de fecha:</span>
+                    <span class="form-control">{{accInstDetails.CommentsRevisedDocument.DateA}}</span>
+                  </th>
+                  <th>
+                    <span>En la visita del Área:</span>
+                    <span class="form-control">{{accInstDetails.CommentsRevisedDocument.AreaB}}</span>
+
+                    <span>de fecha:</span>
+                    <span class="form-control">{{accInstDetails.CommentsRevisedDocument.DateB}}</span>
+                  </th>
+                  <th>
+                    <span>En la visita del Área:</span>
+                    <span class="form-control">{{accInstDetails.CommentsRevisedDocument.AreaC}}</span>
+
+                    <span>de fecha:</span>
+                    <span class="form-control">{{accInstDetails.CommentsRevisedDocument.DateC}}</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="border">
+                <tr
+                  *ngFor="let detail of accInstDetails.CommentsRevisedDocument.CommentsRevisedDocumenDetails; let i = index">
+                  <td>{{detail.Description}}</td>
+                  <td>
+                    <textarea class="form-control" [disabled]="true">
+                      {{detail.CommentA}}
+                    </textarea>
+                  </td>
+                  <td>
+                    <textarea class="form-control" [disabled]="true">
+                      {{detail.CommentB}}
+                    </textarea>
+                  </td>
+                  <td>
+                    <textarea class="form-control" [disabled]="true">
+                      {{detail.CommentC}}
+                    </textarea>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </ng-template>
+
+      </ngb-tab>
+
+
+      <!--Description Observation Support Provided-->
+      <ngb-tab>
+
+        <ng-template ngbTabTitle>
+          <div class="bold labelDetail">Descripción de las observaciones y del apoyo brindado</div>
+        </ng-template>
+
+        <ng-template ngbTabContent>
+          <br>
+
+          <u>
+            <i>
+              <h4>Descripción de las observaciones y del apoyo brindado</h4>
+            </i>
+          </u>
+          <br>
+
+          <div class="table-responsive">
+            <table id="variableTable" class="table table-hover table-bordered table-condensed">
+              <thead>
+                <tr class="border">
+                  <th>
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                          En la visita del Área: &nbsp;
+                          <span
+                            class="form-control">{{accInstDetails.DescriptionObservationSupportProvided.AreaA}}</span>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                          de fecha: &nbsp;
+                          <span
+                            class="form-control">{{accInstDetails.DescriptionObservationSupportProvided.DateA}}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                      <textarea class="form-control"
+                        [disabled]="true">{{accInstDetails.DescriptionObservationSupportProvided.CommentA}}</textarea>
+                    </div>
+
+
+                    <hr class="hrStyle">
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                          En la visita del Área: &nbsp;
+                          <span
+                            class="form-control">{{accInstDetails.DescriptionObservationSupportProvided.AreaB}}</span>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                          de fecha: &nbsp;
+                          <span
+                            class="form-control">{{accInstDetails.DescriptionObservationSupportProvided.DateB}}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                      <textarea class="form-control"
+                        [disabled]="true">{{accInstDetails.DescriptionObservationSupportProvided.CommentB}}</textarea>
+                    </div>
+
+
+                    <hr class="hrStyle">
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                          En la visita del Área: &nbsp;
+                          <span
+                            class="form-control">{{accInstDetails.DescriptionObservationSupportProvided.AreaC}}</span>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                          de fecha: &nbsp;
+                          <span
+                            class="form-control">{{accInstDetails.DescriptionObservationSupportProvided.DateC}}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                      <textarea class="form-control"
+                        [disabled]="true">{{accInstDetails.DescriptionObservationSupportProvided.CommentC}}</textarea>
+                    </div>
+
+
+                  </th>
+                </tr>
+              </thead>
+            </table>
+
+          </div>
+
+
+        </ng-template>
+
+      </ngb-tab>
+
+
+      <!--Sugerencias y Acuerdos-->
+      <ngb-tab>
+
+        <ng-template ngbTabTitle>
+          <div class="bold labelDetail">Sugerencias y Acuerdos</div>
+        </ng-template>
+
+        <ng-template ngbTabContent>
+          <br>
+
+          <u>
+            <i>
+              <h4>Sugerencias y Acuerdos</h4>
+            </i>
+          </u>
+          <br>
+
+          <div class="table-responsive">
+            <table id="variableTable" class="table table-hover table-bordered table-condensed">
+              <thead>
+                <tr class="border">
+                  <th>
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                          En la visita del Área: &nbsp;
+                          <span class="form-control">{{accInstDetails.SuggestionsAgreement.AreaA}}</span>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                          de fecha: &nbsp;
+                          <span class="form-control">{{accInstDetails.SuggestionsAgreement.DateA}}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                      <textarea class="form-control"
+                        [disabled]="true">{{accInstDetails.SuggestionsAgreement.CommentA}}</textarea>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-4">
+                        Firma del Docente
+                        <span class="form-control">{{accInstDetails.SuggestionsAgreement.TeacherSignatureA}}</span>
+                      </div>
+                      <div class="col-sm-4">
+                        Firma del Acompañante
+                        <span class="form-control">{{accInstDetails.SuggestionsAgreement.CompanionSignatureA}}</span>
+                      </div>
+                      <div class="col-sm-4">
+                        Firma del Técnico Distrital
+                        <span class="form-control">{{accInstDetails.SuggestionsAgreement.DistrictTechnicianSignatureA}}</span>
+                      </div>
+                    </div>
+
+
+                    <hr class="hrStyle">
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                          En la visita del Área: &nbsp;
+                          <span class="form-control">{{accInstDetails.SuggestionsAgreement.AreaB}}</span>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                          de fecha: &nbsp;
+                          <span class="form-control">{{accInstDetails.SuggestionsAgreement.DateB}}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                      <textarea class="form-control"
+                        [disabled]="true">{{accInstDetails.SuggestionsAgreement.CommentB}}</textarea>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-4">
+                        Firma del Docente
+                        <span class="form-control">{{accInstDetails.SuggestionsAgreement.TeacherSignatureB}}</span>
+                      </div>
+                      <div class="col-sm-4">
+                        Firma del Acompañante
+                        <span class="form-control">{{accInstDetails.SuggestionsAgreement.CompanionSignatureB}}</span>
+                      </div>
+                      <div class="col-sm-4">
+                        Firma del Técnico Distrital
+                        <span class="form-control">{{accInstDetails.SuggestionsAgreement.DistrictTechnicianSignatureB}}</span>
+                      </div>
+                    </div>
+
+
+                    <hr class="hrStyle">
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                          En la visita del Área: &nbsp;
+                          <span class="form-control">{{accInstDetails.SuggestionsAgreement.AreaC}}</span>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                          de fecha: &nbsp;
+                          <span class="form-control">{{accInstDetails.SuggestionsAgreement.DateC}}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                      <textarea class="form-control"
+                        [disabled]="true">{{accInstDetails.SuggestionsAgreement.CommentC}}</textarea>
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-sm-4">
+                        Firma del Docente
+                        <span class="form-control">{{accInstDetails.SuggestionsAgreement.TeacherSignatureC}}</span>
+                      </div>
+                      <div class="col-sm-4">
+                        Firma del Acompañante
+                        <span class="form-control">{{accInstDetails.SuggestionsAgreement.CompanionSignatureC}}</span>
+                      </div>
+                      <div class="col-sm-4">
+                        Firma del Técnico Distrital
+                        <span class="form-control">{{accInstDetails.SuggestionsAgreement.DistrictTechnicianSignatureC}}</span>
+                      </div>
+                    </div>
+
+                  </th>
+                </tr>
+              </thead>
+            </table>
+
+          </div>
+
+
+        </ng-template>
+
+      </ngb-tab>
 
 
     </ngb-tabset>
