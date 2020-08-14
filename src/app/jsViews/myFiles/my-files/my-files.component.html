@@ -32,8 +32,8 @@
             <td>{{item.Id}}</td>
             <td class="td_min">{{item.Name}}</td>
             <td class="td_min">{{item.Description}}</td>
-            <td class="right"><button type="button" *ngIf="item.ContentType === 'pdf'" class="btn btn-danger" (click)="viewFileById(item.Id)"><i class="fa fa-eye"></i>&nbsp;Ver detalles</button></td>
-            <td class="right"><button type="button" class="btn btn-primary" (click)="getFileById(item.Id, item.Name)"><i class="fa fa-cloud-download"></i>&nbsp;Descargar</button></td>
+            <td class="right"><button type="button" class="btn btn-danger" (click)="viewFileById(item.Id, item.ContentType)"><i class="fa fa-eye"></i>&nbsp;Ver detalles</button></td>
+            <td class="right"><button type="button" class="btn btn-primary" (click)="getFileById(item.Id, item.Name, item.ContentType)"><i class="fa fa-cloud-download"></i>&nbsp;Descargar</button></td>
           </tr>
         </tbody>
       </table>

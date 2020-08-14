@@ -43,9 +43,8 @@
                   <span style="font-weight: bold;">SOBRE NOSOTROS</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" (click)="alert()">Misión</a>
-                  <a class="dropdown-item" (click)="alert()">Visión</a>
-                  <a class="dropdown-item" (click)="alert()">Valores</a>
+                  <a class="dropdown-item" (click)="openPlanEstrategicoModal('PlanEstrategico')">Plan estrategico
+                    2019-2004</a>
                 </div>
               </li>
               <li class="nav-item dropdown btn-primary">
@@ -54,9 +53,6 @@
                   <span style="font-weight: bold;">SERVICIOS</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" (click)="alert()">Misión</a>
-                  <a class="dropdown-item" (click)="alert()">Visión</a>
-                  <a class="dropdown-item" (click)="alert()">Valores</a>
                 </div>
               </li>
               <li class="nav-item dropdown btn-danger">
@@ -65,8 +61,7 @@
                   <span style="font-weight: bold;">NOTICIAS</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" (click)="openPlanEstrategicoModal('PlanEstrategico')">Plan estrategico
-                    2019-2004</a>
+                  
                 </div>
               </li>
             </ul>
@@ -91,7 +86,7 @@
           
           <div class="row textLateralStyle">
             <div class="col-md-12">
-              <span [innerHTML]="leftInfo.Body"> </span>
+              <p [innerHTML]="leftInfo.Body"> </p>
             </div>
           </div>
 

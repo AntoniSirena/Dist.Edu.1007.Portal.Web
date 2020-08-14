@@ -29,9 +29,9 @@ export class MyFilesComponent implements OnInit {
   }
 
 
-  getFileById(id: number, name: string) {
+  getFileById(id: number, name: string, contentType: string) {
     this.fileService.getFileById(id).subscribe((response: any) => {
-      this.downloadPdf(response, name);
+      this.downloadPdf(response, name, contentType);
     },
       error => {
         console.log(JSON.stringify(error));
@@ -40,8 +40,8 @@ export class MyFilesComponent implements OnInit {
 
 
   //download Pdf
-  downloadPdf(stringBase64PDF: string, name: string) {
-    const linkSource = 'data:application/pdf;base64,' + stringBase64PDF;
+  downloadPdf(stringBase64PDF: string, name: string, contentType: string) {
+    const linkSource = `data:application/${contentType};base64,` + stringBase64PDF;
     const downloadLink = document.createElement("a");
     const fileName = name;
 
@@ -52,15 +52,18 @@ export class MyFilesComponent implements OnInit {
 
 
   //view Pdf
-  viewFileById(id: number) {
+  viewFileById(id: number, contentType: string) {
     this.fileService.getFileById(id).subscribe((response: any) => {
-      let pdfWindow = window.open("")
-      pdfWindow.document.write("<iframe width='100%' height='100%' src='data:application/pdf;base64, " + encodeURI(response) + "'></iframe>")
+
+      if (contentType === 'pdf') {
+        let pdfWindow = window.open("")
+        pdfWindow.document.write("<iframe width='100%' height='100%' src='data:application/pdf;base64, " + encodeURI(response) + "'></iframe>")
+      }
     },
       error => {
         console.log(JSON.stringify(error));
       });
   }
-  
+
 
 }

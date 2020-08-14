@@ -178,7 +178,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
           showConfirmButton: true,
           timer: 5000
         }).then(() => {
-          this.getAccompInstRequests();
+          
         });
       }
     },
@@ -878,7 +878,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
               icon: 'warning',
               title: response.Message,
               showConfirmButton: true,
-              timer: 4000
+              timer: 5000
             });
           }
         },
@@ -921,7 +921,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
               icon: 'warning',
               title: response.Message,
               showConfirmButton: true,
-              timer: 4000
+              timer: 5000
             });
           }
         },
@@ -964,7 +964,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
               icon: 'warning',
               title: response.Message,
               showConfirmButton: true,
-              timer: 4000
+              timer: 5000
             });
           }
         },
@@ -1006,7 +1006,7 @@ export class AccompanimentInstrumentComponent implements OnInit {
               icon: 'warning',
               title: response.Message,
               showConfirmButton: true,
-              timer: 4000
+              timer: 5000
             });
           }
         },

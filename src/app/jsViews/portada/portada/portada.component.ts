@@ -37,6 +37,9 @@ export class PortadaComponent implements OnInit {
     'assets/img/portada/PadrePatría.jpg',
     'assets/img/portada/Dist1007.jpg',
     'assets/img/portada/Dist1007_1.jpg',
+    'assets/img/portada/utileria.jpg',
+    'assets/img/portada/acompañamiento.jpg',
+    'assets/img/portada/merito.jpg',
   ];
 
   isLogin: Boolean = false;

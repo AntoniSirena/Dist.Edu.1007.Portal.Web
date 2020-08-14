@@ -109,9 +109,9 @@ export class ProfileComponent implements OnInit {
     //Llenando los input del tab persona
     this.personForm = this.form.group({
       firstName: [`${this.infoCurrentPerson.FirstName}`, Validators.required] || '',
-      secondName: [`${this.infoCurrentPerson.SecondName}`,],
+      secondName: [`${this.infoCurrentPerson.SecondName}`],
       surName: [`${this.infoCurrentPerson.SurName}`, Validators.required],
-      secondSurname: [`${this.infoCurrentPerson.SecondSurname}`,],
+      secondSurname: [`${this.infoCurrentPerson.SecondSurname}`],
       fullName: [`${this.infoCurrentPerson.FullName}`],
       birthDate: [`${this.infoCurrentPerson.BirthDate}`, Validators.required],
       genderId: [`${this.infoCurrentPerson.GenderId}`, Validators.required],
