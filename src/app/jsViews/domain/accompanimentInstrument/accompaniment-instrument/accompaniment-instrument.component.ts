@@ -18,6 +18,7 @@ import { Visit } from '../../../../models/common/visit/visit';
 import { IidentificationData } from '../../../../interfaces/domain/IccompanimentInstrument/iaccompaniment-instrument';
 import { Area } from '../../../../models/common/area/area';
 import { Indicator } from '../../../../models/common/indicator/indicator';
+import { ReportPDFResponse } from '../../../../models/reportPDF/report-pdf';
 
 
 @Component({
@@ -81,6 +82,8 @@ export class AccompanimentInstrumentComponent implements OnInit {
   suggestionsAgreement = new SuggestionsAgreement();
 
   currentRequestId: number = 0;
+
+  reportPDFResponse = new ReportPDFResponse();
 
   //Permissions
   canCreateReuqest = JSON.parse(localStorage.getItem("canCreateRequest"));
@@ -598,6 +601,66 @@ export class AccompanimentInstrumentComponent implements OnInit {
   }
 
 
+  //create Accompany Instrument PDF
+  createAccompanyInstrumentPDF(requestId: number){
+    
+    this.acompInstService.createAccompanyInstrumentPDF(requestId).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        this.reportPDFResponse = response.Data;
+        this.openAccompanyInstrumentPDF(this.reportPDFResponse.FileStream._buffer);
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+  //open Accompany Instrument PDF
+  openAccompanyInstrumentPDF(pdfBase64){
+    let pdfWindow = window.open("")
+    pdfWindow.document.write("<iframe width='100%' height='100%' src='data:application/pdf;base64, " + encodeURI(pdfBase64) + "'></iframe>")
+  }
+
+
+  //Download Accompany Instrument PDF
+  downloadAccompanyInstrumentPDF(requestId: number){
+    this.acompInstService.createAccompanyInstrumentPDF(requestId).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        this.reportPDFResponse = response.Data;
+
+        const linkSource = `data:application/pdf;base64,` + this.reportPDFResponse.FileStream._buffer;
+        const downloadLink = document.createElement("a");
+        const fileName = 'Instrumento de Acompañamiento';
+    
+        downloadLink.href = linkSource;
+        downloadLink.download = fileName;
+        downloadLink.click();
+
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
   //edit Identification Data
   editIdentificationData(formValue: any) {
     try {
@@ -777,7 +840,6 @@ export class AccompanimentInstrumentComponent implements OnInit {
   //Edit Suggestions Agreement
   editSuggestionsAgreement() {
 
-    console.log(this.suggestionsAgreement);
     this.acompInstService.updateSuggestionsAgreement(this.suggestionsAgreement).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
         Swal.fire({

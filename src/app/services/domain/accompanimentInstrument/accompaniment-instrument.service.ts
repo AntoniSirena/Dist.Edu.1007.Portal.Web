@@ -115,4 +115,8 @@ export class AccompanimentInstrumentService {
     return this.httpClient.post(`${this.apiURL}api/identificationData/CreateResearchSummary`, data, { headers: headers });
   }
 
+  createAccompanyInstrumentPDF(requestId: number): Observable<object> {
+    return this.httpClient.get(this.apiURL +  `api/identificationData/CreateAccompanyInstrumentPDF?requestId=${requestId}`);
+  }
+
 }
