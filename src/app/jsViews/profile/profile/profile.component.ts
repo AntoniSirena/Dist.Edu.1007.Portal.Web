@@ -18,12 +18,18 @@ import { Ilocator } from '../../../interfaces/Ilocator/ilocator';
 import { DocumentType } from '../../../models/common/documentType/document-type';
 import { CommonService } from '../../../services/common/common.service';
 
+import { FileReaderPromiseLikeService, FileReaderObservableLikeService } from 'fctrlx-angular-file-reader';
+
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
   encapsulation: ViewEncapsulation.None,
+  providers: [
+    FileReaderPromiseLikeService,
+    FileReaderObservableLikeService
+  ],
   styles: [`
     .dark-modal .modal-content {
       background-color: #292b2c;
@@ -46,7 +52,9 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService,
     private locatorService: LocatorService,
     private commonService: CommonService,
-    private form: FormBuilder
+    private form: FormBuilder,
+    private obsLikeService: FileReaderObservableLikeService,
+    private promiseService: FileReaderPromiseLikeService
   ) {
 
     //Cagando la data desde el servidor
@@ -80,8 +88,10 @@ export class ProfileComponent implements OnInit {
   createLocatorForm: FormGroup;
   editLocatorForm: FormGroup;
 
+  inputFiles: any = '';
 
-
+  imgProfile: string = '';
+  imgProfileOriginServer: boolean = true;
 
   //Init
   ngOnInit(): void {
@@ -91,6 +101,13 @@ export class ProfileComponent implements OnInit {
     this.setValueCreateFrom();
     this.setValueCreateLocatorFrom();
   }
+
+
+  //Se ejecuta después que el DOM finaliza un operación
+  ngAfterViewChecked() {
+    this.setProfileImg();
+  }
+
 
   openProfileModal() {
 
@@ -251,7 +268,47 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  
+  //upload file
+  uploadFile(event) {
+    this.imgProfileOriginServer = false;
+  }
+
+  //set Img Profile
+  setProfileImg() {
+    if (this.inputFiles !== '') {
+      if(this.inputFiles.length > 0){
+        this.imgProfile = this.inputFiles[0].base64;
+      }
+    }
+  }
+
+  //update Img Profile
+  updateProfileImg() {
+    this.profileService.updateProfileImagen(this.imgProfile).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        }).then(() => {
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
   setValueEditPersonFrom() {
     this.personForm = this.form.group({
       firstName: ['', Validators.required],

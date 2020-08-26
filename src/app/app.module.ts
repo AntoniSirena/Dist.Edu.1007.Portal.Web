@@ -78,6 +78,8 @@ import { FileUploadComponent } from './jsViews/fileUpload/file-upload/file-uploa
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component';
 
+//File Reader
+import { FctrlxAngularFileReader } from 'fctrlx-angular-file-reader';
 
 @NgModule({
   imports: [
@@ -100,7 +102,8 @@ import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component'
     Ng2SearchPipeModule,
     NgxPaginationModule,
     CKEditorModule,
-    NgxFileDropModule
+    NgxFileDropModule,
+    FctrlxAngularFileReader
     ],
   declarations: [
     AppComponent,

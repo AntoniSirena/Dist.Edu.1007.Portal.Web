@@ -23,14 +23,26 @@
                                 </div>
                                 <div class="card-body">
                                   <div class="form-group">
-                                  <a>
+                                  <a *ngIf="imgProfileOriginServer">
                                     <img src="data:image/png;base64,{{profile.User.Image}}" class="user-image" alt="User Image" 
                                     class="center img-avatar" style="width: 200; height: 140px;">
                                   </a>
-                                  <div class="form-group" style="margin-top: 8px;">
-                                    <input type="file" class="form-control-file" id="profileImage" 
-                                    (change)="uploadImage($event)">
-                                 </div>
+
+                                  <a *ngIf="imgProfileOriginServer == false">
+                                    <img src="{{imgProfile}}" class="user-image" alt="User Image" 
+                                    class="center img-avatar" style="width: 200; height: 140px;">
+                                  </a>
+
+                                  <div class="form-group">                         
+                                    <input fileToBase64 type="file" [(files)]="inputFiles" (filesChange)="uploadFile($event)" multiple="">
+                                  </div>
+
+                                  <div *ngIf="inputFiles !== ''" class="row">
+                                    <div class="cold-md-12 center">
+                                      <button type="button" class="btn btn-primary button_size" (click)="updateProfileImg()">Actualizar imagen</button>                                                              
+                                    </div>
+                                  </div>
+
                                   </div>
                                   <div class="form-group">
                                     <label for="usuario">Usuario</label>
