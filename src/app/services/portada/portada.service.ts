@@ -19,4 +19,8 @@ export class PortadaService {
     return this.httpClient.get(this.apiURL +  `api/portada/GetTemplate?operation=${operation}`);
   }
 
+  getNoveltiesByType(noveltyType: string): Observable<object> {
+    return this.httpClient.get(this.apiURL +  `api/portada/GetNovelties?noveltyType=${noveltyType}`);
+  }
+
 }

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { PortadaService } from '../../../services/portada/portada.service';
 import { Iresponse } from '../../../interfaces/Iresponse/iresponse';
 import { Portada } from '../../../models/portada/portada';
+import { NoveltiesByType } from '../../../models/novelty/novelty';
 
 
 @Component({
@@ -34,12 +35,12 @@ export class PortadaComponent implements OnInit {
   showNavigationArrows = false;
   showNavigationIndicators = false;
   images = [
-    'assets/img/portada/PadrePatría.jpg',
-    'assets/img/portada/Dist1007.jpg',
+    //'assets/img/portada/PadrePatría.jpg',
+    //'assets/img/portada/Dist1007.jpg',
     'assets/img/portada/Dist1007_1.jpg',
-    'assets/img/portada/utileria.jpg',
-    'assets/img/portada/acompañamiento.jpg',
-    'assets/img/portada/merito.jpg',
+    //'assets/img/portada/utileria.jpg',
+    //'assets/img/portada/acompañamiento.jpg',
+    //'assets/img/portada/merito.jpg',
   ];
 
   isLogin: Boolean = false;
@@ -54,9 +55,11 @@ export class PortadaComponent implements OnInit {
 
   portada = new Portada();
 
-  leftInfo= new Portada();
-  rightInfo= new Portada();
-  centerInfo= new Portada();
+  leftInfo = new Portada();
+  rightInfo = new Portada();
+  centerInfo = new Portada();
+
+  novelties = new Array<NoveltiesByType>();
 
   constructor(
     config: NgbCarouselConfig,
@@ -71,20 +74,13 @@ export class PortadaComponent implements OnInit {
     config.showNavigationIndicators = true;
   }
 
+
   ngOnInit(): void {
     this.getTemplateLeftInfo('LeftInfo');
     this.getTemplateRightInfo('RightInfo');
     this.getTemplateCenterInfo('CenterInfo');
-  }
-
-
-  alert() {
-    alert(true);
-  }
-
-
-  vision() {
-
+    
+    this.getNoveltiesByType("Science");
   }
 
 
@@ -110,7 +106,7 @@ export class PortadaComponent implements OnInit {
   }
 
   //Get template right info
-  getTemplateRightInfo(operation: string){
+  getTemplateRightInfo(operation: string) {
     this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
         this.rightInfo = response.Data;
@@ -129,7 +125,7 @@ export class PortadaComponent implements OnInit {
   }
 
   //Get template right left
-  getTemplateLeftInfo(operation: string){
+  getTemplateLeftInfo(operation: string) {
     this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
         this.leftInfo = response.Data;
@@ -148,24 +144,34 @@ export class PortadaComponent implements OnInit {
   }
 
 
-    //Get template right center
-    getTemplateCenterInfo(operation: string){
-      this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
-        if (response.Code === '000') {
-          this.centerInfo = response.Data;
-        } else {
-          Swal.fire({
-            icon: 'warning',
-            title: response.Message,
-            showConfirmButton: true,
-            timer: 4000
-          });
-        }
-      },
-        error => {
-          console.log(JSON.stringify(error));
+  //Get novelties by type
+  getNoveltiesByType(type: string){
+    this.portadaService.getNoveltiesByType(type).subscribe((response: Array<NoveltiesByType>) => {
+      this.novelties = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  //Get template right center
+  getTemplateCenterInfo(operation: string) {
+    this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        this.centerInfo = response.Data;
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
         });
-    }
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
 
   //open misión modal
   openMisionModal(operation: string) {

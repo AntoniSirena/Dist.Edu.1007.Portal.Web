@@ -45,6 +45,8 @@ import { FileReaderPromiseLikeService, FileReaderObservableLikeService } from 'f
 })
 export class ProfileComponent implements OnInit {
 
+  isVisitorUser: boolean = JSON.parse(localStorage.getItem("isVisitorUser"));
+
   //constructor
   constructor(
     private modalService: NgbModal,
@@ -58,13 +60,15 @@ export class ProfileComponent implements OnInit {
   ) {
 
     //Cagando la data desde el servidor
-    this.profile = this.baseService.getProfile();
-    this.getGenders();
-    this.getDocumentTypes();
-    this.getInfoCurrentUser();
-    this.getInfoCurrentPerson();
-    this.getLocatorsTypes();
-    this.getInfoCurrentLocators();
+    if(!this.isVisitorUser){
+      this.profile = this.baseService.getProfile();
+      this.getGenders();
+      this.getDocumentTypes();
+      this.getInfoCurrentUser();
+      this.getInfoCurrentPerson();
+      this.getLocatorsTypes();
+      this.getInfoCurrentLocators();
+    }
 
   }
 

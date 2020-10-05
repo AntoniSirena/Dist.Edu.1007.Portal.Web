@@ -40,12 +40,10 @@ export class LoginComponent implements OnInit {
     });
 
     this.getValueRegisterButton();
-
   };
 
 
   redirectPortada(){
-
     const login: Ilogin = {
       UserName: 'visitador',
       Password: 'visitador123',

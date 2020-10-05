@@ -80,6 +80,7 @@ import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component'
 
 //File Reader
 import { FctrlxAngularFileReader } from 'fctrlx-angular-file-reader';
+import { NoveltyComponent } from './jsViews/novelty/novelty/novelty.component';
 
 @NgModule({
   imports: [
@@ -132,7 +133,8 @@ import { FctrlxAngularFileReader } from 'fctrlx-angular-file-reader';
     TemplateComponent,
     PrePortadaComponent,
     FileUploadComponent,
-    MyFilesComponent
+    MyFilesComponent,
+    NoveltyComponent
 
   ],
   providers: [

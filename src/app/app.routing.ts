@@ -29,6 +29,7 @@ import { TemplateComponent } from './jsViews/template/template.component';
 import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portada.component';
 import { FileUploadComponent } from './jsViews/fileUpload/file-upload/file-upload.component';
 import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component';
+import { NoveltyComponent } from './jsViews/novelty/novelty/novelty.component';
 
 
 export const routes: Routes = [
@@ -275,6 +276,14 @@ export const routes: Routes = [
           title: 'Mis archivos'
         }
       },
+      {
+        path: 'novelties',
+        canActivate: [AuthGuard],
+        component: NoveltyComponent,
+        data: {
+          title: 'Novedades'
+        }
+      },
 
     ]
   },
@@ -287,7 +296,7 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+exports: [ RouterModule ]
 })
 export class AppRoutingModule {
   

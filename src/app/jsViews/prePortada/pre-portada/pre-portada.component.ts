@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RedirectService } from '../../../services/redirect/redirect.service';
 import { Router } from '@angular/router';
 import { Ilogin } from '../../../interfaces/Ilogin/ilogin';
@@ -10,28 +11,32 @@ import { Ilogin } from '../../../interfaces/Ilogin/ilogin';
 })
 export class PrePortadaComponent implements OnInit {
 
+  loginForm: FormGroup;
+
   constructor(private redirectService: RedirectService,
-    private router: Router) {
+    private router: Router,
+    private form: FormBuilder) {
 
   }
 
   ngOnInit(): void {
-    
+    this.loginForm = this.form.group({
+      userName: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+
+    this.redirectPortada();
   }
 
 
-  loginUserVisit() {
+  redirectPortada(){
     const login: Ilogin = {
-      UserName: 'admin',
-      Password: 'admin123',
+      UserName: 'visitador',
+      Password: 'visitador123',
       EmailAddress: null
     };
 
-    this.redirectService.SubmitLogin(login, true);
-    this.router.navigate(['/portada']).then( () => {
-      window.location.reload();
-    });
-    window.location.reload();
+    this.redirectService.SubmitLogin(login, true, true);
   }
 
 }

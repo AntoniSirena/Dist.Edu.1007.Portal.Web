@@ -7,7 +7,7 @@
     <!--Principal title-->
     <div class="row">
       <div class="col-md-12">
-        <button class="btn btn-primary Header">Bienvenido a su Dist.Edu.1007 de Guerra</button>
+        <button class="btn btn-primary Header">Bienvenido al Distrito Educativo 10-07</button>
       </div>
     </div>
     <br>
@@ -29,7 +29,7 @@
               <li class="nav-item dropdown btn-primary">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  <span style="font-weight: bold;">ÉTICA</span>
+                  <span style="font-weight: bold;">Filosofía Institucional</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" (click)="openMisionModal('Mision')">Misión</a>
@@ -55,15 +55,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 </div>
               </li>
-              <li class="nav-item dropdown btn-danger">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <span style="font-weight: bold;">NOTICIAS</span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  
-                </div>
-              </li>
+              
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Buscar">
@@ -80,7 +72,7 @@
 
       <!--Col1-->
       <div class="col-md-2">
-        <div class="container-fluid">
+        <!-- <div class="container-fluid">
           <br>
           <br>
           
@@ -90,7 +82,24 @@
             </div>
           </div>
 
+        </div> -->
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">               
+                
+                <div class="row textLateralStyle">
+                  <div class="col-md-12">
+                    <p [innerHTML]="leftInfo.Body"> </p>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
 
 
@@ -117,13 +126,188 @@
             <br>
             <br>
 
-            <div class="row textColorWhite">
+            <!--<div class="row textColorWhite">
               <div class="col-md-12">
                 <span [innerHTML]="centerInfo.Body"> </span>
               </div>
-            </div>
-    
-            <br>
+            </div> -->
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="card-header">
+                        <h3 class="center">Novedades y Noticias</h3>
+                      </div>
+                      <br>
+                      <ngb-tabset [destroyOnHide]="false">
+                        <ngb-tab>
+                          <ng-template ngbTabTitle>
+                            <div (click)="getNoveltiesByType('Science')" class="bold">Del mundo de la Ciencia</div>
+                          </ng-template>
+
+                          <ng-template ngbTabContent>
+
+                            <div *ngFor="let item of novelties" class="border novelty">
+                              <h4 class="noveltyText">{{item.Title}}</h4>
+                              <div class="col-md-4">
+                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                              </div>
+                              <p class="justify noveltyText">
+                                {{item.Description}}
+                              </p>
+                            </div>
+
+                          </ng-template>
+                        </ngb-tab>
+
+                        <ngb-tab>
+                          <ng-template ngbTabTitle>
+                            <div (click)="getNoveltiesByType('Sporty')" class="bold">Deportiva</div>
+                          </ng-template>
+
+                          <ng-template ngbTabContent>
+
+                            <div *ngFor="let item of novelties" class="border novelty">
+                              <h4 class="noveltyText">{{item.Title}}</h4>
+                              <div class="col-md-4">
+                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                              </div>
+                              <p class="justify noveltyText">
+                                {{item.Description}}
+                              </p>
+                            </div>
+
+                          </ng-template>
+                        </ngb-tab>
+
+                        <ngb-tab>
+                          <ng-template ngbTabTitle>
+                            <div (click)="getNoveltiesByType('Politics')" class="bold">Política</div>
+                          </ng-template>
+
+                          <ng-template ngbTabContent>
+
+                            <div *ngFor="let item of novelties" class="border novelty">
+                              <h4 class="noveltyText">{{item.Title}}</h4>
+                              <div class="col-md-4">
+                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                              </div>
+                              <p class="justify noveltyText">
+                                {{item.Description}}
+                              </p>
+                            </div>
+
+                          </ng-template>
+                        </ngb-tab>
+
+                        <ngb-tab>
+                          <ng-template ngbTabTitle>
+                            <div (click)="getNoveltiesByType('Show')" class="bold">Del Espectáculo</div>
+                          </ng-template>
+
+                          <ng-template ngbTabContent>
+
+                            <div *ngFor="let item of novelties" class="border novelty">
+                              <h4 class="noveltyText">{{item.Title}}</h4>
+                              <div class="col-md-4">
+                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                              </div>
+                              <p class="justify noveltyText">
+                                {{item.Description}}
+                              </p>
+                            </div>
+
+                          </ng-template>
+                        </ngb-tab>
+
+                        <ngb-tab>
+                          <ng-template ngbTabTitle>
+                            <div (click)="getNoveltiesByType('Unusual')" class="bold">Insólita</div>
+                          </ng-template>
+
+                          <ng-template ngbTabContent>
+
+                            <div *ngFor="let item of novelties" class="border novelty">
+                              <h4 class="noveltyText">{{item.Title}}</h4>
+                              <div class="col-md-4">
+                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                              </div>
+                              <p class="justify noveltyText">
+                                {{item.Description}}
+                              </p>
+                            </div>
+
+                          </ng-template>
+                        </ngb-tab>
+
+                        <ngb-tab>
+                          <ng-template ngbTabTitle>
+                            <div (click)="getNoveltiesByType('Economy')" class="bold">De Economía</div>
+                          </ng-template>
+
+                          <ng-template ngbTabContent>
+
+                            <div *ngFor="let item of novelties" class="border novelty">
+                              <h4 class="noveltyText">{{item.Title}}</h4>
+                              <div class="col-md-4">
+                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                              </div>
+                              <p class="justify noveltyText">
+                                {{item.Description}}
+                              </p>
+                            </div>
+
+                          </ng-template>
+                        </ngb-tab>
+
+                        <ngb-tab>
+                          <ng-template ngbTabTitle>
+                            <div (click)="getNoveltiesByType('Art')" class="bold">Del Arte</div>
+                          </ng-template>
+
+                          <ng-template ngbTabContent>
+
+                            <div *ngFor="let item of novelties" class="border novelty">
+                              <h4 class="noveltyText">{{item.Title}}</h4>
+                              <div class="col-md-4">
+                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                              </div>
+                              <p class="justify noveltyText">
+                                {{item.Description}}
+                              </p>
+                            </div>
+
+                          </ng-template>
+                        </ngb-tab>
+
+                        <ngb-tab>
+                          <ng-template ngbTabTitle>
+                            <div (click)="getNoveltiesByType('Police')" class="bold">Policiale</div>
+                          </ng-template>
+
+                          <ng-template ngbTabContent>
+
+                            <div *ngFor="let item of novelties" class="border novelty">
+                              <h4 class="noveltyText">{{item.Title}}</h4>
+                              <div class="col-md-4">
+                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                              </div>
+                              <p class="justify noveltyText">
+                                {{item.Description}}
+                              </p>
+                            </div>
+
+                          </ng-template>
+                        </ngb-tab>
+
+                      </ngb-tabset>
+      
+                    </div>
+                  </div>
+                </div>
+              </div>
+
           </div>
         </div>
 
@@ -132,7 +316,7 @@
 
       <!--Col3-->
       <div class="col-md-2">
-        <div class="container-fluid">
+        <!-- <div class="container-fluid">
           <br>
           <br>
 
@@ -142,7 +326,24 @@
             </div>
           </div>
 
+        </div> -->
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                
+                <div class="row textLateralStyle">
+                  <div class="col-md-12">
+                    <span [innerHTML]="rightInfo.Body"> </span>
+                  </div>
+                </div>       
+
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
 
     </div>
