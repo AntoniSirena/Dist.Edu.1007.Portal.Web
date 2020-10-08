@@ -75,14 +75,14 @@ export class PortadaComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.getTemplateLeftInfo('LeftInfo');
     this.getTemplateRightInfo('RightInfo');
     this.getTemplateCenterInfo('CenterInfo');
-    
+
     this.getNoveltiesByType("Science");
   }
-
+  
 
   //Get template
   getTemplate(operation: string) {
@@ -145,7 +145,7 @@ export class PortadaComponent implements OnInit {
 
 
   //Get novelties by type
-  getNoveltiesByType(type: string){
+  getNoveltiesByType(type: string) {
     this.portadaService.getNoveltiesByType(type).subscribe((response: Array<NoveltiesByType>) => {
       this.novelties = response;
     },

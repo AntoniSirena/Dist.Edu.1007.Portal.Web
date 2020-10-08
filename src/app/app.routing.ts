@@ -32,10 +32,14 @@ import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component'
 import { NoveltyComponent } from './jsViews/novelty/novelty/novelty.component';
 
 
+
+var canViewLoginForm = localStorage.getItem('canViewLoginForm') || false;
+var startPage = canViewLoginForm == false ? 'login' : 'portada';
+
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: startPage,
     pathMatch: 'full',
   },
   {
@@ -117,7 +121,7 @@ export const routes: Routes = [
       },
       {
         path: 'portada',
-        canActivate: [AuthGuard],
+        //canActivate: [AuthGuard],
         component: PortadaComponent,
         data: {
           title: 'Portada'

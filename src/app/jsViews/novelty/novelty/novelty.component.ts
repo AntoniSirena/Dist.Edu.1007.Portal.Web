@@ -39,7 +39,6 @@ export class NoveltyComponent implements OnInit {
 
   inputFiles: any = '';
 
-
   //Permissions
   canCreate = JSON.parse(localStorage.getItem("canCreate"));
   canEdit = JSON.parse(localStorage.getItem("canEdit"));
@@ -130,6 +129,7 @@ export class NoveltyComponent implements OnInit {
   openEditModal(editModal, id: number) {
     this.getById(id);
     this.setValueEditFrom();
+    this.getNoveltyTypes();
     this.modalService.open(editModal, { size: 'lg' });
   }
 
@@ -202,6 +202,98 @@ export class NoveltyComponent implements OnInit {
   }
 
 
+  //edit
+  edit(formValue: any) {
+    const novelty: INovelty = {
+      Id: this.novelty.Id,
+      Title: formValue.title,
+      Description: formValue.description,
+      IsEnabled: formValue.isEnabled,
+      IsPublic: formValue.isPublic,
+      NoveltyTypeId: formValue.noveltyTypeId,
+      Img: this.novelty.Img,
+      ImgPath: this.novelty.ImgPath,
+      StartDate: formValue.startDate,
+      EndDate: formValue.endDate,
+      CreatorUserId: this.novelty.CreatorUserId,
+      CreationTime: this.novelty.CreationTime,
+      LastModifierUserId: this.novelty.LastModifierUserId,
+      LastModificationTime: this.novelty.LastModificationTime,
+      DeleterUserId: this.novelty.DeleterUserId,
+      DeletionTime: this.novelty.DeletionTime,
+      IsActive: this.novelty.IsActive,
+      IsDeleted: this.novelty.IsDeleted
+    };
+
+    this.noveltyService.update(novelty).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 2000
+        }).then(() => {
+          this.getAll();
+          this.modalService.dismissAll();
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+
+  }
+
+  //delete
+  delete(id: number) {
+
+    Swal.fire({
+      title: 'Esta seguro que desea eliminar el registro ?',
+      text: "Los cambios no podran ser revertidos!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar!'
+    }).then((result) => {
+      if (result.value) {
+        //delete service
+        this.noveltyService.delete(id).subscribe((response: Iresponse) => {
+          if (response.Code === '000') {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 2000
+            }).then(() => {
+              this.getAll();
+              this.modalService.dismissAll();
+            });
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 3000
+            });
+          }
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
+
+      }
+    })
+  }
 
   //create from set value ''
   setValueCreateFrom() {

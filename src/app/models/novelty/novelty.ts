@@ -15,6 +15,8 @@ export class Novelty extends Audit{
     ImgPath: string;
     StartDate: string;
     EndDate: string;
+    ContenTypeShort: string;
+    ContenTypeLong: string;
 }
 
 export class NoveltyType {
@@ -28,4 +30,6 @@ export class  NoveltiesByType {
     Title: string;
     Description: string;
     ImgBase64: string;
+    ContenTypeShort: string;
+    ContenTypeLong: string;
 }

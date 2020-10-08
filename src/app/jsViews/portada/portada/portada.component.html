@@ -136,14 +136,21 @@
                 <div class="col-sm-12">
                   <div class="card">
                     <div class="card-body">
+
                       <div class="card-header">
-                        <h3 class="center">Novedades y Noticias</h3>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h3 class="center">Novedades y Noticias</h3>
+                          </div>
+                        </div>
                       </div>
+
                       <br>
                       <ngb-tabset [destroyOnHide]="false">
+                        
                         <ngb-tab>
                           <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Science')" class="bold">Del mundo de la Ciencia</div>
+                            <div (click)="getNoveltiesByType('Science')" class="bold">Ciencia y Tecnología</div>
                           </ng-template>
 
                           <ng-template ngbTabContent>
@@ -151,7 +158,7 @@
                             <div *ngFor="let item of novelties" class="border novelty">
                               <h4 class="noveltyText">{{item.Title}}</h4>
                               <div class="col-md-4">
-                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
                               </div>
                               <p class="justify noveltyText">
                                 {{item.Description}}
@@ -163,7 +170,7 @@
 
                         <ngb-tab>
                           <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Sporty')" class="bold">Deportiva</div>
+                            <div (click)="getNoveltiesByType('Sporty')" class="bold">Deporte</div>
                           </ng-template>
 
                           <ng-template ngbTabContent>
@@ -171,7 +178,7 @@
                             <div *ngFor="let item of novelties" class="border novelty">
                               <h4 class="noveltyText">{{item.Title}}</h4>
                               <div class="col-md-4">
-                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
                               </div>
                               <p class="justify noveltyText">
                                 {{item.Description}}
@@ -191,7 +198,7 @@
                             <div *ngFor="let item of novelties" class="border novelty">
                               <h4 class="noveltyText">{{item.Title}}</h4>
                               <div class="col-md-4">
-                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
                               </div>
                               <p class="justify noveltyText">
                                 {{item.Description}}
@@ -203,7 +210,7 @@
 
                         <ngb-tab>
                           <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Show')" class="bold">Del Espectáculo</div>
+                            <div (click)="getNoveltiesByType('Show')" class="bold">Espectáculo</div>
                           </ng-template>
 
                           <ng-template ngbTabContent>
@@ -211,7 +218,7 @@
                             <div *ngFor="let item of novelties" class="border novelty">
                               <h4 class="noveltyText">{{item.Title}}</h4>
                               <div class="col-md-4">
-                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
                               </div>
                               <p class="justify noveltyText">
                                 {{item.Description}}
@@ -231,7 +238,7 @@
                             <div *ngFor="let item of novelties" class="border novelty">
                               <h4 class="noveltyText">{{item.Title}}</h4>
                               <div class="col-md-4">
-                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
                               </div>
                               <p class="justify noveltyText">
                                 {{item.Description}}
@@ -243,7 +250,7 @@
 
                         <ngb-tab>
                           <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Economy')" class="bold">De Economía</div>
+                            <div (click)="getNoveltiesByType('Economy')" class="bold">Economía</div>
                           </ng-template>
 
                           <ng-template ngbTabContent>
@@ -251,7 +258,7 @@
                             <div *ngFor="let item of novelties" class="border novelty">
                               <h4 class="noveltyText">{{item.Title}}</h4>
                               <div class="col-md-4">
-                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
                               </div>
                               <p class="justify noveltyText">
                                 {{item.Description}}
@@ -263,7 +270,7 @@
 
                         <ngb-tab>
                           <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Art')" class="bold">Del Arte</div>
+                            <div (click)="getNoveltiesByType('Art')" class="bold">Arte</div>
                           </ng-template>
 
                           <ng-template ngbTabContent>
@@ -271,7 +278,7 @@
                             <div *ngFor="let item of novelties" class="border novelty">
                               <h4 class="noveltyText">{{item.Title}}</h4>
                               <div class="col-md-4">
-                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
                               </div>
                               <p class="justify noveltyText">
                                 {{item.Description}}
@@ -291,7 +298,27 @@
                             <div *ngFor="let item of novelties" class="border novelty">
                               <h4 class="noveltyText">{{item.Title}}</h4>
                               <div class="col-md-4">
-                                <img src="data:image/png;base64,{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                              </div>
+                              <p class="justify noveltyText">
+                                {{item.Description}}
+                              </p>
+                            </div>
+
+                          </ng-template>
+                        </ngb-tab>
+
+                        <ngb-tab>
+                          <ng-template ngbTabTitle>
+                            <div (click)="getNoveltiesByType('Education')" class="bold">Educación</div>
+                          </ng-template>
+
+                          <ng-template ngbTabContent>
+
+                            <div *ngFor="let item of novelties" class="border novelty">
+                              <h4 class="noveltyText">{{item.Title}}</h4>
+                              <div class="col-md-4">
+                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
                               </div>
                               <p class="justify noveltyText">
                                 {{item.Description}}

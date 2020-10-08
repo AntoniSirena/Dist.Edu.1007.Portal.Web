@@ -130,7 +130,6 @@ export class TemplateComponent implements OnInit {
         }).then(() => {
           this.getTemplates();
           this.modalService.dismissAll();
-          window.location.reload();
         });
       } else {
         Swal.fire({

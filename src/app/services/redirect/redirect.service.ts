@@ -128,7 +128,7 @@ export class RedirectService {
             timer: 2000
           });
         } else {
-          window.location.reload();
+          //window.location.reload();
         }
       }
 
@@ -153,7 +153,7 @@ export class RedirectService {
 
       if (isAutGuard) {
         this.router.navigate(['login']).then(() => {
-          window.location.reload();
+          //window.location.reload();
         });
       } else {
         this.router.navigate(['login']).then(() => {
@@ -163,7 +163,7 @@ export class RedirectService {
             showConfirmButton: false,
             timer: 4000
           }).then(() => {
-            window.location.reload();
+            //window.location.reload();
           });
         });
       }
@@ -175,14 +175,14 @@ export class RedirectService {
   logout() {
 
     this.router.navigate(['login']).then(() => {
-      Swal.fire({
+      /* Swal.fire({
         icon: 'success',
         title: 'Sesión cerrada con exito',
         showConfirmButton: false,
         timer: 1000
       }).then(() => {
-        window.location.reload();
-      });
+        
+      }); */
     });
 
     let userId = JSON.parse(localStorage.getItem('userId'));
@@ -202,7 +202,7 @@ export class RedirectService {
       showConfirmButton: false,
       timer: 4000
     }).then(() => {
-      window.location.reload();
+      //window.location.reload();
     });
   }
 
@@ -235,7 +235,7 @@ export class RedirectService {
         timer: 4000
       }).then(() => {
         this.router.navigate(['login']);
-        window.location.reload();
+        //window.location.reload();
       });
     }
   }

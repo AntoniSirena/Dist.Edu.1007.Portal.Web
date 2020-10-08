@@ -45,7 +45,7 @@ import { FileReaderPromiseLikeService, FileReaderObservableLikeService } from 'f
 })
 export class ProfileComponent implements OnInit {
 
-  isVisitorUser: boolean = JSON.parse(localStorage.getItem("isVisitorUser"));
+  isVisitorUser: boolean = JSON.parse(localStorage.getItem("isVisitorUser")) || false;
 
   //constructor
   constructor(

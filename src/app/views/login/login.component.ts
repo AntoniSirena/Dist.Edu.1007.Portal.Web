@@ -32,12 +32,19 @@ export class LoginComponent implements OnInit {
 
   valueRegisterButton: string;
 
-  ngOnInit() {
+  canViewLoginForm = localStorage.getItem('canViewLoginForm') || false;
 
+
+  //Init
+  ngOnInit() {
     this.loginForm = this.form.group({
       userName: ['', Validators.required],
       password: ['', Validators.required],
     });
+
+    if(!this.canViewLoginForm){
+      this.redirectPortada();
+    }
 
     this.getValueRegisterButton();
   };
@@ -51,6 +58,7 @@ export class LoginComponent implements OnInit {
     };
 
     this.redirectService.SubmitLogin(login, true, true);
+    localStorage.setItem("canViewLoginForm", JSON.stringify(true));
   }
 
 
