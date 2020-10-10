@@ -18,7 +18,7 @@
       <div class="col-md-12">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand btn-white">Menú</a>
+          <a class="navbar-brand btn-white" style="font-weight: bold;">MENU</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -26,10 +26,10 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item dropdown btn-primary">
+              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  <span style="font-weight: bold;">Filosofía Institucional</span>
+                  <span style="font-weight: bold;">FILOSOFIA INSTITUCIONAL</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" (click)="openMisionModal('Mision')">Misión</a>
@@ -37,7 +37,7 @@
                   <a class="dropdown-item" (click)="openValoresModal('Valores')">Valores</a>
                 </div>
               </li>
-              <li class="nav-item dropdown btn-danger">
+              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span style="font-weight: bold;">SOBRE NOSOTROS</span>
@@ -47,7 +47,7 @@
                     2019-2004</a>
                 </div>
               </li>
-              <li class="nav-item dropdown btn-primary">
+              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span style="font-weight: bold;">SERVICIOS</span>
@@ -89,7 +89,39 @@
             <div class="card">
               <div class="card-body">               
                 
-                <div class="row textLateralStyle">
+                <div class="row textLateralStyle lateralsDivScroll">
+                  <div class="col-md-12">
+                    <p [innerHTML]="leftInfo.Body"> </p>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">               
+                
+                <div class="row textLateralStyle lateralsDivScroll">
+                  <div class="col-md-12">
+                    <p [innerHTML]="leftInfo.Body"> </p>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">               
+                
+                <div class="row textLateralStyle lateralsDivScroll">
                   <div class="col-md-12">
                     <p [innerHTML]="leftInfo.Body"> </p>
                   </div>
@@ -155,14 +187,16 @@
 
                           <ng-template ngbTabContent>
 
-                            <div *ngFor="let item of novelties" class="border novelty">
-                              <h4 class="noveltyText">{{item.Title}}</h4>
-                              <div class="col-md-4">
-                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                            <div class="centerDivScroll">
+                              <div *ngFor="let item of novelties" class="border novelty">
+                                <h4 class="noveltyText">{{item.Title}}</h4>
+                                <div class="col-md-4">
+                                  <img src="{{item.ImgBase64}}" class="imgStyle">
+                                </div>
+                                <p class="justify noveltyText">
+                                  {{item.Description}}
+                                </p>
                               </div>
-                              <p class="justify noveltyText">
-                                {{item.Description}}
-                              </p>
                             </div>
 
                           </ng-template>
@@ -175,14 +209,16 @@
 
                           <ng-template ngbTabContent>
 
-                            <div *ngFor="let item of novelties" class="border novelty">
-                              <h4 class="noveltyText">{{item.Title}}</h4>
-                              <div class="col-md-4">
-                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                            <div class="centerDivScroll">
+                              <div *ngFor="let item of novelties" class="border novelty">
+                                <h4 class="noveltyText">{{item.Title}}</h4>
+                                <div class="col-md-4">
+                                  <img src="{{item.ImgBase64}}" class="imgStyle">
+                                </div>
+                                <p class="justify noveltyText">
+                                  {{item.Description}}
+                                </p>
                               </div>
-                              <p class="justify noveltyText">
-                                {{item.Description}}
-                              </p>
                             </div>
 
                           </ng-template>
@@ -195,14 +231,16 @@
 
                           <ng-template ngbTabContent>
 
-                            <div *ngFor="let item of novelties" class="border novelty">
-                              <h4 class="noveltyText">{{item.Title}}</h4>
-                              <div class="col-md-4">
-                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                            <div class="centerDivScroll">
+                              <div *ngFor="let item of novelties" class="border novelty">
+                                <h4 class="noveltyText">{{item.Title}}</h4>
+                                <div class="col-md-4">
+                                  <img src="{{item.ImgBase64}}" class="imgStyle">
+                                </div>
+                                <p class="justify noveltyText">
+                                  {{item.Description}}
+                                </p>
                               </div>
-                              <p class="justify noveltyText">
-                                {{item.Description}}
-                              </p>
                             </div>
 
                           </ng-template>
@@ -215,14 +253,16 @@
 
                           <ng-template ngbTabContent>
 
-                            <div *ngFor="let item of novelties" class="border novelty">
-                              <h4 class="noveltyText">{{item.Title}}</h4>
-                              <div class="col-md-4">
-                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                            <div class="centerDivScroll">
+                              <div *ngFor="let item of novelties" class="border novelty">
+                                <h4 class="noveltyText">{{item.Title}}</h4>
+                                <div class="col-md-4">
+                                  <img src="{{item.ImgBase64}}" class="imgStyle">
+                                </div>
+                                <p class="justify noveltyText">
+                                  {{item.Description}}
+                                </p>
                               </div>
-                              <p class="justify noveltyText">
-                                {{item.Description}}
-                              </p>
                             </div>
 
                           </ng-template>
@@ -235,14 +275,16 @@
 
                           <ng-template ngbTabContent>
 
-                            <div *ngFor="let item of novelties" class="border novelty">
-                              <h4 class="noveltyText">{{item.Title}}</h4>
-                              <div class="col-md-4">
-                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                            <div class="centerDivScroll">
+                              <div *ngFor="let item of novelties" class="border novelty">
+                                <h4 class="noveltyText">{{item.Title}}</h4>
+                                <div class="col-md-4">
+                                  <img src="{{item.ImgBase64}}" class="imgStyle">
+                                </div>
+                                <p class="justify noveltyText">
+                                  {{item.Description}}
+                                </p>
                               </div>
-                              <p class="justify noveltyText">
-                                {{item.Description}}
-                              </p>
                             </div>
 
                           </ng-template>
@@ -255,14 +297,16 @@
 
                           <ng-template ngbTabContent>
 
-                            <div *ngFor="let item of novelties" class="border novelty">
-                              <h4 class="noveltyText">{{item.Title}}</h4>
-                              <div class="col-md-4">
-                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                            <div class="centerDivScroll">
+                              <div *ngFor="let item of novelties" class="border novelty">
+                                <h4 class="noveltyText">{{item.Title}}</h4>
+                                <div class="col-md-4">
+                                  <img src="{{item.ImgBase64}}" class="imgStyle">
+                                </div>
+                                <p class="justify noveltyText">
+                                  {{item.Description}}
+                                </p>
                               </div>
-                              <p class="justify noveltyText">
-                                {{item.Description}}
-                              </p>
                             </div>
 
                           </ng-template>
@@ -275,14 +319,16 @@
 
                           <ng-template ngbTabContent>
 
-                            <div *ngFor="let item of novelties" class="border novelty">
-                              <h4 class="noveltyText">{{item.Title}}</h4>
-                              <div class="col-md-4">
-                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                            <div class="centerDivScroll">
+                              <div *ngFor="let item of novelties" class="border novelty">
+                                <h4 class="noveltyText">{{item.Title}}</h4>
+                                <div class="col-md-4">
+                                  <img src="{{item.ImgBase64}}" class="imgStyle">
+                                </div>
+                                <p class="justify noveltyText">
+                                  {{item.Description}}
+                                </p>
                               </div>
-                              <p class="justify noveltyText">
-                                {{item.Description}}
-                              </p>
                             </div>
 
                           </ng-template>
@@ -295,14 +341,16 @@
 
                           <ng-template ngbTabContent>
 
-                            <div *ngFor="let item of novelties" class="border novelty">
-                              <h4 class="noveltyText">{{item.Title}}</h4>
-                              <div class="col-md-4">
-                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                            <div class="centerDivScroll">
+                              <div *ngFor="let item of novelties" class="border novelty">
+                                <h4 class="noveltyText">{{item.Title}}</h4>
+                                <div class="col-md-4">
+                                  <img src="{{item.ImgBase64}}" class="imgStyle">
+                                </div>
+                                <p class="justify noveltyText">
+                                  {{item.Description}}
+                                </p>
                               </div>
-                              <p class="justify noveltyText">
-                                {{item.Description}}
-                              </p>
                             </div>
 
                           </ng-template>
@@ -315,14 +363,16 @@
 
                           <ng-template ngbTabContent>
 
-                            <div *ngFor="let item of novelties" class="border novelty">
-                              <h4 class="noveltyText">{{item.Title}}</h4>
-                              <div class="col-md-4">
-                                <img src="{{item.ImgBase64}}" style="width: 300px; height: 150px;" class="img-responsive">
+                            <div class="centerDivScroll">
+                              <div *ngFor="let item of novelties" class="border novelty">
+                                <h4 class="noveltyText">{{item.Title}}</h4>
+                                <div class="col-md-4">
+                                  <img src="{{item.ImgBase64}}" class="imgStyle">
+                                </div>
+                                <p class="justify noveltyText">
+                                  {{item.Description}}
+                                </p>
                               </div>
-                              <p class="justify noveltyText">
-                                {{item.Description}}
-                              </p>
                             </div>
 
                           </ng-template>
@@ -360,11 +410,43 @@
             <div class="card">
               <div class="card-body">
                 
-                <div class="row textLateralStyle">
+                <div class="row textLateralStyle lateralsDivScroll">
                   <div class="col-md-12">
                     <span [innerHTML]="rightInfo.Body"> </span>
                   </div>
-                </div>       
+                </div> 
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                
+                <div class="row textLateralStyle lateralsDivScroll">
+                  <div class="col-md-12">
+                    <span [innerHTML]="rightInfo.Body"> </span>
+                  </div>
+                </div> 
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                
+                <div class="row textLateralStyle lateralsDivScroll">
+                  <div class="col-md-12">
+                    <span [innerHTML]="rightInfo.Body"> </span>
+                  </div>
+                </div> 
 
               </div>
             </div>

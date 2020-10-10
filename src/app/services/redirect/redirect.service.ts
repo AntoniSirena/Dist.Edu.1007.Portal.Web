@@ -38,7 +38,7 @@ export class RedirectService {
             icon: 'success',
             title: response.Message,
             showConfirmButton: true,
-            timer: 2000
+            timer: 3000
           }).then(() => {
             //Cache info
 
@@ -125,7 +125,7 @@ export class RedirectService {
             icon: 'warning',
             title: response.Message,
             showConfirmButton: true,
-            timer: 2000
+            timer: 7000
           });
         } else {
           //window.location.reload();

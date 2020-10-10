@@ -88,3 +88,18 @@
     margin-left: 15px;
     margin-right: 15px;
 }
+
+.imgStyle{
+    width: 250px; 
+    height: 150px;
+}
+
+.lateralsDivScroll{
+    overflow-y:scroll;
+    height: 318px;
+}
+
+.centerDivScroll{
+    overflow-y:scroll;
+    height: 500px;
+}

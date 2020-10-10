@@ -127,8 +127,8 @@ export class NoveltyComponent implements OnInit {
 
   //open edit modal
   openEditModal(editModal, id: number) {
-    this.getById(id);
     this.setValueEditFrom();
+    this.getById(id);
     this.getNoveltyTypes();
     this.modalService.open(editModal, { size: 'lg' });
   }

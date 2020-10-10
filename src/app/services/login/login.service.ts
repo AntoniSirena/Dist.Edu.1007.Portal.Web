@@ -15,8 +15,8 @@ export class LoginService {
     this.apiURL = environment.apiURL;
   }
 
-  authenticate(login: Ilogin) {
-    let Json = JSON.stringify(login);
+  authenticate(request: Ilogin) {
+    let Json = JSON.stringify(request);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient.post(this.apiURL + 'api/login/authenticate', Json, { headers: headers });
@@ -27,6 +27,20 @@ export class LoginService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient.post(this.apiURL + 'api/login/logOut', Json, { headers: headers });
+  }
+
+  resetPassword(request: Ilogin) {
+    let Json = JSON.stringify(request);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.httpClient.post(this.apiURL + 'api/login/resetPassword', Json, { headers: headers });
+  }
+
+  confirmPassword(request: Ilogin) {
+    let Json = JSON.stringify(request);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.httpClient.post(this.apiURL + 'api/login/updatePassword', Json, { headers: headers });
   }
 
 }

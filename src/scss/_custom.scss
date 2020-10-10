@@ -47,7 +47,7 @@
 
   .portadaButton{
     font-size: 30px;
-    width: 50%;
+    width: 100%;
     border-radius: 4px;
   }
 
@@ -122,6 +122,25 @@
     border-radius: 4px;
   }
 
+  .buttonSize_Closed{
+    font-size: 19px;
+    width: 90px;
+    border-radius: 4px;
+    margin-right: 40px;
+  }
+
+  .buttonSize_Standar_Save{
+    font-size: 19px;
+    width: 90px;
+    border-radius: 4px;
+  }
+
+  .buttonSize_Standar_Close{
+    font-size: 19px;
+    width: 90px;
+    border-radius: 4px;
+  }
+
   .portadaLoginButton{
     font-size: 17px;
     width: 120px;
@@ -132,13 +151,6 @@
     font-size: 17px;
     width: 120px;
     border-radius: 4px;
-  }
-
-  .buttonSize_Closed{
-    font-size: 19px;
-    width: 90px;
-    border-radius: 4px;
-    margin-right: 40px;
   }
 
   

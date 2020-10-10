@@ -30,6 +30,7 @@ import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portad
 import { FileUploadComponent } from './jsViews/fileUpload/file-upload/file-upload.component';
 import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component';
 import { NoveltyComponent } from './jsViews/novelty/novelty/novelty.component';
+import { ConfirmPasswordComponent } from './jsViews/confirmPassword/confirm-password/confirm-password.component';
 
 
 
@@ -63,6 +64,13 @@ export const routes: Routes = [
     component: LoginComponent,
     data: {
       title: 'Login Page'
+    }
+  },
+  {
+    path: 'confirm-password/:userName',
+    component: ConfirmPasswordComponent,
+    data: {
+      title: 'Confirm Password'
     }
   },
   {

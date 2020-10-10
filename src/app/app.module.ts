@@ -81,6 +81,7 @@ import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component'
 //File Reader
 import { FctrlxAngularFileReader } from 'fctrlx-angular-file-reader';
 import { NoveltyComponent } from './jsViews/novelty/novelty/novelty.component';
+import { ConfirmPasswordComponent } from './jsViews/confirmPassword/confirm-password/confirm-password.component';
 
 @NgModule({
   imports: [
@@ -134,7 +135,8 @@ import { NoveltyComponent } from './jsViews/novelty/novelty/novelty.component';
     PrePortadaComponent,
     FileUploadComponent,
     MyFilesComponent,
-    NoveltyComponent
+    NoveltyComponent,
+    ConfirmPasswordComponent
 
   ],
   providers: [
