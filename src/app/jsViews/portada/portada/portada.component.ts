@@ -58,6 +58,7 @@ export class PortadaComponent implements OnInit {
   leftInfo = new Portada();
   rightInfo = new Portada();
   centerInfo = new Portada();
+  bannerA = new Portada();
 
   novelties = new Array<NoveltiesByType>();
 
@@ -75,10 +76,10 @@ export class PortadaComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
+    this.getTemplateBannerA('BannerPortada_A');    
     this.getTemplateLeftInfo('LeftInfo');
     this.getTemplateRightInfo('RightInfo');
-    this.getTemplateCenterInfo('CenterInfo');
 
     this.getNoveltiesByType("Science");
   }
@@ -172,6 +173,26 @@ export class PortadaComponent implements OnInit {
         console.log(JSON.stringify(error));
       });
   }
+
+  //Get template banner A
+  getTemplateBannerA(operation: string) {
+    this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        this.bannerA = response.Data;
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
 
   //open misión modal
   openMisionModal(operation: string) {

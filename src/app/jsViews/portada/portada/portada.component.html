@@ -10,9 +10,13 @@
         <button class="btn btn-primary Header">Bienvenido al Distrito Educativo 10-07</button>
       </div>
     </div>
-    <br>
-    <br>
+    <br>  
     
+    <ng-marquee speed="drowsy">
+      <span class="marqueeStyle" [innerHTML]="bannerA.Body"></span>
+    </ng-marquee>
+
+    <br>
     <!--Menú-->
     <div class="row">
       <div class="col-md-12">

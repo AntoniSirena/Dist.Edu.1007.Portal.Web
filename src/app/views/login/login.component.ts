@@ -10,6 +10,7 @@ import { Iresponse } from '../../interfaces/Iresponse/iresponse';
 import { Profile } from '../../models/profile/profile';
 import { SystemConfiguration } from '../../Templates/systemConfiguration/system-configuration';
 import { ExternalService } from '../../services/external/external.service';
+import { Portada } from '../../models/portada/portada';
 
 
 @Component({
@@ -50,6 +51,8 @@ export class LoginComponent implements OnInit {
 
   canViewLoginForm = localStorage.getItem('canViewLoginForm') || false;
 
+  bannerA = new Portada();
+
   @ViewChild('resetPasswordModal') resetPasswordModal: ElementRef;
 
 
@@ -61,15 +64,16 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
-    if(!this.canViewLoginForm){
+    if (!this.canViewLoginForm) {
       this.redirectPortada();
     }
 
     this.getValueRegisterButton();
+    this.getTemplateBannerA('BannerLogin_A');
   };
 
 
-  redirectPortada(){
+  redirectPortada() {
     const login: Ilogin = {
       UserName: 'visitador',
       Password: 'visitador123',
@@ -116,7 +120,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  resetPassword(resetPasswordForm: any){
+  resetPassword(resetPasswordForm: any) {
     const login: Ilogin = {
       UserName: resetPasswordForm.userName,
       Password: resetPasswordForm.password,
@@ -149,12 +153,32 @@ export class LoginComponent implements OnInit {
 
   }
 
-  setValueResetPasswordForm(){
+  setValueResetPasswordForm() {
     this.resetPasswordForm = this.form.group({
       userName: ['', Validators.required],
       emailAddress: ['', [Validators.required, Validators.email]],
     });
   }
 
-  
+
+  //Get template banner A
+  getTemplateBannerA(operation: string) {
+    this.externalService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        this.bannerA = response.Data;
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
 }

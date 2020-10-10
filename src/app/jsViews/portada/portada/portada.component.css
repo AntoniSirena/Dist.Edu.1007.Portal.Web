@@ -103,3 +103,8 @@
     overflow-y:scroll;
     height: 500px;
 }
+
+.marqueeStyle{
+    font-size: 17px;
+    width: 100%;
+}
