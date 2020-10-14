@@ -13,6 +13,7 @@ import { tap, map } from 'rxjs/operators';
 import { BaseService } from '../../services/base/base.service';
 import { RedirectService } from '../../services/redirect/redirect.service';
 import { Ilogin } from '../../interfaces/Ilogin/ilogin';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,22 +21,27 @@ import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 export class RequestInterceptorService implements HttpInterceptor  {
 
   token: string;
+  apiURL;
 
   constructor(private baseService: BaseService, private redirectService: RedirectService) {
     this.token = this.baseService.getUserToke();
+    this.apiURL = environment.apiURL;
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     this.token = this.baseService.getUserToke();
-
-    const headers = new HttpHeaders({
-    'Authorization': `${this.token}`,
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'http://localhost:61048/',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-    });
+     
+    let headers = new HttpHeaders();
+     
+    if(req.url.match("file/UploadFile")){
+      headers = headers.append('Authorization', `${this.token}`);
+      headers = headers.append('Access-Control-Allow-Origin', `${this.apiURL}`);
+    }else{
+      headers = headers.append('Authorization', `${this.token}`);
+      headers = headers.append('content-type', 'application/json');
+      headers = headers.append('Access-Control-Allow-Origin', `${this.apiURL}`);
+    }
 
     const reqclone = req.clone({
       headers

@@ -12,13 +12,15 @@ export class FileUploadComponent implements OnInit {
 
   public files: NgxFileDropEntry[] = [];
 
+  fileToUpload: File = null;
+
   constructor(private fileUploadService: FileUploadService) { }
 
 
   ngOnInit(): void {
 
   }
-  
+
 
   public dropped(files: NgxFileDropEntry[]) {
     this.files = files;
@@ -30,10 +32,10 @@ export class FileUploadComponent implements OnInit {
         fileEntry.file((file: File) => {
 
           // Here you can access the real file
-         //console.log(droppedFile.relativePath, file);
+          //console.log(droppedFile.relativePath, file);
 
-         this.fileUploadService.upload(file);
-          
+          this.fileUploadService.upload(file);
+
           /**
           // You could upload it like this:
           const formData = new FormData()
@@ -49,7 +51,7 @@ export class FileUploadComponent implements OnInit {
             // Sanitized logo returned from backend
           })
           **/
-         
+
 
         });
       } else {
@@ -61,12 +63,16 @@ export class FileUploadComponent implements OnInit {
   }
 
 
-  public fileOver(event) {
-    //console.log(event);
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
   }
 
-  public fileLeave(event) {
-    //console.log(event);
+  uploadFileToActivity() {
+    this.fileUploadService.postFile(this.fileToUpload).subscribe(data => {
+      // do something, if upload success
+      }, error => {
+        console.log(error);
+      });
   }
 
 

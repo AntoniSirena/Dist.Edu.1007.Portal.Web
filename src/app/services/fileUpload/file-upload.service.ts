@@ -33,4 +33,22 @@ export class FileUploadService {
       });
   }
 
+
+  postFile(fileToUpload: File): Observable<boolean> {
+    let endpoint = this.apiURL + 'api/file/UploadFile';
+    let formData: FormData = new FormData();
+    formData.append('fileKey', fileToUpload, fileToUpload.name);
+    console.log(formData);
+
+    // Headers
+    const headers = new HttpHeaders({
+      'Content-Type': 'form-data',
+    });
+
+    return this.httpClient
+      .post(endpoint, formData, { headers: headers })
+      .pipe(map(() => { return true; })
+      );
+  }
+
 }

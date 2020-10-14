@@ -1,5 +1,4 @@
-
-<div class="container">
+<!-- <div class="container">
     <div class="center">
         <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" 
         (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
@@ -22,5 +21,17 @@
                 </tbody>
             </table>
         </div>
+    </div>
+</div> -->
+
+<br>
+<div class="form-group">
+    <label for="file">Seleccione el archivo</label>
+    <input type="file" multiple="multiple" id="file" (change)="handleFileInput($event.target.files)">
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <button class="btn btn-primary" (click)="uploadFileToActivity()">Guardar</button>
     </div>
 </div>
