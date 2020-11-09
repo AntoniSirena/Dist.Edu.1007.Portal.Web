@@ -77,7 +77,9 @@ export class LoginComponent implements OnInit {
     const login: Ilogin = {
       UserName: 'visitador',
       Password: 'visitador123',
-      EmailAddress: null
+      EmailAddress: null,
+      SecurityCode: '',
+      Token2AF: '',
     };
 
     this.redirectService.SubmitLogin(login, true, true);
@@ -91,7 +93,9 @@ export class LoginComponent implements OnInit {
     const login: Ilogin = {
       UserName: loginForm.userName,
       Password: loginForm.password,
-      EmailAddress: null
+      EmailAddress: null,
+      SecurityCode: '',
+      Token2AF: '',
     };
 
     this.redirectService.SubmitLogin(login);
@@ -125,6 +129,8 @@ export class LoginComponent implements OnInit {
       UserName: resetPasswordForm.userName,
       Password: resetPasswordForm.password,
       EmailAddress: resetPasswordForm.emailAddress,
+      SecurityCode: '',
+      Token2AF: '',
     };
 
     this.loginService.resetPassword(login).subscribe((response: Iresponse) => {

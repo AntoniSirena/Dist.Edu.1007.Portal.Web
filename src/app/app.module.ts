@@ -93,6 +93,7 @@ import { FileUploadComponent } from './jsViews/fileUpload/file-upload/file-uploa
 import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component';
 import { NoveltyComponent } from './jsViews/novelty/novelty/novelty.component';
 import { ConfirmPasswordComponent } from './jsViews/confirmPassword/confirm-password/confirm-password.component';
+import { SecondFactorAuthenticationComponent } from './jsViews/secondFactorAuthentication/second-factor-authentication/second-factor-authentication.component';
 
 
 
@@ -151,7 +152,8 @@ import { ConfirmPasswordComponent } from './jsViews/confirmPassword/confirm-pass
     FileUploadComponent,
     MyFilesComponent,
     NoveltyComponent,
-    ConfirmPasswordComponent
+    ConfirmPasswordComponent,
+    SecondFactorAuthenticationComponent
 
   ],
   providers: [

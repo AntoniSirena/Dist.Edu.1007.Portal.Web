@@ -42,7 +42,9 @@ export class ConfirmPasswordComponent implements OnInit {
       const request: Ilogin = {
         UserName: this.userName,
         Password: form.password,
-        EmailAddress: null
+        EmailAddress: null,
+        SecurityCode: '',
+        Token2AF: '',
       };
 
       this.loginService.confirmPassword(request).subscribe((response: Iresponse) => {

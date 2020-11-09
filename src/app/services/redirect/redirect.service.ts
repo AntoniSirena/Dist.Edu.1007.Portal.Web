@@ -120,7 +120,7 @@ export class RedirectService {
         }
 
       } else {
-        if (window.location.hash === '#/login') {
+        if (window.location.hash.match('#/login') || window.location.hash.match('#/second-factor-authentication')) {
           Swal.fire({
             icon: 'warning',
             title: response.Message,

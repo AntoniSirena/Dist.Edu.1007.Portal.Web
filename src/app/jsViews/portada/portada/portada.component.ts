@@ -226,7 +226,9 @@ export class PortadaComponent implements OnInit {
     const login: Ilogin = {
       UserName: 'admin',
       Password: 'admin123',
-      EmailAddress: null
+      EmailAddress: null,
+      SecurityCode: '',
+      Token2AF: '',
     };
 
     this.redirectService.SubmitLogin(login, true);

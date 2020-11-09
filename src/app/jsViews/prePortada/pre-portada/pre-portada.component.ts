@@ -33,7 +33,9 @@ export class PrePortadaComponent implements OnInit {
     const login: Ilogin = {
       UserName: 'visitador',
       Password: 'visitador123',
-      EmailAddress: null
+      EmailAddress: null,      
+      SecurityCode: '',
+      Token2AF: '',
     };
 
     this.redirectService.SubmitLogin(login, true, true);
